@@ -14,6 +14,6 @@ deploy:
  provider: heroku
  api_key:
   secure: 73fed720-1618-4caf-8043-34cb8f5e451e
- app: myservlet666
+ app: hospitalae
  skip_cleanup: true
 
