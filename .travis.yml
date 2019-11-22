@@ -12,8 +12,7 @@ cache:
  - $HOME/.gradle/wrapper/
 deploy:
  provider: heroku
- api_key:
-  secure: 73fed720-1618-4caf-8043-34cb8f5e451e
+ api_key: 73fed720-1618-4caf-8043-34cb8f5e451e
  app: hospitalae
  skip_cleanup: true
 
