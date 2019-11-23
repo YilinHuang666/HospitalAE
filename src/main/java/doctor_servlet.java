@@ -6,8 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
-@WebServlet(urlPatterns = {"/login"},loadOnStartup = 1)
+@WebServlet(urlPatterns = {"/login"}, loadOnStartup = 1)
 public class doctor_servlet extends HttpServlet {
 
     final static String doctor_login = "<!DOCTYPE html>\n" +
@@ -107,14 +108,30 @@ public class doctor_servlet extends HttpServlet {
             "</html>\n";
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println(doctor_login);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("uname");
+        String password = request.getParameter("psw");
+        request.setAttribute("username",username);
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        try {
+            if (Verificate.checkinfo(password)) {
+                RequestDispatcher rd = request.getRequestDispatcher("welcome_page");
+                rd.forward(request, response);
+            }
+            else {
+                out.println("<h2>Invalid username or password!</h2>");
+                out.println(doctor_login);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
