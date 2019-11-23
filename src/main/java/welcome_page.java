@@ -19,14 +19,14 @@ public class welcome_page extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String dbUrl = "jdbc:postgresql://localhost:5432/postgres";
+        String dbUrl =  System.getenv("JDBC_DATABASE_URL");
         try {
             // Registers the driver
             Class.forName("org.postgresql.Driver");
         } catch (Exception e) {}
         Connection conn= null;
         try {
-            conn = DriverManager.getConnection(dbUrl, "postgres", "alanBetter0117");
+            conn = DriverManager.getConnection(dbUrl);
         } catch (SQLException e) {
             e.printStackTrace();
         }

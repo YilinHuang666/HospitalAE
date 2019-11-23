@@ -1,7 +1,7 @@
 import java.sql.*;
 
 public class Verificate{
-    private static String dbUrl = "jdbc:postgresql://localhost:5432/postgres";
+    private static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
 
     public static boolean checkinfo(String passw) throws SQLException {
         boolean state=false;
@@ -9,7 +9,7 @@ public class Verificate{
             // Registers the driver
             Class.forName("org.postgresql.Driver");
         } catch (Exception e) {}
-        Connection conn= DriverManager.getConnection(dbUrl, "postgres", "alanBetter0117");
+        Connection conn= DriverManager.getConnection(dbUrl);
         try {
             Statement s=conn.createStatement();
             PreparedStatement ps=conn.prepareStatement("select * from doctor_login_info where password=?");
