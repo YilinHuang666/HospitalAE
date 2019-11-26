@@ -124,7 +124,7 @@ public class doctor_servlet extends HttpServlet {
         try {
             if (Verificate.checkinfo(password)) {
                 RequestDispatcher rd = request.getRequestDispatcher("welcome_page");
-                rd.forward(request, response);
+                rd.forward(request,response);
             }
             else {
                 out.println("<h2>Invalid username or password!</h2>");

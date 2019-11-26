@@ -14,12 +14,11 @@ public class welcome_page extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String dbUrl =  System.getenv("JDBC_DATABASE_URL");
+
         try {
             // Registers the driver
             Class.forName("org.postgresql.Driver");

@@ -3,6 +3,7 @@ import java.sql.*;
 public class Verificate{
     private static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
 
+
     public static boolean checkinfo(String passw) throws SQLException {
         boolean state=false;
         try {
