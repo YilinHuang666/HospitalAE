@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 @WebServlet(urlPatterns = {"/login"}, loadOnStartup = 1)
 public class doctor_servlet extends HttpServlet {
-
+    //html code for login page
     final static String doctor_login = "<!DOCTYPE html>\n" +
             "<html>\n" +
             "<head>\n" +
@@ -116,18 +116,18 @@ public class doctor_servlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("uname");
-        String password = request.getParameter("psw");
-        request.setAttribute("username",username);
+        String username = request.getParameter("uname");    //get username input
+        String password = request.getParameter("psw");      //get password input
+        request.setAttribute("username",username);          //store the username to attribute then send it to welcome_page for display of doctor's name
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         try {
-            if (Verificate.checkinfo(password)) {
+            if (Verificate.checkinfo(password)) {                   //if password is valid then go to welcome_page
                 RequestDispatcher rd = request.getRequestDispatcher("welcome_page");
                 rd.forward(request,response);
             }
             else {
-                out.println("<h2>Invalid username or password!</h2>");
+                out.println("<h2>Invalid username or password!</h2>");//if not, display error message
                 out.println(doctor_login);
             }
         } catch (SQLException e) {

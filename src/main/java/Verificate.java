@@ -13,10 +13,10 @@ public class Verificate{
         Connection conn= DriverManager.getConnection(dbUrl);
         try {
             Statement s=conn.createStatement();
-            PreparedStatement ps=conn.prepareStatement("select * from doctor_login_info where password=?");
+            PreparedStatement ps=conn.prepareStatement("select * from doctor_login_info where password=?"); // to check if the database has the corresponding information
             ps.setString(1,passw);
             ResultSet resultset = ps.executeQuery();
-            state=resultset.next();
+            state=resultset.next(); //state=true if there is correponding info, else state=false
             resultset.close();
             s.close();
             conn.close();

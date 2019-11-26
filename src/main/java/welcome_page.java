@@ -11,18 +11,65 @@ import java.sql.*;
 public class welcome_page extends HttpServlet {
     private static String firstname;
     private static String lastname;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("Welcome "+firstname+" "+lastname);
+        //Welcome_page html code
+        out.println("<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "<head>\n" +
+                "    <meta charset=\"UTF-8\">\n" +
+                "    <style>\n" +
+                "        h1 {\n" +
+                "            color: black;\n" +
+                "            text-align: center;\n" +
+                "        }\n" +
+                "        .button {\n" +
+                "            background-color: darkmagenta;\n" +
+                "            border: 2px solid black ;\n" +
+                "            color: #f1f1f1;\n" +
+                "            padding: 20px 40px;\n" +
+                "            text-align: center;\n" +
+                "            display: inline-block;\n" +
+                "            font-size: 24px;\n" +
+                "            border-radius: 6px;\n" +
+                "            -webkit-transition-duration: 0.5s;\n" +
+                "            transition-duration: 0.5s;\n" +
+                "            cursor:pointer;\n" +
+                "            width: 20%;\n" +
+                "        }\n" +
+                "\n" +
+                "        .button:hover{\n" +
+                "            background-color: white;\n" +
+                "            color: black;\n" +
+                "        }\n" +
+                "    </style>\n" +
+                "</head>\n" +
+                "<body >\n" +
+                "    <h1>Welcome " +firstname+lastname+
+                "</h1>\n" +
+                "    &nbsp;\n" +
+                "    <form action=\"timetable\" method=\"post\">\n" +
+                "        <div style=\"text-align: center\" >\n" +
+                "            <button class=\"button\" type=\"submit\">Timetable</button>\n" +
+                "            &nbsp;\n" +
+                "            <button class=\"button\" type=\"submit\">My Patients</button>\n" +
+                "            &nbsp;\n" +
+                "            <button class=\"button\" type=\"submit\">Work Load</button>\n" +
+                "        </div>\n" +
+                "    </form>\n" +
+                "\n" +
+                "</body>\n" +
+                "</html>");
+
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String dbUrl =  System.getenv("JDBC_DATABASE_URL");
 
         try {
-            // Registers the driver
             Class.forName("org.postgresql.Driver");
         } catch (Exception e) {}
         Connection conn= null;
@@ -31,10 +78,10 @@ public class welcome_page extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String uname = (String)request.getAttribute("username");
+        String uname = (String)request.getAttribute("username"); //get the input username
         try {
             Statement s=conn.createStatement();
-            PreparedStatement ps=conn.prepareStatement("select * from doctor_login_info where username=?");
+            PreparedStatement ps=conn.prepareStatement("select * from doctor_login_info where username=?"); //find the corresponding name to the username then display welcome message
             ps.setString(1,uname);
             ResultSet resultset = ps.executeQuery();
             while(resultset.next()) {
@@ -46,6 +93,6 @@ public class welcome_page extends HttpServlet {
             conn.close();
         }
         catch(Exception e){}
-        response.sendRedirect("welcome_page");
+        response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
     }
 }
