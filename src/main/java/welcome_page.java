@@ -48,22 +48,28 @@ public class welcome_page extends HttpServlet {
                 "    </style>\n" +
                 "</head>\n" +
                 "<body >\n" +
-                "    <h1>Welcome " +firstname+lastname+
+                "    <h1>Welcome " +firstname+" "+lastname+
                 "</h1>\n" +
                 "    &nbsp;\n" +
                 "    <form action=\"timetable\" method=\"post\">\n" +
                 "        <div style=\"text-align: center\" >\n" +
                 "            <button class=\"button\" type=\"submit\">Timetable</button>\n" +
-                "            &nbsp;\n" +
+                "        </div>\n" +
+                "    </form>\n" +
+                "    &nbsp;\n" +
+                "    <form action=\"mypatients\" method=\"post\">\n" +
+                "        <div style=\"text-align: center\">\n" +
                 "            <button class=\"button\" type=\"submit\">My Patients</button>\n" +
-                "            &nbsp;\n" +
+                "        </div>\n" +
+                "    </form>\n" +
+                "    &nbsp;\n" +
+                "    <form action=\"workload\" method=\"post\">\n" +
+                "        <div style=\"text-align: center\">\n" +
                 "            <button class=\"button\" type=\"submit\">Work Load</button>\n" +
                 "        </div>\n" +
                 "    </form>\n" +
-                "\n" +
                 "</body>\n" +
                 "</html>");
-
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

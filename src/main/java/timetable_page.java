@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns = "/timetable_page", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/timetable", loadOnStartup = 1)
 
 public class timetable_page extends HttpServlet {
 
