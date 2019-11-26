@@ -13,10 +13,6 @@ public class welcome_page extends HttpServlet {
     private static String lastname;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String dbUrl =  System.getenv("JDBC_DATABASE_URL");
 
         try {
@@ -47,5 +43,9 @@ public class welcome_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println("Welcome "+firstname+" "+lastname);
+    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
     }
 }
