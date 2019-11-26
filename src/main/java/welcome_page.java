@@ -15,7 +15,7 @@ public class welcome_page extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<h2>hello my friend</h2>");
+        out.println("Welcome "+firstname+" "+lastname);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -46,9 +46,6 @@ public class welcome_page extends HttpServlet {
             conn.close();
         }
         catch(Exception e){}
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("Welcome "+firstname+" "+lastname);
         response.sendRedirect("welcome_page");
     }
 }
