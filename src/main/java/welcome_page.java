@@ -51,19 +51,19 @@ public class welcome_page extends HttpServlet {
                 "    <h1>Welcome " +firstname+" "+lastname+
                 "</h1>\n" +
                 "    &nbsp;\n" +
-                "    <form action=\"timetable_page.java\" method=\"post\">\n" +
+                "    <form action=\"timetable_page\" method=\"post\">\n" +
                 "        <div style=\"text-align: center\" >\n" +
                 "            <button class=\"button\" type=\"submit\">Timetable</button>\n" +
                 "        </div>\n" +
                 "    </form>\n" +
                 "    &nbsp;\n" +
-                "    <form action=\"mypatients_page.java\" method=\"post\">\n" +
+                "    <form action=\"mypatients_page\" method=\"post\">\n" +
                 "        <div style=\"text-align: center\">\n" +
                 "            <button class=\"button\" type=\"submit\">My Patients</button>\n" +
                 "        </div>\n" +
                 "    </form>\n" +
                 "    &nbsp;\n" +
-                "    <form action=\"workload_page.java\" method=\"post\">\n" +
+                "    <form action=\"workload_page\" method=\"post\">\n" +
                 "        <div style=\"text-align: center\">\n" +
                 "            <button class=\"button\" type=\"submit\">Work Load</button>\n" +
                 "        </div>\n" +
