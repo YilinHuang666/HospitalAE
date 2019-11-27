@@ -14,16 +14,18 @@ public class timetable_page extends HttpServlet {
     private static String reqBody;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
+        response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+        out.println("<h2>" +reqBody+
+                "</h2>");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
-        //out.println("<h2>Timetable</h2>");
+        out.println("<h2>Timetable</h2>");
         reqBody=request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        out.println("<h2>" +reqBody+
-                "</h2>");
+        response.sendRedirect("timetable_page");
     }
 }
