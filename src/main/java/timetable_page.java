@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = "/timetable", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/timetable_page", loadOnStartup = 1)
 
 public class timetable_page extends HttpServlet {
     private static String reqBody;
