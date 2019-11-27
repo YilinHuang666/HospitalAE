@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @WebServlet(urlPatterns = "/timetable", loadOnStartup = 1)
 
 public class timetable_page extends HttpServlet {
-
+    private static String reqBody;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
@@ -22,7 +22,7 @@ public class timetable_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         //out.println("<h2>Timetable</h2>");
-        String reqBody=request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        reqBody=request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         out.println("<h2>" +reqBody+
                 "</h2>");
     }
