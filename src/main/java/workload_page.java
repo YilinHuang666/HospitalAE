@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns = "/workload", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/workload_page", loadOnStartup = 1)
 
 public class workload_page extends HttpServlet {
 
