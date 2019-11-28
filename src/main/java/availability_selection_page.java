@@ -199,19 +199,20 @@ public class availability_selection_page extends HttpServlet {
             "    </form>\n" +
             "</body>\n" +
             "</html>";
-    protected static String[] time_slot;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println(ta_page);
-        time_slot=request.getParameterValues("time_slot");
-        out.println(time_slot[0]);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        response.sendRedirect("availability_selection_page");
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println(ta_page);
+        String time_slot[]=request.getParameterValues("time_slot");
+        out.println("<h2>"+time_slot[0]+"</h2>");
+        //response.sendRedirect("availability_selection_page");
     }
 
 }
