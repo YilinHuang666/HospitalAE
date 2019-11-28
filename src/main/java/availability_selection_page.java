@@ -211,9 +211,7 @@ public class availability_selection_page extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println(ta_page);
         time_slot=request.getParameterValues("time_slot");
-        if (time_slot!=null){
-            response.getWriter().write(time_slot[0]);
-        }
+        response.getWriter().write("Thank you Client");
 
         //response.sendRedirect("availability_selection_page");
     }
