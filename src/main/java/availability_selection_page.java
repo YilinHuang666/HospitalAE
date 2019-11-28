@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = {"/availability_selection_page"},loadOnStartup = 1)
 public class availability_selection_page extends HttpServlet {
@@ -211,7 +210,6 @@ public class availability_selection_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println(ta_page);
-        String reqBody=request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         String time_slot[]=request.getParameterValues("time_slot");
         response.getWriter().write(time_slot[0]);
         //response.sendRedirect("availability_selection_page");
