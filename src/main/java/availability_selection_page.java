@@ -206,7 +206,7 @@ public class availability_selection_page extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println(ta_page);
         for (String times: time_slot){
-            out.println(times);
+            out.println("<h2>"+times+"</h2>");
         }
     }
 
