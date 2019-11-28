@@ -199,7 +199,7 @@ public class availability_selection_page extends HttpServlet {
             "    </form>\n" +
             "</body>\n" +
             "</html>";
-
+    private static String time_slot[];
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
@@ -210,7 +210,7 @@ public class availability_selection_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println(ta_page);
-        String time_slot[]=request.getParameterValues("time_slot");
+        time_slot=request.getParameterValues("time_slot");
         response.getWriter().write(time_slot[0]);
         //response.sendRedirect("availability_selection_page");
     }
