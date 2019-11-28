@@ -205,14 +205,17 @@ public class availability_selection_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println(ta_page);
-        time_slot=request.getParameterValues("time_slot");
-        for (String times: time_slot){
-           out.println("<h2>"+times+"</h2>");
-        }
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        time_slot=request.getParameterValues("time_slot");
+        for (String times: time_slot){
+            out.println("<h2>"+times+"</h2>");
+        }
         //response.sendRedirect("availability_selection_page");
     }
 
