@@ -212,10 +212,8 @@ public class availability_selection_page extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
         time_slot=request.getParameterValues("time_slot");
-
-        response.sendRedirect("availability_selection_page");
+        request.getRequestDispatcher("availability_selection_page");
     }
 
 }
