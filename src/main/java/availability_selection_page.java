@@ -204,7 +204,7 @@ public class availability_selection_page extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println(ta_page);
+
 
     }
 
@@ -212,9 +212,10 @@ public class availability_selection_page extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        out.println(ta_page);
         String[] time_slot=request.getParameterValues("time_slot");
-        for (String times: time_slot){
-            out.println("<h2>"+times+"</h2>");
+        for (int i=0; i<time_slot.length; i++){
+            out.println("<h2>"+time_slot[i]+"</h2>");
         }
         //response.sendRedirect("availability_selection_page");
     }
