@@ -199,7 +199,7 @@ public class availability_selection_page extends HttpServlet {
             "    </form>\n" +
             "</body>\n" +
             "</html>";
-    private String[] time_slot;
+    private static String[] time_slot;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
