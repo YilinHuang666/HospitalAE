@@ -48,8 +48,7 @@ public class welcome_page extends HttpServlet {
                 "    </style>\n" +
                 "</head>\n" +
                 "<body >\n" +
-                "    <h1>Welcome " +firstname+" "+lastname+
-                "</h1>\n" +
+                "    <h1>Welcome Yilin Huang</h1>\n" +
                 "    &nbsp;\n" +
                 "    <form action=\"timetable_page\" method=\"post\">\n" +
                 "        <div style=\"text-align: center\" >\n" +
@@ -66,6 +65,12 @@ public class welcome_page extends HttpServlet {
                 "    <form action=\"workload_page\" method=\"post\">\n" +
                 "        <div style=\"text-align: center\">\n" +
                 "            <button class=\"button\" type=\"submit\">Work Load</button>\n" +
+                "        </div>\n" +
+                "    </form>\n" +
+                "    &nbsp;\n" +
+                "    <form action=\"availability_selection_page\" method=\"post\">\n" +
+                "        <div style=\"text-align: center\">\n" +
+                "            <button class=\"button\" type=\"submit\">Time Availability Selection</button>\n" +
                 "        </div>\n" +
                 "    </form>\n" +
                 "</body>\n" +
