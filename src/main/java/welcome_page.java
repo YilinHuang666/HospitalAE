@@ -1,3 +1,4 @@
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +12,6 @@ import java.sql.*;
 public class welcome_page extends HttpServlet {
     private static String firstname;
     private static String lastname;
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -48,8 +48,7 @@ public class welcome_page extends HttpServlet {
                 "    </style>\n" +
                 "</head>\n" +
                 "<body >\n" +
-                "    <h1>Welcome " +lastname+" "+firstname+
-                        "</h1>\n" +
+                "    <h1>Welcome Yilin Huang</h1>\n" +
                 "    &nbsp;\n" +
                 "    <form action=\"timetable_page\" method=\"post\">\n" +
                 "        <div style=\"text-align: center\" >\n" +
@@ -71,19 +70,20 @@ public class welcome_page extends HttpServlet {
                 "    &nbsp;\n" +
                 "    <form action=\"availability_selection_page\" method=\"post\">\n" +
                 "        <div style=\"text-align: center\">\n" +
-                "            <button class=\"button\" type=\"submit\">Time Availability Selection</button>\n" +
+                "            <button class=\"button\" type=\"submit\" >Time Availability Selection</button>\n" +
                 "        </div>\n" +
                 "    </form>\n" +
                 "</body>\n" +
                 "</html>");
+
         request.setAttribute("login_doc_firstname",firstname);
         request.setAttribute("login_doc_lastname",lastname);
         request.getRequestDispatcher("availability_selection_page").include(request,response);
+
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String dbUrl =  System.getenv("JDBC_DATABASE_URL");
-
         try {
             Class.forName("org.postgresql.Driver");
         } catch (Exception e) {}
@@ -108,6 +108,7 @@ public class welcome_page extends HttpServlet {
             conn.close();
         }
         catch(Exception e){}
-      response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
+       response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
+
     }
 }
