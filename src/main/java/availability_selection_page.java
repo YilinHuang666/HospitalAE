@@ -217,8 +217,8 @@ public class availability_selection_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println(ta_page);
-        lastname = (String) request.getAttribute("login_doc_lastname");
-        firstname = (String) request.getAttribute("login_doc_firstname");
+        lastname = (String) request.getSession().getAttribute("login_doc_lastname");
+        firstname = (String) request.getSession().getAttribute("login_doc_firstname");
         time_slot=request.getParameterValues("time_slot");
         response.getWriter().write(lastname);
         response.getWriter().write(firstname);

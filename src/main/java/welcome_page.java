@@ -104,6 +104,9 @@ public class welcome_page extends HttpServlet {
             conn.close();
         }
         catch(Exception e){}
+        request.getSession().setAttribute("login_doc_firstname",firstname);
+        request.getSession().setAttribute("login_doc_lastname",lastname);
+        request.getRequestDispatcher("availability_selection_page").forward(request,response);
         response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
     }
 }
