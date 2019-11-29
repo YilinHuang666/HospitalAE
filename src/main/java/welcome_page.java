@@ -48,7 +48,8 @@ public class welcome_page extends HttpServlet {
                 "    </style>\n" +
                 "</head>\n" +
                 "<body >\n" +
-                "    <h1>Welcome Yilin Huang</h1>\n" +
+                "    <h1>Welcome " +lastname+" "+firstname+
+                        "</h1>\n" +
                 "    &nbsp;\n" +
                 "    <form action=\"timetable_page\" method=\"post\">\n" +
                 "        <div style=\"text-align: center\" >\n" +
