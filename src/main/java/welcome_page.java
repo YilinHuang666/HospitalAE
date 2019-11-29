@@ -99,6 +99,8 @@ public class welcome_page extends HttpServlet {
                 firstname = resultset.getString("firstname");
                 lastname = resultset.getString("lastname");
             }
+            request.setAttribute("login_doc_firstname",firstname);
+            request.setAttribute("login_doc_lastname",lastname);
             resultset.close();
             s.close();
             conn.close();
