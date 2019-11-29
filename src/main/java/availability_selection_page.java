@@ -211,6 +211,7 @@ public class availability_selection_page extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        response.setContentType("text/html");
         lastname = (String) request.getAttribute("login_doc_lastname");
         firstname = (String) request.getAttribute("login_doc_firstname");
         //time_slot=request.getParameterValues("time_slot");
