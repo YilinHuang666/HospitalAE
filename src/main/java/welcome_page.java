@@ -77,6 +77,10 @@ public class welcome_page extends HttpServlet {
                 "    </form>\n" +
                 "</body>\n" +
                 "</html>");
+        request.setAttribute("login_doc_firstname",firstname);
+        request.setAttribute("login_doc_lastname",lastname);
+        RequestDispatcher rd = request.getRequestDispatcher("availability_selection_page");
+        rd.forward(request,response);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -106,10 +110,6 @@ public class welcome_page extends HttpServlet {
             conn.close();
         }
         catch(Exception e){}
-        request.setAttribute("login_doc_firstname",firstname);
-        request.setAttribute("login_doc_lastname",lastname);
-        RequestDispatcher rd = request.getRequestDispatcher("availability_selection_page");
-        rd.forward(request,response);
         response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
     }
 }
