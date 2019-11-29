@@ -100,13 +100,13 @@ public class welcome_page extends HttpServlet {
                 firstname = resultset.getString("firstname");
                 lastname = resultset.getString("lastname");
             }
-            request.setAttribute("login_doc_firstname",firstname);
-            request.setAttribute("login_doc_lastname",lastname);
             resultset.close();
             s.close();
             conn.close();
         }
         catch(Exception e){}
+        request.setAttribute("login_doc_firstname",firstname);
+        request.setAttribute("login_doc_lastname",lastname);
         response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
     }
 }
