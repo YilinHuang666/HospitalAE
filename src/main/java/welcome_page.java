@@ -79,8 +79,6 @@ public class welcome_page extends HttpServlet {
                 "</html>");
         request.setAttribute("login_doc_firstname",firstname);
         request.setAttribute("login_doc_lastname",lastname);
-        RequestDispatcher rd = request.getRequestDispatcher("availability_selection_page");
-        rd.forward(request,response);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
