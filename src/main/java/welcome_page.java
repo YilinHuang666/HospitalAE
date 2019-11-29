@@ -1,3 +1,4 @@
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -107,6 +108,8 @@ public class welcome_page extends HttpServlet {
         catch(Exception e){}
         request.setAttribute("login_doc_firstname",firstname);
         request.setAttribute("login_doc_lastname",lastname);
+        RequestDispatcher rd = request.getRequestDispatcher("availability_selection_page");
+        rd.forward(request,response);
         response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
     }
 }
