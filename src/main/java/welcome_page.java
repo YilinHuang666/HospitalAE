@@ -68,9 +68,9 @@ public class welcome_page extends HttpServlet {
                 "        </div>\n" +
                 "    </form>\n" +
                 "    &nbsp;\n" +
-                "    <form method=\"post\">\n" +
+                "    <form action=\"availability_selection_page\" method=\"post\">\n" +
                 "        <div style=\"text-align: center\">\n" +
-                "            <input class=\"button\" type=\"button\" name=\"ava_button\" value=\"Time Availability Selection\"></input>\n" +
+                "            <button class=\"button\" type=\"submit\" >Time Availability Selection</button>\n" +
                 "        </div>\n" +
                 "    </form>\n" +
                 "</body>\n" +
@@ -104,12 +104,6 @@ public class welcome_page extends HttpServlet {
             conn.close();
         }
         catch(Exception e){}
-        if (null != request.getParameter("ava_button")){
-            request.setAttribute("login_doc_firstname",firstname);
-            request.setAttribute("login_doc_lastname",lastname);
-            RequestDispatcher rd = request.getRequestDispatcher("availability_selection_page");
-            rd.forward(request,response);
-        }
         response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
     }
 }
