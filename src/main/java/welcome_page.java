@@ -68,14 +68,14 @@ public class welcome_page extends HttpServlet {
                 "        </div>\n" +
                 "    </form>\n" +
                 "    &nbsp;\n" +
-                "    <form action=\"availability_selection_page\" method=\"post\">\n" +
+                "    <form method=\"post\">\n" +
                 "        <div style=\"text-align: center\">\n" +
-                "            <input class=\"button\" type=\"button\" name=\"available_page_click\" value=\"avail\">Time Availability Selection</button>\n" +
+                "            <input class=\"button\" type=\"button\" name=\"ava_button\" value=\"Time Availability Selection\"></input>\n" +
                 "        </div>\n" +
                 "    </form>\n" +
                 "</body>\n" +
                 "</html>");
-        if (null != request.getParameter("available_page_click")){
+        if (null != request.getParameter("ava_button")){
             request.setAttribute("login_doc_firstname",firstname);
             request.setAttribute("login_doc_lastname",lastname);
             RequestDispatcher rd = request.getRequestDispatcher("availability_selection_page");
