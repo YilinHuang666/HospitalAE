@@ -251,6 +251,7 @@ public class availability_selection_page extends HttpServlet {
                 e.printStackTrace();
             }
         }
+        time_slot_message = "";
         response.sendRedirect("availability_selection_page");
     }
 }
