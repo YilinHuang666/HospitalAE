@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
+import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = {"/availability_selection_page"},loadOnStartup = 1)
 public class availability_selection_page extends HttpServlet {
@@ -203,20 +205,18 @@ public class availability_selection_page extends HttpServlet {
     private static String lastname;
     private static String firstname;
     private static String time_slot[];
+    private static String time_slot_message="";
+    private static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println(ta_page);
-        //out.println("<h2>"+time_slot[0]+"</h2>");
-        out.println("<h2>"+firstname+"</h2>");
-        out.println("<h2>"+lastname+"</h2>");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
         Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
         if (cookies != null){
             for (Cookie cookie: cookies){
@@ -228,10 +228,30 @@ public class availability_selection_page extends HttpServlet {
         Cookie lastname_remove = new Cookie("lastname","");
         firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
         response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
-        //time_slot=request.getParameterValues("time_slot");
+        time_slot=request.getParameterValues("time_slot");
         response.getWriter().write(lastname);
         response.getWriter().write(firstname);
         response.sendRedirect("availability_selection_page");
+        for (int i=0; i<time_slot.length; i++){
+            time_slot_message = time_slot_message+time_slot[i]+" ";
+        }
+        try {
+            // Registers the driver
+            Class.forName("org.postgresql.Driver");
+        } catch (Exception e) {}
+        try {
+            Connection conn= DriverManager.getConnection(dbUrl);  //connect to database
+            Statement s=conn.createStatement();
+            PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where lastname=?"); // to check if the database has the corresponding information
+            ps.setString(1,time_slot_message); ps.setString(2,lastname);
+            ResultSet resultset = ps.executeQuery();
+            resultset.close();
+            s.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
