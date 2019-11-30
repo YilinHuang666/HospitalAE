@@ -208,7 +208,7 @@ public class availability_selection_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println(ta_page);
-        out.println("<h2>"+time_slot[0]+"</h2>");
+        //out.println("<h2>"+time_slot[0]+"</h2>");
         out.println("<h2>"+firstname+"</h2>");
         out.println("<h2>"+lastname+"</h2>");
     }
