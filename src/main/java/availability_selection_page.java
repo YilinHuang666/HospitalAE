@@ -217,14 +217,18 @@ public class availability_selection_page extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println(ta_page);
-        Cookie[] cookies = request.getCookies();
+        //out.println(ta_page);
+        Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
         if (cookies != null){
             for (Cookie cookie: cookies){
                 if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
                 if (cookie.getName().equals("lastname")) lastname = cookie.getValue();
             }
         }
+        Cookie firstname_remove = new Cookie("firstname","");
+        Cookie lastname_remove = new Cookie("lastname","");
+        firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
+        response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
         time_slot=request.getParameterValues("time_slot");
         response.getWriter().write(lastname);
         response.getWriter().write(firstname);
