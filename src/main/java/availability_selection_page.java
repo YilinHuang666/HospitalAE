@@ -229,9 +229,7 @@ public class availability_selection_page extends HttpServlet {
         firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
         response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
         time_slot=request.getParameterValues("time_slot");
-        response.getWriter().write(lastname);
-        response.getWriter().write(firstname);
-        response.sendRedirect("availability_selection_page");
+
         if (time_slot!=null){
             for (int i=0; i<time_slot.length; i++){
                 time_slot_message = time_slot_message+time_slot[i]+" ";
