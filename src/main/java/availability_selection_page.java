@@ -232,26 +232,27 @@ public class availability_selection_page extends HttpServlet {
         response.getWriter().write(lastname);
         response.getWriter().write(firstname);
         response.sendRedirect("availability_selection_page");
-        for (int i=0; i<time_slot.length; i++){
-            time_slot_message = time_slot_message+time_slot[i]+" ";
+        if (time_slot!=null){
+            for (int i=0; i<time_slot.length; i++){
+                time_slot_message = time_slot_message+time_slot[i]+" ";
+            }
+            try {
+                // Registers the driver
+                Class.forName("org.postgresql.Driver");
+            } catch (Exception e) {}
+            try {
+                Connection conn= DriverManager.getConnection(dbUrl);  //connect to database
+                Statement s=conn.createStatement();
+                PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where lastname=?"); // to check if the database has the corresponding information
+                ps.setString(1,time_slot_message); ps.setString(2,lastname);
+                ResultSet resultset = ps.executeQuery();
+                resultset.close();
+                s.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        try {
-            // Registers the driver
-            Class.forName("org.postgresql.Driver");
-        } catch (Exception e) {}
-        try {
-            Connection conn= DriverManager.getConnection(dbUrl);  //connect to database
-            Statement s=conn.createStatement();
-            PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where lastname=?"); // to check if the database has the corresponding information
-            ps.setString(1,time_slot_message); ps.setString(2,lastname);
-            ResultSet resultset = ps.executeQuery();
-            resultset.close();
-            s.close();
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        response.sendRedirect("availability_selection_page");
     }
-
 }
