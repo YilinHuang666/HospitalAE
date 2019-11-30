@@ -1,6 +1,7 @@
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -76,7 +77,11 @@ public class welcome_page extends HttpServlet {
                 "    </form>\n" +
                 "</body>\n" +
                 "</html>");
-
+        Cookie firstname_cookie = new Cookie("firstname",firstname);
+        Cookie lastname_cookie = new Cookie("lastname",lastname);
+        response.addCookie(firstname_cookie); response.addCookie(lastname_cookie);
+        firstname_cookie.setMaxAge(3*60); lastname_cookie.setMaxAge(3*60);
+        firstname_cookie.setPath("/availability_selection_page"); lastname_cookie.setPath("/availability_selection_page");
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -105,7 +110,6 @@ public class welcome_page extends HttpServlet {
             conn.close();
         }
         catch(Exception e){}
-       //response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
-
+       response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
     }
 }

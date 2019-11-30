@@ -1,5 +1,6 @@
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -217,8 +218,13 @@ public class availability_selection_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println(ta_page);
-        lastname = (String) request.getSession().getAttribute("login_doc_lastname");
-        firstname = (String) request.getSession().getAttribute("login_doc_firstname");
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null){
+            for (Cookie cookie: cookies){
+                if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
+                if (cookie.getName().equals("lastname")) lastname = cookie.getValue();
+            }
+        }
         time_slot=request.getParameterValues("time_slot");
         response.getWriter().write(lastname);
         response.getWriter().write(firstname);
