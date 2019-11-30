@@ -48,7 +48,8 @@ public class welcome_page extends HttpServlet {
                 "    </style>\n" +
                 "</head>\n" +
                 "<body >\n" +
-                "    <h1>Welcome Yilin Huang</h1>\n" +
+                "    <h1>Welcome " + firstname + lastname+
+                "</h1>\n" +
                 "    &nbsp;\n" +
                 "    <form action=\"timetable_page\" method=\"post\">\n" +
                 "        <div style=\"text-align: center\" >\n" +
@@ -75,10 +76,6 @@ public class welcome_page extends HttpServlet {
                 "    </form>\n" +
                 "</body>\n" +
                 "</html>");
-
-        request.setAttribute("login_doc_firstname",firstname);
-        request.setAttribute("login_doc_lastname",lastname);
-        request.getRequestDispatcher("availability_selection_page").include(request,response);
 
     }
     @Override
@@ -108,7 +105,7 @@ public class welcome_page extends HttpServlet {
             conn.close();
         }
         catch(Exception e){}
-       response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
+       //response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
 
     }
 }
