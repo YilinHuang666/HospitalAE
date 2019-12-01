@@ -69,8 +69,11 @@ public class availability_selection_page extends HttpServlet {
             "    /* Show the checkmark when checked */\n" +
             "    .container input:checked ~ .checkmark:after {\n" +
             "        display: block;\n" +
-            "    }\n" +
-            "\n" +
+            "    }\n" +"     /*when the checkbox is disabled, add red background*/\n" +
+            "    .container input:disabled ~ .checkmark {\n" +
+            "        background-color: firebrick;\n" +
+            "        border-color: #f44336;\n" +
+            "    }"+
             "    /* Style the checkmark/indicator */\n" +
             "    .container .checkmark:after {\n" +
             "        left: 9px;\n" +
@@ -117,15 +120,15 @@ public class availability_selection_page extends HttpServlet {
             "    <h1>Time Availability Selection</h1>\n" +
             "    <form action=\"availability_selection_page\" method=\"post\">\n" +
             "    <label class=\"container\">Monday 12:00am-8:00am\n" +
-            "        <input type=\"checkbox\" name=\"time_slot\" value=\"1a\" id=\"1\">\n" +
+            "        <input type=\"checkbox\" name=\"time_slot\" value=\"1a\">\n" +
             "        <span class=\"checkmark\"></span>\n" +
             "    </label>\n" +
             "    <label class=\"container\">Monday 8:00am-4:00pm\n" +
-            "        <input type=\"checkbox\" name=\"time_slot\" value=\"1b\" id=\"2\">\n" +
+            "        <input type=\"checkbox\" name=\"time_slot\" value=\"1b\">\n" +
             "        <span class=\"checkmark\"></span>\n" +
             "    </label>\n" +
             "    <label class=\"container\">Monday 4:00pm-12:00am\n" +
-            "        <input type=\"checkbox\" name=\"time_slot\" value=\"1c\" id=\"3\">\n" +
+            "        <input type=\"checkbox\" name=\"time_slot\" value=\"1c\">\n" +
             "        <span class=\"checkmark\"></span>\n" +
             "    </label>\n" +
             "    <label class=\"container\">Tuesday 12:00am-8:00am\n" +
@@ -205,11 +208,6 @@ public class availability_selection_page extends HttpServlet {
             "            <button class=\"button\" type=\"submit\">Submit</button>\n" +
             "        </div>\n" +
             "   </form>\n" +
-            "    <script>\n" +
-            "        function myFunction() {\n" +
-            "            document.getElementById(\"1\").disabled = true;\n" +
-            "        }\n" +
-            "    </script>\n" +
             "</body>\n" +
             "</html>";
     private static String lastname;
