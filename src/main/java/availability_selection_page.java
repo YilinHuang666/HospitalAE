@@ -266,27 +266,27 @@ public class availability_selection_page extends HttpServlet {
             for (int i=0; i<time_slot.length; i++){
                 time_slot_message+=time_slot[i]+" ";
                 switch (time_slot[i]){
-                    case "1a": disable_1a="disable"; break;
-                    case "2a": disable_2a="disable"; break;
-                    case "3a": disable_3a="disable"; break;
-                    case "4a": disable_4a="disable"; break;
-                    case "5a": disable_5a="disable"; break;
-                    case "6a": disable_6a="disable"; break;
-                    case "7a": disable_7a="disable"; break;
-                    case "1b": disable_1b="disable"; break;
-                    case "2b": disable_2b="disable"; break;
-                    case "3b": disable_3b="disable"; break;
-                    case "4b": disable_4b="disable"; break;
-                    case "5b": disable_5b="disable"; break;
-                    case "6b": disable_6b="disable"; break;
-                    case "7b": disable_7b="disable"; break;
-                    case "1c": disable_1c="disable"; break;
-                    case "2c": disable_2c="disable"; break;
-                    case "3c": disable_3c="disable"; break;
-                    case "4c": disable_4c="disable"; break;
-                    case "5c": disable_5c="disable"; break;
-                    case "6c": disable_6c="disable"; break;
-                    case "7c": disable_7c="disable"; break;
+                    case "1a": disable_1a="disabled"; break;
+                    case "2a": disable_2a="disabled"; break;
+                    case "3a": disable_3a="disabled"; break;
+                    case "4a": disable_4a="disabled"; break;
+                    case "5a": disable_5a="disabled"; break;
+                    case "6a": disable_6a="disabled"; break;
+                    case "7a": disable_7a="disabled"; break;
+                    case "1b": disable_1b="disabled"; break;
+                    case "2b": disable_2b="disabled"; break;
+                    case "3b": disable_3b="disabled"; break;
+                    case "4b": disable_4b="disabled"; break;
+                    case "5b": disable_5b="disabled"; break;
+                    case "6b": disable_6b="disabled"; break;
+                    case "7b": disable_7b="disabled"; break;
+                    case "1c": disable_1c="disabled"; break;
+                    case "2c": disable_2c="disabled"; break;
+                    case "3c": disable_3c="disabled"; break;
+                    case "4c": disable_4c="disabled"; break;
+                    case "5c": disable_5c="disabled"; break;
+                    case "6c": disable_6c="disabled"; break;
+                    case "7c": disable_7c="disabled"; break;
                     default: break;
                 }
             }
