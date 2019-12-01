@@ -71,6 +71,10 @@
         transform: rotate(45deg);
     }
 
+    .container input:disabled{
+        color: #e2e2e2;
+    }
+
     .button {
         background-color: darkmagenta;
         border: 2px solid black ;
@@ -86,6 +90,7 @@
         width: 20%;
     }
 
+
     .button:hover{
         background-color: white;
         color: black;
@@ -97,17 +102,17 @@
 </style>
 <body>
     <h1>Time Availability Selection</h1>
-    <form action="availability_selection_page" method="post">
+    <!--<form action="availability_selection_page" method="post">-->
     <label class="container">Monday 12:00am-8:00am
-        <input type="checkbox" name="time_slot" value="1a">
+        <input type="checkbox" name="time_slot" value="1a" id="1">
         <span class="checkmark"></span>
     </label>
     <label class="container">Monday 8:00am-4:00pm
-        <input type="checkbox" name="time_slot" value="1b">
+        <input type="checkbox" name="time_slot" value="1b" id="2">
         <span class="checkmark"></span>
     </label>
     <label class="container">Monday 4:00pm-12:00am
-        <input type="checkbox" name="time_slot" value="1c">
+        <input type="checkbox" name="time_slot" value="1c" id="3">
         <span class="checkmark"></span>
     </label>
     <label class="container">Tuesday 12:00am-8:00am
@@ -184,8 +189,13 @@
     </label>
     &nbsp;
         <div style="text-align: center">
-            <button class="button" type="submit">Submit</button>
+            <button class="button" type="submit" onclick="myFunction()">Submit</button>
         </div>
-    </form>
+   <!--</form>-->
+    <script>
+        function myFunction() {
+            document.getElementById("1").disabled = true;
+        }
+    </script>
 </body>
 </html>
