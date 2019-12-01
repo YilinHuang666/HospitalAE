@@ -115,7 +115,7 @@ public class availability_selection_page extends HttpServlet {
             "</style>\n" +
             "<body>\n" +
             "    <h1>Time Availability Selection</h1>\n" +
-            "    <form action=\"availability_selection_page\" method=\"post\">\n" +
+            "    <!--<form action=\"availability_selection_page\" method=\"post\">-->\n" +
             "    <label class=\"container\">Monday 12:00am-8:00am\n" +
             "        <input type=\"checkbox\" name=\"time_slot\" value=\"1a\" id=\"1\">\n" +
             "        <span class=\"checkmark\"></span>\n" +
@@ -202,9 +202,9 @@ public class availability_selection_page extends HttpServlet {
             "    </label>\n" +
             "    &nbsp;\n" +
             "        <div style=\"text-align: center\">\n" +
-            "            <button class=\"button\" type=\"submit\" onclick=\"myFunction()\">Submit</button>\n" +
+            "            <button class=\"button\" type=\"submit\">Submit</button>\n" +
             "        </div>\n" +
-            "   </form>\n" +
+            "   <!--</form>-->\n" +
             "    <script>\n" +
             "        function myFunction() {\n" +
             "            document.getElementById(\"1\").disabled = true;\n" +
