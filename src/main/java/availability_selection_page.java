@@ -242,6 +242,11 @@ public class availability_selection_page extends HttpServlet {
                 "            <button class=\"button\" type=\"submit\">Submit</button>\n" +
                 "        </div>\n" +
                 "   </form>\n" +
+                "<form action='login' method='post'> " +
+                "   <div style='text-align: center'>" +
+                "       <button class='button' type='submit'>Logout</button>" +
+                "   </div>" +
+                "</form>" +
                 "</body>\n" +
                 "</html>");
 

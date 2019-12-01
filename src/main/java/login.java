@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @WebServlet(urlPatterns = {"/login"}, loadOnStartup = 1)
-public class doctor_servlet extends HttpServlet {
+public class login extends HttpServlet {
     //html code for login page
     final static String doctor_login = "<!DOCTYPE html>\n" +
             "<html>\n" +
