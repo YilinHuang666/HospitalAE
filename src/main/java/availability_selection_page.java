@@ -157,7 +157,7 @@ public class availability_selection_page extends HttpServlet {
             "        <span class=\"checkmark\"></span>\n" +
             "    </label>\n" +
             "    <label class=\"container\">Thursday 8:00am-4:00pm\n" +
-            "        <input type=\"checkbox\" name=\"time_slot\" value=4b\">\n" +
+            "        <input type=\"checkbox\" name=\"time_slot\" value=\"4b\">\n" +
             "        <span class=\"checkmark\"></span>\n" +
             "    </label>\n" +
             "    <label class=\"container\">Thursday 4:00pm-12:00am\n" +
@@ -169,7 +169,7 @@ public class availability_selection_page extends HttpServlet {
             "        <span class=\"checkmark\"></span>\n" +
             "    </label>\n" +
             "    <label class=\"container\">Friday 8:00am-4:00pm\n" +
-            "        <input type=\"checkbox\" name=\"time_slot\" value=5b\">\n" +
+            "        <input type=\"checkbox\" name=\"time_slot\" value=\"5b\">\n" +
             "        <span class=\"checkmark\"></span>\n" +
             "    </label>\n" +
             "    <label class=\"container\">Friday 4:00pm-12:00am\n" +
@@ -181,7 +181,7 @@ public class availability_selection_page extends HttpServlet {
             "        <span class=\"checkmark\"></span>\n" +
             "    </label>\n" +
             "    <label class=\"container\">Saturday 8:00am-4:00pm\n" +
-            "        <input type=\"checkbox\" name=\"time_slot\" value=6b\">\n" +
+            "        <input type=\"checkbox\" name=\"time_slot\" value=\"6b\">\n" +
             "        <span class=\"checkmark\"></span>\n" +
             "    </label>\n" +
             "    <label class=\"container\">Saturday 4:00pm-12:00am\n" +
@@ -193,7 +193,7 @@ public class availability_selection_page extends HttpServlet {
             "        <span class=\"checkmark\"></span>\n" +
             "    </label>\n" +
             "    <label class=\"container\">Sunday 8:00am-4:00pm\n" +
-            "        <input type=\"checkbox\" name=\"time_slot\" value=7b\">\n" +
+            "        <input type=\"checkbox\" name=\"time_slot\" value=\"7b\">\n" +
             "        <span class=\"checkmark\"></span>\n" +
             "    </label>\n" +
             "    <label class=\"container\">Sunday 4:00pm-12:00am\n" +
