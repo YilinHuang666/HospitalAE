@@ -49,7 +49,7 @@ public class welcome_page extends HttpServlet {
                 "    </style>\n" +
                 "</head>\n" +
                 "<body >\n" +
-                "    <h1>Welcome " + firstname + lastname+
+                "    <h1>Welcome " + firstname + " "+ lastname+
                 "</h1>\n" +
                 "    &nbsp;\n" +
                 "    <form action=\"timetable_page\" method=\"post\">\n" +

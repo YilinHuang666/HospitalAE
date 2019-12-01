@@ -18,6 +18,7 @@ public class availability_selection_page extends HttpServlet {
     private static String firstname;
     private static String time_slot[];
     private static String time_slot_message="";
+    private static int chosen_checkbox_count=0;
     private static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -260,33 +261,33 @@ public class availability_selection_page extends HttpServlet {
         Cookie lastname_remove = new Cookie("lastname","");
         firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
         response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
-        time_slot=request.getParameterValues("time_slot");
+        time_slot=request.getParameterValues("time_slot"); //obtain input timetable
 
         if (time_slot!=null){
             for (int i=0; i<time_slot.length; i++){
                 time_slot_message+=time_slot[i]+" ";
-                switch (time_slot[i]){
-                    case "1a": disable_1a="disabled"; break;
-                    case "2a": disable_2a="disabled"; break;
-                    case "3a": disable_3a="disabled"; break;
-                    case "4a": disable_4a="disabled"; break;
-                    case "5a": disable_5a="disabled"; break;
-                    case "6a": disable_6a="disabled"; break;
-                    case "7a": disable_7a="disabled"; break;
-                    case "1b": disable_1b="disabled"; break;
-                    case "2b": disable_2b="disabled"; break;
-                    case "3b": disable_3b="disabled"; break;
-                    case "4b": disable_4b="disabled"; break;
-                    case "5b": disable_5b="disabled"; break;
-                    case "6b": disable_6b="disabled"; break;
-                    case "7b": disable_7b="disabled"; break;
-                    case "1c": disable_1c="disabled"; break;
-                    case "2c": disable_2c="disabled"; break;
-                    case "3c": disable_3c="disabled"; break;
-                    case "4c": disable_4c="disabled"; break;
-                    case "5c": disable_5c="disabled"; break;
-                    case "6c": disable_6c="disabled"; break;
-                    case "7c": disable_7c="disabled"; break;
+                switch (time_slot[i]){ //disable chosen checkbox
+                    case "1a": disable_1a="disabled"; chosen_checkbox_count++; break;
+                    case "2a": disable_2a="disabled"; chosen_checkbox_count++; break;
+                    case "3a": disable_3a="disabled"; chosen_checkbox_count++; break;
+                    case "4a": disable_4a="disabled"; chosen_checkbox_count++; break;
+                    case "5a": disable_5a="disabled"; chosen_checkbox_count++; break;
+                    case "6a": disable_6a="disabled"; chosen_checkbox_count++; break;
+                    case "7a": disable_7a="disabled"; chosen_checkbox_count++; break;
+                    case "1b": disable_1b="disabled"; chosen_checkbox_count++; break;
+                    case "2b": disable_2b="disabled"; chosen_checkbox_count++; break;
+                    case "3b": disable_3b="disabled"; chosen_checkbox_count++; break;
+                    case "4b": disable_4b="disabled"; chosen_checkbox_count++; break;
+                    case "5b": disable_5b="disabled"; chosen_checkbox_count++; break;
+                    case "6b": disable_6b="disabled"; chosen_checkbox_count++; break;
+                    case "7b": disable_7b="disabled"; chosen_checkbox_count++; break;
+                    case "1c": disable_1c="disabled"; chosen_checkbox_count++; break;
+                    case "2c": disable_2c="disabled"; chosen_checkbox_count++; break;
+                    case "3c": disable_3c="disabled"; chosen_checkbox_count++; break;
+                    case "4c": disable_4c="disabled"; chosen_checkbox_count++; break;
+                    case "5c": disable_5c="disabled"; chosen_checkbox_count++; break;
+                    case "6c": disable_6c="disabled"; chosen_checkbox_count++; break;
+                    case "7c": disable_7c="disabled"; chosen_checkbox_count++; break;
                     default: break;
                 }
             }
@@ -306,6 +307,12 @@ public class availability_selection_page extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+        if (chosen_checkbox_count==21){ //if all time slots are chosen, reset the whole page
+            disable_1a=disable_2a=disable_3a=disable_4a=disable_5a=disable_6a=disable_7a=
+            disable_1b=disable_2b=disable_3b=disable_4b=disable_5b=disable_6b=disable_7b=
+            disable_1c=disable_2c=disable_3c=disable_4c=disable_5c=disable_6c=disable_7c ="";
+            chosen_checkbox_count=0;
         }
         time_slot_message = "";
         response.sendRedirect("availability_selection_page");
