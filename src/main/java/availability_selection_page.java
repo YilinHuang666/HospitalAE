@@ -318,10 +318,10 @@ public class availability_selection_page extends HttpServlet {
             disable_1a=disable_2a=disable_3a=disable_4a=disable_5a=disable_6a=disable_7a=
             disable_1b=disable_2b=disable_3b=disable_4b=disable_5b=disable_6b=disable_7b=
             disable_1c=disable_2c=disable_3c=disable_4c=disable_5c=disable_6c=disable_7c ="";
-            Cookie chosen_check_count = new Cookie("chosen_check_count",String.valueOf(chosen_checkbox_count));
-            response.addCookie(chosen_check_count);
-            chosen_check_count.setMaxAge(10);
-            chosen_check_count.setPath("/welcome_page");
+            //Cookie chosen_check_count = new Cookie("chosen_check_count",String.valueOf(chosen_checkbox_count));
+            //response.addCookie(chosen_check_count);
+            // chosen_check_count.setMaxAge(10);
+            //chosen_check_count.setPath("/welcome_page");
             chosen_checkbox_count=0;
         }
 
