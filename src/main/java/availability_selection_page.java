@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class availability_selection_page extends HttpServlet {
     private static String disable_1a, disable_2a, disable_3a, disable_4a, disable_5a, disable_6a, disable_7a,
             disable_1b, disable_2b, disable_3b, disable_4b, disable_5b, disable_6b, disable_7b,
-            disable_1c, disable_2c, disable_3c, disable_4c, disable_5c, disable_6c, disable_7c ="";
+            disable_1c, disable_2c, disable_3c, disable_4c, disable_5c, disable_6c, disable_7c,disable_submit="";
     private static String lastname;
     private static String firstname;
     private static String time_slot[];
@@ -239,7 +239,7 @@ public class availability_selection_page extends HttpServlet {
                 "    </label>\n" +
                 "    &nbsp;\n" +
                 "        <div style=\"text-align: center\">\n" +
-                "            <button class=\"button\" type=\"submit\">Submit</button>\n" +
+                "            <button class=\"button\" type=\"submit\"" + " "+ disable_submit+">Submit</button>\n" +
                 "        </div>\n" +
                 "   </form>\n" +
                 "<form action='login' method='post'> " +
@@ -295,6 +295,7 @@ public class availability_selection_page extends HttpServlet {
                     case "7c": disable_7c="disabled"; chosen_checkbox_count++; break;
                     default: break;
                 }
+                disable_submit="disabled";
             }
             try {
                 // Registers the driver
@@ -317,6 +318,10 @@ public class availability_selection_page extends HttpServlet {
             disable_1a=disable_2a=disable_3a=disable_4a=disable_5a=disable_6a=disable_7a=
             disable_1b=disable_2b=disable_3b=disable_4b=disable_5b=disable_6b=disable_7b=
             disable_1c=disable_2c=disable_3c=disable_4c=disable_5c=disable_6c=disable_7c ="";
+            Cookie chosen_check_count = new Cookie("chosen_check_count",String.valueOf(chosen_checkbox_count));
+            response.addCookie(chosen_check_count);
+            chosen_check_count.setMaxAge(30*60*60);
+            chosen_check_count.setPath("/welcome_page");
             chosen_checkbox_count=0;
         }
         time_slot_message = "";

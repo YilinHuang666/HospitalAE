@@ -13,6 +13,7 @@ import java.sql.*;
 public class welcome_page extends HttpServlet {
     private static String firstname;
     private static String lastname;
+    private static String disable_ava_select="";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -72,7 +73,7 @@ public class welcome_page extends HttpServlet {
                 "    &nbsp;\n" +
                 "    <form action=\"availability_selection_page\" method=\"post\">\n" +
                 "        <div style=\"text-align: center\">\n" +
-                "            <button class=\"button\" type=\"submit\" >Time Availability Selection</button>\n" +
+                "            <button class=\"button\" type=\"submit\" "+" "+ disable_ava_select +">Time Availability Selection</button>\n" +
                 "        </div>\n" +
                 "    </form>\n" +
                 "</body>\n" +
@@ -110,6 +111,13 @@ public class welcome_page extends HttpServlet {
             conn.close();
         }
         catch(Exception e){}
+        Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
+        if (cookies != null){
+            for (Cookie cookie: cookies){
+                if (cookie.getName().equals("chosen_check_count")) disable_ava_select = cookie.getValue(); // if all time slots are chosen, disable the button to prevent further access
+            }
+        }
+        if (disable_ava_select.equals("21")) disable_ava_select="disabled";
        response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
     }
 }
