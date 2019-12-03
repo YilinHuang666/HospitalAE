@@ -122,6 +122,7 @@ public class welcome_page extends HttpServlet {
             }
         }
         if (disable_ava_select.equals("21")) disable_ava_select="disabled";
+        else disable_ava_select="";
        response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
     }
 }
