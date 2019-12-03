@@ -320,10 +320,11 @@ public class availability_selection_page extends HttpServlet {
             disable_1c=disable_2c=disable_3c=disable_4c=disable_5c=disable_6c=disable_7c ="";
             Cookie chosen_check_count = new Cookie("chosen_check_count",String.valueOf(chosen_checkbox_count));
             response.addCookie(chosen_check_count);
-            chosen_check_count.setMaxAge(30*60*60);
+            chosen_check_count.setMaxAge(10);
             chosen_check_count.setPath("/welcome_page");
             chosen_checkbox_count=0;
         }
+
         time_slot_message = "";
         response.sendRedirect("availability_selection_page");
     }
