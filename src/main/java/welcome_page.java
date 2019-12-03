@@ -115,14 +115,14 @@ public class welcome_page extends HttpServlet {
             conn.close();
         }
         catch(Exception e){}
-        Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
-        if (cookies != null){
-            for (Cookie cookie: cookies){
-                if (cookie.getName().equals("chosen_check_count")) disable_ava_select = cookie.getValue(); // if all time slots are chosen, disable the button to prevent further access
-            }
-        }
-        if (disable_ava_select.equals("21")) disable_ava_select="disabled";
-        else disable_ava_select="";
+        //Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
+        //if (cookies != null){
+        //    for (Cookie cookie: cookies){
+        //        if (cookie.getName().equals("chosen_check_count")) disable_ava_select = cookie.getValue(); // if all time slots are chosen, disable the button to prevent further access
+        //    }
+       // }
+        //if (disable_ava_select.equals("21")) disable_ava_select="disabled";
+       // else disable_ava_select="";
        response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
     }
 }
