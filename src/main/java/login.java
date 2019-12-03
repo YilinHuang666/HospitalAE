@@ -122,7 +122,7 @@ public class login extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         try {
-            if (Verificate.checkinfo(password)) {                   //if password is valid then go to welcome_page
+            if (Verificate.checkinfo(password,username)) {                   //if password is valid then go to welcome_page
                 RequestDispatcher rd = request.getRequestDispatcher("welcome_page");
                 rd.forward(request,response);
             }
