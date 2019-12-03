@@ -80,9 +80,13 @@ public class welcome_page extends HttpServlet {
                 "</html>");
         Cookie firstname_cookie = new Cookie("firstname",firstname);
         Cookie lastname_cookie = new Cookie("lastname",lastname);
-        response.addCookie(firstname_cookie); response.addCookie(lastname_cookie);
-        firstname_cookie.setMaxAge(3*60); lastname_cookie.setMaxAge(3*60);
+        Cookie firstname_cookie_workload = new Cookie("firstname_workload",firstname);
+        Cookie lastname_cookie_workload = new Cookie("lastname_workload",lastname);
+        response.addCookie(firstname_cookie); response.addCookie(lastname_cookie); response.addCookie(lastname_cookie_workload); response.addCookie(firstname_cookie);
+        firstname_cookie.setMaxAge(3*60); lastname_cookie.setMaxAge(3*60); lastname_cookie_workload.setMaxAge(3*60); firstname_cookie.setMaxAge(3*60);
         firstname_cookie.setPath("/availability_selection_page"); lastname_cookie.setPath("/availability_selection_page");
+        lastname_cookie_workload.setPath("/workload_page"); firstname_cookie_workload.setPath("/workload_page");
+
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
