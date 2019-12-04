@@ -21,6 +21,8 @@ public class workload_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         out.println("<h2>My Work Load</h2>");
+        out.println("<h2>"+firstname+"</h2>");
+        out.println("<h2>"+lastname+"</h2>");
         try {
             // Registers the driver
             Class.forName("org.postgresql.Driver");
