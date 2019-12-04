@@ -1,10 +1,12 @@
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -12,27 +14,55 @@ import java.util.stream.Collectors;
 
 public class timetable_page extends HttpServlet {
     private static String reqBody;
+    private static String firstname;
+    private static String lastname;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        String dbUrl =  System.getenv("JDBC_DATABASE_URL");
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         out.println("<h2>Timetable</h2>");
-        final Object[][] table = new String[4][];
-        table[0] = new String[] { "foo", "bar", "baz" };
-        table[1] = new String[] { "bar2", "foo2", "baz2" };
-        table[2] = new String[] { "baz3", "bar3", "foo3" };
-        table[3] = new String[] { "foo4", "bar4", "baz4" };
 
-        for (final Object[] row : table) {
-            System.out.format("%15s%15s%15s\n", row);
+        try {
+            // Registers the driver
+            Class.forName("org.postgresql.Driver");
+        } catch (Exception e) {}
+        Connection conn=null;
+        try {
+            conn= DriverManager.getConnection(dbUrl);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         out.println("<h2>hi there" +reqBody+
                 "</h2>");
+        try{
+            Statement s = conn.createStatement();
+            PreparedStatement ps = conn.prepareStatement("SELECT * from doctors_login_info where firstname=? and lastname=?");
+            ps.setString(1,firstname); ps.setString(2,lastname);
+            ResultSet resultset = ps.executeQuery();
+            while (resultset.next()){
+                out.println("<h2>"+resultset.getString("timetable"));
+            }
+        }catch(Exception e){}
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        reqBody=request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        reqBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
+                if (cookie.getName().equals("lastname")) lastname = cookie.getValue();
+            }
+        }
+        Cookie remove_firstname = new Cookie("firstname", "");
+        Cookie remove_lastname = new Cookie("lastname", "");
+        remove_firstname.setMaxAge(0);
+        response.addCookie(remove_firstname);
+        remove_lastname.setMaxAge(0);
+        response.addCookie(remove_lastname);
         response.sendRedirect("timetable_page");
     }
 }
