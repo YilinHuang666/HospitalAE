@@ -42,7 +42,7 @@ public class timetable_page extends HttpServlet {
             ps.setString(1,firstname); ps.setString(2,lastname);
             ResultSet resultset = ps.executeQuery();
             while (resultset.next()){
-                out.println("<h2>"+resultset.getString("timetable"));
+                out.println("<h2>"+resultset.getString("timetable")+"<h2>");
             }
         }catch(Exception e){}
     }
