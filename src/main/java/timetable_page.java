@@ -17,7 +17,7 @@ public class timetable_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         out.println("<h2>Timetable</h2>");
-        out.println("<h2>" +reqBody+
+        out.println("<h2>hi there" +reqBody+
                 "</h2>");
     }
 
