@@ -24,7 +24,7 @@ public class timetable_page extends HttpServlet {
         table[3] = new String[] { "foo4", "bar4", "baz4" };
 
         for (final Object[] row : table) {
-            out.format("%15s%15s%15s\n", row);
+            System.out.format("%15s%15s%15s\n", row);
         }
         out.println("<h2>hi there" +reqBody+
                 "</h2>");
