@@ -21,8 +21,6 @@ public class workload_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         out.println("<h2>My Work Load</h2>");
-        out.println("<h2>"+firstname+"</h2>");
-        out.println("<h2>"+lastname+"</h2>");
         try {
             // Registers the driver
             Class.forName("org.postgresql.Driver");
@@ -39,7 +37,7 @@ public class workload_page extends HttpServlet {
             ps.setString(1,firstname); ps.setString(2,lastname);
             ResultSet resultset = ps.executeQuery();
             while (resultset.next()){
-                out.println("<h2>"+resultset.getString("workload")+"/<h2>");
+                out.println("<h2>"+resultset.getString("workload")+" "+"shift(s)<h2>");
             }
         }catch(Exception e){}
     }
