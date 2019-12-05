@@ -317,27 +317,27 @@ public class availability_selection_page extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        if (chosen_checkbox_count_1a==3) disable_1a="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_2a==3) disable_2a="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_3a==3) disable_3a="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_4a==3) disable_4a="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_5a==3) disable_5a="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_6a==3) disable_6a="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_7a==3) disable_7a="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_1b==3) disable_1b="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_2b==3) disable_2b="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_3b==3) disable_3b="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_4b==3) disable_4b="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_5b==3) disable_5b="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_6b==3) disable_6b="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_7b==3) disable_7b="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_1c==3) disable_1c="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_2c==3) disable_2c="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_3c==3) disable_3c="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_4c==3) disable_4c="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_5c==3) disable_5c="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_6c==3) disable_6c="disabled"; disable_checkbox_count++;
-        if (chosen_checkbox_count_7c==3) disable_7c="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_1a==3) {disable_1a="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_2a==3) {disable_2a="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_3a==3) {disable_3a="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_4a==3) {disable_4a="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_5a==3) {disable_5a="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_6a==3) {disable_6a="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_7a==3) {disable_7a="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_1b==3) {disable_1b="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_2b==3) {disable_2b="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_3b==3) {disable_3b="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_4b==3) {disable_4b="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_5b==3) {disable_5b="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_6b==3) {disable_6b="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_7b==3) {disable_7b="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_1c==3) {disable_1c="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_2c==3) {disable_2c="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_3c==3) {disable_3c="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_4c==3) {disable_4c="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_5c==3) {disable_5c="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_6c==3) {disable_6c="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_7c==3) {disable_7c="disabled"; disable_checkbox_count++;}
 
         if (disable_checkbox_count==21){
             disable_1a=disable_2a=disable_3a=disable_4a=disable_5a=disable_6a=disable_7a=
