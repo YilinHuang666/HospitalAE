@@ -18,7 +18,10 @@ public class availability_selection_page extends HttpServlet {
     private static String firstname;
     private static String time_slot[];
     private static String time_slot_message="";
-    private static int chosen_checkbox_count=0;
+    private static int chosen_checkbox_count_1a,chosen_checkbox_count_2a,chosen_checkbox_count_3a,chosen_checkbox_count_4a,chosen_checkbox_count_5a,chosen_checkbox_count_6a,chosen_checkbox_count_7a,
+                        chosen_checkbox_count_1b,chosen_checkbox_count_2b,chosen_checkbox_count_3b,chosen_checkbox_count_4b,chosen_checkbox_count_5b,chosen_checkbox_count_6b,chosen_checkbox_count_7b,
+                        chosen_checkbox_count_1c,chosen_checkbox_count_2c,chosen_checkbox_count_3c,chosen_checkbox_count_4c,chosen_checkbox_count_5c,chosen_checkbox_count_6c,chosen_checkbox_count_7c=0;
+    private static int disable_checkbox_count=0;
     private static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -272,27 +275,27 @@ public class availability_selection_page extends HttpServlet {
             for (int i=0; i<time_slot.length; i++){
                 time_slot_message+=time_slot[i]+" ";
                 switch (time_slot[i]){ //disable chosen checkbox
-                    case "1a": disable_1a="disabled"; chosen_checkbox_count++; break;
-                    case "2a": disable_2a="disabled"; chosen_checkbox_count++; break;
-                    case "3a": disable_3a="disabled"; chosen_checkbox_count++; break;
-                    case "4a": disable_4a="disabled"; chosen_checkbox_count++; break;
-                    case "5a": disable_5a="disabled"; chosen_checkbox_count++; break;
-                    case "6a": disable_6a="disabled"; chosen_checkbox_count++; break;
-                    case "7a": disable_7a="disabled"; chosen_checkbox_count++; break;
-                    case "1b": disable_1b="disabled"; chosen_checkbox_count++; break;
-                    case "2b": disable_2b="disabled"; chosen_checkbox_count++; break;
-                    case "3b": disable_3b="disabled"; chosen_checkbox_count++; break;
-                    case "4b": disable_4b="disabled"; chosen_checkbox_count++; break;
-                    case "5b": disable_5b="disabled"; chosen_checkbox_count++; break;
-                    case "6b": disable_6b="disabled"; chosen_checkbox_count++; break;
-                    case "7b": disable_7b="disabled"; chosen_checkbox_count++; break;
-                    case "1c": disable_1c="disabled"; chosen_checkbox_count++; break;
-                    case "2c": disable_2c="disabled"; chosen_checkbox_count++; break;
-                    case "3c": disable_3c="disabled"; chosen_checkbox_count++; break;
-                    case "4c": disable_4c="disabled"; chosen_checkbox_count++; break;
-                    case "5c": disable_5c="disabled"; chosen_checkbox_count++; break;
-                    case "6c": disable_6c="disabled"; chosen_checkbox_count++; break;
-                    case "7c": disable_7c="disabled"; chosen_checkbox_count++; break;
+                    case "1a": chosen_checkbox_count_1a++; break;
+                    case "2a": chosen_checkbox_count_2a++; break;
+                    case "3a": chosen_checkbox_count_3a++; break;
+                    case "4a": chosen_checkbox_count_4a++; break;
+                    case "5a": chosen_checkbox_count_5a++; break;
+                    case "6a": chosen_checkbox_count_6a++; break;
+                    case "7a": chosen_checkbox_count_7a++; break;
+                    case "1b": chosen_checkbox_count_1b++; break;
+                    case "2b": chosen_checkbox_count_2b++; break;
+                    case "3b": chosen_checkbox_count_3b++; break;
+                    case "4b": chosen_checkbox_count_4b++; break;
+                    case "5b": chosen_checkbox_count_5b++; break;
+                    case "6b": chosen_checkbox_count_6b++; break;
+                    case "7b": chosen_checkbox_count_7b++; break;
+                    case "1c": chosen_checkbox_count_1c++; break;
+                    case "2c": chosen_checkbox_count_2c++; break;
+                    case "3c": chosen_checkbox_count_3c++; break;
+                    case "4c": chosen_checkbox_count_4c++; break;
+                    case "5c": chosen_checkbox_count_5c++; break;
+                    case "6c": chosen_checkbox_count_6c++; break;
+                    case "7c": chosen_checkbox_count_7c++; break;
                     default: break;
                 }
                 disable_submit="disabled";
@@ -314,15 +317,33 @@ public class availability_selection_page extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        if (chosen_checkbox_count==21){ //if all time slots are chosen, reset the whole page
+        if (chosen_checkbox_count_1a==3) disable_1a="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_2a==3) disable_2a="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_3a==3) disable_3a="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_4a==3) disable_4a="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_5a==3) disable_5a="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_6a==3) disable_6a="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_7a==3) disable_7a="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_1b==3) disable_1b="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_2b==3) disable_2b="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_3b==3) disable_3b="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_4b==3) disable_4b="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_5b==3) disable_5b="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_6b==3) disable_6b="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_7b==3) disable_7b="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_1c==3) disable_1c="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_2c==3) disable_2c="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_3c==3) disable_3c="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_4c==3) disable_4c="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_5c==3) disable_5c="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_6c==3) disable_6c="disabled"; disable_checkbox_count++;
+        if (chosen_checkbox_count_7c==3) disable_7c="disabled"; disable_checkbox_count++;
+
+        if (disable_checkbox_count==21){
             disable_1a=disable_2a=disable_3a=disable_4a=disable_5a=disable_6a=disable_7a=
             disable_1b=disable_2b=disable_3b=disable_4b=disable_5b=disable_6b=disable_7b=
             disable_1c=disable_2c=disable_3c=disable_4c=disable_5c=disable_6c=disable_7c ="";
-            //Cookie chosen_check_count = new Cookie("chosen_check_count",String.valueOf(chosen_checkbox_count));
-            //response.addCookie(chosen_check_count);
-            // chosen_check_count.setMaxAge(10);
-            //chosen_check_count.setPath("/welcome_page");
-            chosen_checkbox_count=0;
+            disable_checkbox_count=0;
         }
 
         time_slot_message = "";
