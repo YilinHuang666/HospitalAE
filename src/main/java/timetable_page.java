@@ -33,18 +33,27 @@ public class timetable_page extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        out.println("<h2>hi there"+"</h2>");
+        String rawTimetable
         try{
             Statement s = conn.createStatement();
             PreparedStatement ps = conn.prepareStatement("SELECT * from doctor_login_info where firstname=? and lastname=?");
             ps.setString(1,firstname); ps.setString(2,lastname);
             ResultSet resultset = ps.executeQuery();
             while (resultset.next()){
-                out.println("<h2>"+resultset.getString("timetable")+"<h2>");
+                rawTimetable = resultset.getString("timetable");
             }
+            String[] arrOfTb = rawTimetable.split(" ");
+            for (String a: arrOfTb){
+                if (a.charAt(0) == '4')
+                    out.print("<h2>Monday</h2>");
+                if (a.charAt(1) == 'b')
+                    out.print("<h2> Morning</h2>");
+            }
+
+
         }catch(Exception e){}
-        out.println("<h2>hi there"+"</h2>");
+
+
     }
 
     @Override
