@@ -45,9 +45,9 @@ public class timetable_page extends HttpServlet {
             String[] arrOfTb = rawTimetable.split(" ");
             for (String a: arrOfTb){
                 if (a.charAt(0) == '4')
-                    out.print("<h2>Monday</h2>");
+                    out.print("<h2>Thursday<h2>");
                 if (a.charAt(1) == 'b')
-                    out.print("<h2> Morning</h2>");
+                    out.print("<h2> 8:00 to 16:00</h2>");
             }
 
 
