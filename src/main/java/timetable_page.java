@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = "/timetable_page", loadOnStartup = 1)
 
@@ -44,10 +42,8 @@ public class timetable_page extends HttpServlet {
             }
             String[] arrOfTb = rawTimetable.split(" ");
             for (String a: arrOfTb){
-                if (a.charAt(0) == '4')
-                    out.print("<h2>Thursday<h2>");
-                if (a.charAt(1) == 'b')
-                    out.print("<h2> 8:00 to 16:00</h2>");
+                TBtowrite tb = new TBtowrite(a);
+                out.println("<h2>"+tb.getTB()+"</h2>");
             }
 
 
