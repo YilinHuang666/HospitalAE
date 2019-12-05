@@ -316,6 +316,18 @@ public class availability_selection_page extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            try {
+                Connection conn= DriverManager.getConnection(dbUrl);  //connect to database
+                Statement s=conn.createStatement();
+                PreparedStatement ps=conn.prepareStatement("update doctors set workload=? where firstname=? and lastname=?"); // to check if the database has the corresponding information
+                ps.setString(1, String.valueOf(time_slot.length)); ps.setString(2,firstname); ps.setString(3,lastname);
+                ResultSet resultset = ps.executeQuery();
+                resultset.close();
+                s.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         if (chosen_checkbox_count_1a==3) {disable_1a="disabled"; disable_checkbox_count++;}
         if (chosen_checkbox_count_2a==3) {disable_2a="disabled"; disable_checkbox_count++;}
