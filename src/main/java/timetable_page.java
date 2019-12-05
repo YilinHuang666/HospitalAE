@@ -33,7 +33,7 @@ public class timetable_page extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String rawTimetable
+        String rawTimetable = "";
         try{
             Statement s = conn.createStatement();
             PreparedStatement ps = conn.prepareStatement("SELECT * from doctor_login_info where firstname=? and lastname=?");
