@@ -34,8 +34,7 @@ public class timetable_page extends HttpServlet {
             e.printStackTrace();
         }
 
-        out.println("<h2>hi there" +reqBody+
-                "</h2>");
+        out.println("<h2>hi there"+"</h2>");
         try{
             Statement s = conn.createStatement();
             PreparedStatement ps = conn.prepareStatement("SELECT * from doctors_login_info where firstname=? and lastname=?");
@@ -45,6 +44,7 @@ public class timetable_page extends HttpServlet {
                 out.println("<h2>"+resultset.getString("timetable")+"<h2>");
             }
         }catch(Exception e){}
+        out.println("<h2>hi there"+"</h2>");
     }
 
     @Override
