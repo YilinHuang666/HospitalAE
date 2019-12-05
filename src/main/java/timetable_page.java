@@ -49,20 +49,18 @@ public class timetable_page extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        reqBody = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
+        response.setContentType("text/html");
+        Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
+        if (cookies != null){
+            for (Cookie cookie: cookies){
                 if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
                 if (cookie.getName().equals("lastname")) lastname = cookie.getValue();
             }
         }
-        Cookie remove_firstname = new Cookie("firstname", "");
-        Cookie remove_lastname = new Cookie("lastname", "");
-        remove_firstname.setMaxAge(0);
-        response.addCookie(remove_firstname);
-        remove_lastname.setMaxAge(0);
-        response.addCookie(remove_lastname);
+        Cookie firstname_remove = new Cookie("firstname","");
+        Cookie lastname_remove = new Cookie("lastname","");
+        firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
+        response.addCookie(firstname_remove); response.addCookie(lastname_remove);
         response.sendRedirect("timetable_page");
     }
 }
