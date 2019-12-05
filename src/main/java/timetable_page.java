@@ -37,7 +37,7 @@ public class timetable_page extends HttpServlet {
         out.println("<h2>hi there"+"</h2>");
         try{
             Statement s = conn.createStatement();
-            PreparedStatement ps = conn.prepareStatement("SELECT * from doctors_login_info where firstname=? and lastname=?");
+            PreparedStatement ps = conn.prepareStatement("SELECT * from doctor_login_info where firstname=? and lastname=?");
             ps.setString(1,firstname); ps.setString(2,lastname);
             ResultSet resultset = ps.executeQuery();
             while (resultset.next()){
