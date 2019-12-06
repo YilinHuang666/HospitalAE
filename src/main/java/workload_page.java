@@ -46,12 +46,8 @@ public class workload_page extends HttpServlet {
             while (resultset.next()){
                 String rawTimetable = resultset.getString("timetable");
                 String[] arrOfTb = rawTimetable.split(" ");
-                for (String a: arrOfTb){
-
-                }
-
-
-
+                ShiftsRemain sr = new ShiftsRemain(arrOfTb);
+                out.println("<h2>"+sr.getRemainShifts()+"</h2>");
             }
         }catch(Exception e){}
     }
