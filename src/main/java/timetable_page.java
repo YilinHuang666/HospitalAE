@@ -43,7 +43,7 @@ public class timetable_page extends HttpServlet {
             String[] arrOfTb = rawTimetable.split(" ");
             for (String a: arrOfTb){
                 TBtowrite tb = new TBtowrite(a);
-                out.println("<h2>"+tb.getTB()+"</h2>");
+                out.println("<h2>"+tb.getTB()+" "+tb.getTS()+"</h2>");
             }
 
 

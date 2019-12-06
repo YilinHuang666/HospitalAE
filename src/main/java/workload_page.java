@@ -15,6 +15,7 @@ public class workload_page extends HttpServlet {
     private static String reqBody;
     private static String firstname;
     private static String lastname;
+    private static int shifts = 0;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String dbUrl =  System.getenv("JDBC_DATABASE_URL");
@@ -37,7 +38,20 @@ public class workload_page extends HttpServlet {
             ps.setString(1,firstname); ps.setString(2,lastname);
             ResultSet resultset = ps.executeQuery();
             while (resultset.next()){
-                out.println("<h2>"+resultset.getString("workload")+" "+"shift(s)<h2>");
+                shifts = Integer.parseInt(resultset.getString("workload"));
+            }
+            ps = conn.prepareStatement("SELECT * from doctor_login_info where firstname=? and lastname=?");
+            ps.setString(1,firstname); ps.setString(2,lastname);
+            resultset = ps.executeQuery();
+            while (resultset.next()){
+                String rawTimetable = resultset.getString("timetable");
+                String[] arrOfTb = rawTimetable.split(" ");
+                for (String a: arrOfTb){
+
+                }
+
+
+
             }
         }catch(Exception e){}
     }
