@@ -39,6 +39,7 @@ public class workload_page extends HttpServlet {
             ResultSet resultset = ps.executeQuery();
             while (resultset.next()){
                 shifts = Integer.parseInt(resultset.getString("workload"));
+                out.println("<h2> You have "+shifts+" shifts this week.</h2>");
             }
             ps = conn.prepareStatement("SELECT * from doctor_login_info where firstname=? and lastname=?");
             ps.setString(1,firstname); ps.setString(2,lastname);
