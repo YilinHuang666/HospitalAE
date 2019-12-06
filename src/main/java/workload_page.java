@@ -48,7 +48,9 @@ public class workload_page extends HttpServlet {
                 String rawTimetable = resultset.getString("timetable");
                 String[] arrOfTb = rawTimetable.split(" ");
                 ShiftsRemain sr = new ShiftsRemain(arrOfTb);
-                out.println("<h2>"+sr.getRemainShifts()+"</h2>");
+                if(sr.isOnDuty()==true)
+                    out.println("<h2> You are currently on Duty!</h2>");
+                out.println("<h2> You have" + sr.getRemainShifts() + "shifts left.</h2>");
             }
         }catch(Exception e){}
     }
