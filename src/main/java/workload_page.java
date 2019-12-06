@@ -50,7 +50,7 @@ public class workload_page extends HttpServlet {
                 ShiftsRemain sr = new ShiftsRemain(arrOfTb);
                 if(sr.isOnDuty()==true)
                     out.println("<h2> You are currently on Duty!</h2>");
-                out.println("<h2> You have" + sr.getRemainShifts() + "shifts left.</h2>");
+                out.println("<h2> You have " + sr.getRemainShifts() + " shifts left.</h2>");
             }
         }catch(Exception e){}
     }
