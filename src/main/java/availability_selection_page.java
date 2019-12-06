@@ -273,7 +273,7 @@ public class availability_selection_page extends HttpServlet {
         disable_submit="";
         if (time_slot!=null){
             for (int i=0; i<time_slot.length; i++){
-                time_slot_message+=time_slot[i]+" ";
+                time_slot_message+=time_slot[i]+" "; // count the number of each slot selected
                 switch (time_slot[i]){ //disable chosen checkbox
                     case "1a": chosen_checkbox_count_1a++; break;
                     case "2a": chosen_checkbox_count_2a++; break;
@@ -298,7 +298,7 @@ public class availability_selection_page extends HttpServlet {
                     case "7c": chosen_checkbox_count_7c++; break;
                     default: break;
                 }
-                disable_submit="disabled";
+                disable_submit="disabled"; //disable to button to prevent second submission
             }
             try {
                 // Registers the driver
@@ -307,7 +307,7 @@ public class availability_selection_page extends HttpServlet {
             try {
                 Connection conn= DriverManager.getConnection(dbUrl);  //connect to database
                 Statement s=conn.createStatement();
-                PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where firstname=? and lastname=?"); // to check if the database has the corresponding information
+                PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where firstname=? and lastname=?"); // update the database with new timetable
                 ps.setString(1,time_slot_message); ps.setString(2,firstname); ps.setString(3,lastname);
                 ResultSet resultset = ps.executeQuery();
                 resultset.close();
@@ -320,7 +320,7 @@ public class availability_selection_page extends HttpServlet {
             try {
                 Connection conn= DriverManager.getConnection(dbUrl);  //connect to database
                 Statement s=conn.createStatement();
-                PreparedStatement ps=conn.prepareStatement("update doctors set workload=? where firstname=? and lastname=?"); // to check if the database has the corresponding information
+                PreparedStatement ps=conn.prepareStatement("update doctors set workload=? where firstname=? and lastname=?"); // update the workload according to the timetable
                 ps.setString(1, String.valueOf(time_slot.length)); ps.setString(2,firstname); ps.setString(3,lastname);
                 ResultSet resultset = ps.executeQuery();
                 resultset.close();
@@ -331,9 +331,9 @@ public class availability_selection_page extends HttpServlet {
             }
 
         }
-        if (chosen_checkbox_count_1a==3) {disable_1a="disabled"; disable_checkbox_count++;}
-        if (chosen_checkbox_count_2a==3) {disable_2a="disabled"; disable_checkbox_count++;}
-        if (chosen_checkbox_count_3a==3) {disable_3a="disabled"; disable_checkbox_count++;}
+        if (chosen_checkbox_count_1a==3) {disable_1a="disabled"; disable_checkbox_count++;} //each slot need a maximum of 3 doctors to take care of 10 patients
+        if (chosen_checkbox_count_2a==3) {disable_2a="disabled"; disable_checkbox_count++;} //therefore disable the slot if three doctors have selected that slot to
+        if (chosen_checkbox_count_3a==3) {disable_3a="disabled"; disable_checkbox_count++;} //prevent waste of resources.
         if (chosen_checkbox_count_4a==3) {disable_4a="disabled"; disable_checkbox_count++;}
         if (chosen_checkbox_count_5a==3) {disable_5a="disabled"; disable_checkbox_count++;}
         if (chosen_checkbox_count_6a==3) {disable_6a="disabled"; disable_checkbox_count++;}
@@ -358,9 +358,9 @@ public class availability_selection_page extends HttpServlet {
             disable_1b=disable_2b=disable_3b=disable_4b=disable_5b=disable_6b=disable_7b=
             disable_1c=disable_2c=disable_3c=disable_4c=disable_5c=disable_6c=disable_7c ="";
             disable_checkbox_count=0;
-        }
+        } // if all time slots have be selected, reset the timetable
 
-        time_slot_message = "";
+        time_slot_message = ""; //empty the time slot message for next doctor's selection
         response.sendRedirect("availability_selection_page");
     }
 }

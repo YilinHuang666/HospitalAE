@@ -78,7 +78,7 @@ public class welcome_page extends HttpServlet {
                 "    </form>\n" +
                 "</body>\n" +
                 "</html>");
-        Cookie firstname_cookie = new Cookie("firstname",firstname);
+        Cookie firstname_cookie = new Cookie("firstname",firstname); //create cookies to convey firstname and lastname to other pages for identifying
         Cookie lastname_cookie = new Cookie("lastname",lastname);
         Cookie firstname_cookie_workload = new Cookie("firstname_workload",firstname);
         Cookie lastname_cookie_workload = new Cookie("lastname_workload",lastname);
