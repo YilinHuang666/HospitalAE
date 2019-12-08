@@ -16,9 +16,7 @@ public class timetable_page extends HttpServlet {
     private static String firstname;
     private static String lastname;
     private final static String dbUrl = System.getenv("JDBC_DATABASE_URL");
-    private ArrayList<String> all_firstname=new ArrayList<String>();
-    private ArrayList<String> all_lastname=new ArrayList<String>();
-    private ArrayList<String> all_timetable=new ArrayList<String>();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
@@ -71,41 +69,6 @@ public class timetable_page extends HttpServlet {
         Cookie lastname_remove = new Cookie("lastname","");
         firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
         response.addCookie(firstname_remove); response.addCookie(lastname_remove);
-        try {
-            // Registers the driver
-            Class.forName("org.postgresql.Driver");
-        } catch (Exception e) {}
-        Connection conn=null;
-        try {
-            conn= DriverManager.getConnection(dbUrl);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        try{//select all doctor's first name then store them in the arraylist
-            PreparedStatement ps = conn.prepareStatement("SELECT firstname from doctor_login_info");
-            ResultSet resultSet=ps.executeQuery();
-            while (resultSet.next()){
-                all_firstname.add(resultSet.getString("firstname"));
-            }
-        } catch (Exception e){}
-        try{//select all doctor's last name then store them in the arraylist
-            PreparedStatement ps = conn.prepareStatement("SELECT lastname from doctor_login_info");
-            ResultSet resultSet=ps.executeQuery();
-            while (resultSet.next()){
-                all_lastname.add(resultSet.getString("lastname"));
-            }
-        }catch (Exception e){}
-        try{//select all doctor's timetable then store them in the arraylist
-            PreparedStatement ps = conn.prepareStatement("SELECT timetable from doctor_login_info");
-            ResultSet resultSet=ps.executeQuery();
-            while (resultSet.next()){
-                all_timetable.add(resultSet.getString("timetable"));
-            }
-        }catch (Exception e){}
-        for (int i=0; i<all_timetable.size(); i++){
-            out.println(all_firstname.get(i)+" "+all_lastname.get(i));
-            out.println(all_timetable.get(i));
-        }
         response.sendRedirect("timetable_page");
     }
 }
