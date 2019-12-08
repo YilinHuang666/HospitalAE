@@ -18,6 +18,7 @@ public class mypatients_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         out.println("<h2>My Patients</h2>");
+        out.println("<h2>"+reqBody+"</h2>");
         try {
             // Registers the driver
             Class.forName("org.postgresql.Driver");
