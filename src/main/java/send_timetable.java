@@ -15,6 +15,11 @@ public class send_timetable extends HttpServlet {
     private ArrayList<String> all_lastname=new ArrayList<String>();
     private ArrayList<String> all_timetable=new ArrayList<String>();
     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
