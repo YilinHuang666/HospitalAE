@@ -38,6 +38,9 @@ public class mypatients_page extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         reqBody=request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+        out.println("Hello");
         response.sendRedirect("mypatients_page");
     }
 }
