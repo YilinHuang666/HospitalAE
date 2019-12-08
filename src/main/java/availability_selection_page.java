@@ -251,6 +251,7 @@ public class availability_selection_page extends HttpServlet {
                 "       <button class='button' type='submit'>return to welcome page</button>"+
                 "   </div>" +
                 "</form>"+
+                "    &nbsp;\n"+
                 "<form action='login' method='post'> " +
                 "   <div style='text-align: center'>" +
                 "       <button class='button' type='submit'>Logout</button>" +
