@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/timetable_page", loadOnStartup = 1)
 
@@ -14,9 +15,9 @@ public class timetable_page extends HttpServlet {
     private static String reqBody;
     private static String firstname;
     private static String lastname;
+    private final static String dbUrl = System.getenv("JDBC_DATABASE_URL");
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String dbUrl =  System.getenv("JDBC_DATABASE_URL");
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         out.println("<h2>Timetable</h2>");
@@ -55,6 +56,7 @@ public class timetable_page extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
         Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
         if (cookies != null){
             for (Cookie cookie: cookies){
@@ -66,6 +68,19 @@ public class timetable_page extends HttpServlet {
         Cookie lastname_remove = new Cookie("lastname","");
         firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
         response.addCookie(firstname_remove); response.addCookie(lastname_remove);
+        try {
+            // Registers the driver
+            Class.forName("org.postgresql.Driver");
+        } catch (Exception e) {}
+        Connection conn=null;
+        try {
+            conn= DriverManager.getConnection(dbUrl);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try{
+
+        } catch (Exception e){}
         response.sendRedirect("timetable_page");
     }
 }
