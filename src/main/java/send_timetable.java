@@ -39,6 +39,9 @@ public class send_timetable extends HttpServlet {
             while (resultSet.next()){
                 all_firstname.add(resultSet.getString("firstname"));
             }
+            conn.close();
+            resultSet.close();
+            ps.close();
         } catch (Exception e){}
         try{//select all doctor's last name then store them in the arraylist
             PreparedStatement ps = conn.prepareStatement("SELECT lastname from doctor_login_info");
@@ -46,6 +49,9 @@ public class send_timetable extends HttpServlet {
             while (resultSet.next()){
                 all_lastname.add(resultSet.getString("lastname"));
             }
+            conn.close();
+            resultSet.close();
+            ps.close();
         }catch (Exception e){}
         try{//select all doctor's timetable then store them in the arraylist
             PreparedStatement ps = conn.prepareStatement("SELECT timetable from doctor_login_info");
@@ -53,7 +59,12 @@ public class send_timetable extends HttpServlet {
             while (resultSet.next()){
                 all_timetable.add(resultSet.getString("timetable"));
             }
+            conn.close();
+            resultSet.close();
+            ps.close();
         }catch (Exception e){}
+
+
         for (int i=0; i<all_timetable.size(); i++){
             out.println(all_firstname.get(i)+" "+all_lastname.get(i));
             out.println(all_timetable.get(i));

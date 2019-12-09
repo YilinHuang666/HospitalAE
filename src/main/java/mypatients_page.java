@@ -30,8 +30,9 @@ public class mypatients_page extends HttpServlet {
             e.printStackTrace();
         }
         try{
-            Statement s = conn.createStatement();
             //PreparedStatement ps = conn.prepareStatement("SELECT ")
+            conn.close();
+
         }catch(Exception e){}
     }
 

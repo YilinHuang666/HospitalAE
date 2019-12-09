@@ -47,7 +47,10 @@ public class timetable_page extends HttpServlet {
                 TBtowrite tb = new TBtowrite(a);
                 out.println("<h2>"+tb.getTB()+" "+tb.getTS()+"</h2>");
             }
-
+            s.close();
+            ps.close();
+            resultset.close();
+            conn.close();
 
         }catch(Exception e){}
 
