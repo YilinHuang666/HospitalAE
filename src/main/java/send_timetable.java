@@ -58,5 +58,8 @@ public class send_timetable extends HttpServlet {
             out.println(all_firstname.get(i)+" "+all_lastname.get(i));
             out.println(all_timetable.get(i));
         }
+        all_firstname.removeAll(all_firstname);
+        all_lastname.removeAll(all_lastname);
+        all_timetable.removeAll(all_timetable);
     }
 }
