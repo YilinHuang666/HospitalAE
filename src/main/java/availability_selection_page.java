@@ -1,5 +1,3 @@
-import javafx.scene.transform.Scale;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -9,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.util.Calendar;
 import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = {"/availability_selection_page"},loadOnStartup = 1)
@@ -267,7 +264,6 @@ public class availability_selection_page extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        //Calendar calendar= Calendar.getInstance(); // use to reset time selection later
         response.setContentType("text/html");
         Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
         if (cookies != null){
@@ -364,7 +360,7 @@ public class availability_selection_page extends HttpServlet {
         if (chosen_checkbox_count_6c==3) {disable_6c="disabled"; disable_checkbox_count++;}
         if (chosen_checkbox_count_7c==3) {disable_7c="disabled"; disable_checkbox_count++;}
 
-        if ((disable_checkbox_count==21)){  // reset time selection checkbox on Sunday every week
+        if (disable_checkbox_count==21){
             disable_1a=disable_2a=disable_3a=disable_4a=disable_5a=disable_6a=disable_7a=
             disable_1b=disable_2b=disable_3b=disable_4b=disable_5b=disable_6b=disable_7b=
             disable_1c=disable_2c=disable_3c=disable_4c=disable_5c=disable_6c=disable_7c ="";
