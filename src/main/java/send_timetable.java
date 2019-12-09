@@ -28,12 +28,8 @@ public class send_timetable extends HttpServlet {
             Class.forName("org.postgresql.Driver");
         } catch (Exception e) {}
         Connection conn=null;
-        try {
-            conn= DriverManager.getConnection(dbUrl);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         try{//select all doctor's first name then store them in the arraylist
+            conn= DriverManager.getConnection(dbUrl);
             PreparedStatement ps = conn.prepareStatement("SELECT firstname from doctor_login_info");
             ResultSet resultSet=ps.executeQuery();
             while (resultSet.next()){
@@ -42,8 +38,11 @@ public class send_timetable extends HttpServlet {
             conn.close();
             resultSet.close();
             ps.close();
-        } catch (Exception e){}
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         try{//select all doctor's last name then store them in the arraylist
+            conn= DriverManager.getConnection(dbUrl);
             PreparedStatement ps = conn.prepareStatement("SELECT lastname from doctor_login_info");
             ResultSet resultSet=ps.executeQuery();
             while (resultSet.next()){
@@ -52,8 +51,11 @@ public class send_timetable extends HttpServlet {
             conn.close();
             resultSet.close();
             ps.close();
-        }catch (Exception e){}
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         try{//select all doctor's timetable then store them in the arraylist
+            conn= DriverManager.getConnection(dbUrl);
             PreparedStatement ps = conn.prepareStatement("SELECT timetable from doctor_login_info");
             ResultSet resultSet=ps.executeQuery();
             while (resultSet.next()){
@@ -62,7 +64,9 @@ public class send_timetable extends HttpServlet {
             conn.close();
             resultSet.close();
             ps.close();
-        }catch (Exception e){}
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
         for (int i=0; i<all_timetable.size(); i++){
