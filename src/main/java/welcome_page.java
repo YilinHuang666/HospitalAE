@@ -76,9 +76,16 @@ public class welcome_page extends HttpServlet {
                 "            <button class=\"button\" type=\"submit\" "+" "+ disable_ava_select +">Time Availability Selection</button>\n" +
                 "        </div>\n" +
                 "    </form>\n" +
+                "    &nbsp;\n"+
                 "   <form action=\"checkout_patient\" method=\"post\">" +
                 "       <div style='text-align: center'>" +
                 "           <button class='button' type='submit'>Checkout Patient</button>" +
+                "       </div>" +
+                "   </form>"+
+                "   &nbsp;\n" +
+                "   <form action='login' method='post'>" +
+                "       <div style='text-align: center'>" +
+                "           <button class='button' type='submit'>Logout</button>" +
                 "       </div>" +
                 "   </form>"+
                 "</body>\n" +

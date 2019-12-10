@@ -127,7 +127,9 @@ public class login extends HttpServlet {
                 rd.forward(request,response);
             }
             else {
-                out.println("<h2>Invalid username or password!</h2>");//if not, display error message
+                if (username!=null) {
+                    out.println("<h2>Invalid username or password!</h2>");//if not, display error message
+                }
                 out.println(doctor_login);
             }
         } catch (SQLException e) {
