@@ -76,6 +76,11 @@ public class welcome_page extends HttpServlet {
                 "            <button class=\"button\" type=\"submit\" "+" "+ disable_ava_select +">Time Availability Selection</button>\n" +
                 "        </div>\n" +
                 "    </form>\n" +
+                "   <form action=\"checkout_patient\" method=\"post\">" +
+                "       <div style='text-align: center'>" +
+                "           <button class='button' type='submit'>Checkout Patient</button>" +
+                "       </div>" +
+                "   </form>"+
                 "</body>\n" +
                 "</html>");
         Cookie firstname_cookie = new Cookie("firstname",firstname); //create cookies to convey firstname and lastname to other pages for identifying
