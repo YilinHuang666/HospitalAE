@@ -8,7 +8,7 @@ import java.io.IOError;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns = "checkout_patient", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/checkout_patient", loadOnStartup = 1)
 public class checkout_patient extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
