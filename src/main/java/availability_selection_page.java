@@ -320,16 +320,26 @@ public class availability_selection_page extends HttpServlet {
                 PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where firstname=? and lastname=?"); // update the database with new timetable
                 ps.setString(1,time_slot_message); ps.setString(2,firstname); ps.setString(3,lastname);
                 ResultSet resultset = ps.executeQuery();
-                ps=conn.prepareStatement("update doctor_login_info set workload=? where firstname=? and lastname=?"); // update the workload according to the timetable
-                ps.setString(1, String.valueOf(time_slot.length)); ps.setString(2,firstname); ps.setString(3,lastname);
-                resultset = ps.executeQuery();
                 resultset.close();
-                s.close(); 
+                s.close();
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
+            try{
+                Connection conn= DriverManager.getConnection(dbUrl);  //connect to database
+                Statement s = conn.createStatement();
+                PreparedStatement ps=conn.prepareStatement("update doctor_login_info set workload=? where firstname=? and lastname=?"); // update the workload according to the timetable
+                ps.setString(1, String.valueOf(time_slot.length)); ps.setString(2,firstname); ps.setString(3,lastname);
+                ResultSet resultset = ps.executeQuery();
+                resultset.close();
+                s.close();
+                conn.close();
+
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
         }
         if (chosen_checkbox_count_1a==3) {disable_1a="disabled"; disable_checkbox_count++;} //each slot need a maximum of 3 doctors to take care of 10 patients
         if (chosen_checkbox_count_2a==3) {disable_2a="disabled"; disable_checkbox_count++;} //therefore disable the slot if three doctors have selected that slot to
