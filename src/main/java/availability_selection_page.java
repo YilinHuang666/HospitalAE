@@ -4,6 +4,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.plaf.nimbus.State;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -313,9 +314,9 @@ public class availability_selection_page extends HttpServlet {
                 // Registers the driver
                 Class.forName("org.postgresql.Driver");
             } catch (Exception e) {}
-            Connection conn=null;
             try {
-                conn= DriverManager.getConnection(dbUrl);  //connect to database
+                Connection conn= DriverManager.getConnection(dbUrl);  //connect to database
+                Statement s = conn.createStatement();
                 PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where firstname=? and lastname=?"); // update the database with new timetable
                 ps.setString(1,time_slot_message); ps.setString(2,firstname); ps.setString(3,lastname);
                 ResultSet resultset = ps.executeQuery();
@@ -323,7 +324,7 @@ public class availability_selection_page extends HttpServlet {
                 ps2.setString(1, String.valueOf(time_slot.length)); ps2.setString(2,firstname); ps2.setString(3,lastname);
                 ResultSet resultset2 = ps2.executeQuery();
                 resultset.close(); resultset2.close();
-                ps.close(); ps2.close();
+                s.close();
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
