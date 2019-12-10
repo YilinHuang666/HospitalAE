@@ -274,10 +274,10 @@ public class availability_selection_page extends HttpServlet {
                 if (cookie.getName().equals("lastname")) lastname = cookie.getValue();
             }
         }
-        Cookie firstname_remove = new Cookie("firstname","");
-        Cookie lastname_remove = new Cookie("lastname","");
-        firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
-        response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
+        //Cookie firstname_remove = new Cookie("firstname","");
+        //Cookie lastname_remove = new Cookie("lastname","");
+       // firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
+        //response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
         time_slot=request.getParameterValues("time_slot"); //obtain input timetable
         disable_submit="";
         if (time_slot!=null){
