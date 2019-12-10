@@ -329,7 +329,7 @@ public class availability_selection_page extends HttpServlet {
             try {
                 Connection conn= DriverManager.getConnection(dbUrl);  //connect to database
                 Statement s=conn.createStatement();
-                PreparedStatement ps=conn.prepareStatement("update doctors set workload=? where firstname=? and lastname=?"); // update the workload according to the timetable
+                PreparedStatement ps=conn.prepareStatement("update doctor_login_info set workload=? where firstname=? and lastname=?"); // update the workload according to the timetable
                 ps.setString(1, String.valueOf(time_slot.length)); ps.setString(2,firstname); ps.setString(3,lastname);
                 ResultSet resultset = ps.executeQuery();
                 resultset.close();
