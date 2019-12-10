@@ -316,25 +316,14 @@ public class availability_selection_page extends HttpServlet {
             Connection conn=null;
             try {
                 conn= DriverManager.getConnection(dbUrl);  //connect to database
-                Statement s=conn.createStatement();
                 PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where firstname=? and lastname=?"); // update the database with new timetable
                 ps.setString(1,time_slot_message); ps.setString(2,firstname); ps.setString(3,lastname);
                 ResultSet resultset = ps.executeQuery();
-                resultset.close();
-                s.close();
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                conn= DriverManager.getConnection(dbUrl);  //connect to database
-                Statement s=conn.createStatement();
-                PreparedStatement ps=conn.prepareStatement("update doctor_login_info set workload=? where firstname=? and lastname=?"); // update the workload according to the timetable
-                ps.setString(1, String.valueOf(time_slot.length)); ps.setString(2,firstname); ps.setString(3,lastname);
-                ResultSet resultset = ps.executeQuery();
-                resultset.close();
-                s.close();
+                PreparedStatement ps2=conn.prepareStatement("update doctor_login_info set workload=? where firstname=? and lastname=?"); // update the workload according to the timetable
+                ps2.setString(1, String.valueOf(time_slot.length)); ps2.setString(2,firstname); ps2.setString(3,lastname);
+                ResultSet resultset2 = ps2.executeQuery();
+                resultset.close(); resultset2.close();
+                ps.close(); ps2.close();
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
