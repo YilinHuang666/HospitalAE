@@ -265,6 +265,7 @@ public class availability_selection_page extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        Calendar calendar = Calendar.getInstance();
         response.setContentType("text/html");
         Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
         if (cookies != null){
@@ -328,7 +329,7 @@ public class availability_selection_page extends HttpServlet {
             try {
                 Connection conn= DriverManager.getConnection(dbUrl);  //connect to database
                 Statement s=conn.createStatement();
-                PreparedStatement ps=conn.prepareStatement("update doctor_login_info set workload=? where firstname=? and lastname=?"); // update the workload according to the timetable
+                PreparedStatement ps=conn.prepareStatement("update doctors set workload=? where firstname=? and lastname=?"); // update the workload according to the timetable
                 ps.setString(1, String.valueOf(time_slot.length)); ps.setString(2,firstname); ps.setString(3,lastname);
                 ResultSet resultset = ps.executeQuery();
                 resultset.close();
@@ -361,7 +362,7 @@ public class availability_selection_page extends HttpServlet {
         if (chosen_checkbox_count_6c==3) {disable_6c="disabled"; disable_checkbox_count++;}
         if (chosen_checkbox_count_7c==3) {disable_7c="disabled"; disable_checkbox_count++;}
 
-        if ((disable_checkbox_count==21)){  //reset time selection page on Sunday every week
+        if ((disable_checkbox_count==21) || (calendar.get(calendar.DAY_OF_WEEK)==1)){  //reset time selection page on Sunday every week
             disable_1a=disable_2a=disable_3a=disable_4a=disable_5a=disable_6a=disable_7a=
             disable_1b=disable_2b=disable_3b=disable_4b=disable_5b=disable_6b=disable_7b=
             disable_1c=disable_2c=disable_3c=disable_4c=disable_5c=disable_6c=disable_7c ="";

@@ -34,7 +34,7 @@ public class workload_page extends HttpServlet {
         }
         try{
             Statement s = conn.createStatement();
-            PreparedStatement ps = conn.prepareStatement("SELECT * from doctor_login_info where firstname=? and lastname=?");
+            PreparedStatement ps = conn.prepareStatement("SELECT * from doctors where firstname=? and lastname=?");
             ps.setString(1,firstname); ps.setString(2,lastname);
             ResultSet resultset = ps.executeQuery();
             while (resultset.next()){
