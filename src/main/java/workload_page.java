@@ -34,16 +34,14 @@ public class workload_page extends HttpServlet {
         }
         try{
             Statement s = conn.createStatement();
-            PreparedStatement ps = conn.prepareStatement("SELECT * from doctor_login_info where firstname=? and lastname=?");
-            ps.setString(1,firstname); ps.setString(2,lastname);
-            ResultSet resultset = ps.executeQuery();
+            String sqlcom="SELECT * from doctor_login_info where firstname='"+firstname+"' and lastname='"+lastname+"';";
+             ResultSet resultset = s.executeQuery(sqlcom);
             while (resultset.next()){
                 shifts = Integer.parseInt(resultset.getString("workload"));
                 out.println("<h2> You have "+shifts+" shifts this week.</h2>");
             }
-            ps = conn.prepareStatement("SELECT * from doctor_login_info where firstname=? and lastname=?");
-            ps.setString(1,firstname); ps.setString(2,lastname);
-            resultset = ps.executeQuery();
+            sqlcom="SELECT * from doctor_login_info where firstname='"+firstname+"' and lastname='"+lastname+"';";
+            resultset = s.executeQuery(sqlcom);
             while (resultset.next()){
                 String rawTimetable = resultset.getString("timetable");
                 String[] arrOfTb = rawTimetable.split(" ");
@@ -53,7 +51,6 @@ public class workload_page extends HttpServlet {
                 out.println("<h2> You have " + sr.getRemainShifts() + " shifts left.</h2>");
             }
             s.close();
-            ps.close();
             resultset.close();
             conn.close();
         }catch(Exception e){}

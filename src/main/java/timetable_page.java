@@ -36,9 +36,8 @@ public class timetable_page extends HttpServlet {
         String rawTimetable = "";
         try{
             Statement s = conn.createStatement();
-            PreparedStatement ps = conn.prepareStatement("SELECT * from doctor_login_info where firstname=? and lastname=?");
-            ps.setString(1,firstname); ps.setString(2,lastname);
-            ResultSet resultset = ps.executeQuery();
+            String sqlcom="SELECT * from doctor_login_info where firstname='"+firstname+"' and lastname='"+lastname+"';";
+             ResultSet resultset = s.executeQuery(sqlcom);
             while (resultset.next()){
                 rawTimetable = resultset.getString("timetable");
             }
@@ -48,7 +47,6 @@ public class timetable_page extends HttpServlet {
                 out.println("<h2>"+tb.getTB()+" "+tb.getTS()+"</h2>");
             }
             s.close();
-            ps.close();
             resultset.close();
             conn.close();
 
