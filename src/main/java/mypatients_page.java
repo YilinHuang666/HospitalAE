@@ -1,24 +1,31 @@
+import com.google.gson.Gson;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.plaf.nimbus.State;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = "/mypatients_page", loadOnStartup = 1)
 
 public class mypatients_page extends HttpServlet {
     private static String reqBody;
+    private String firstname,lastname;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String dbUrl =  System.getenv("JDBC_DATABASE_URL");
+        ArrayList<String> patient_fn_set=new ArrayList<String>();
+        ArrayList<String> patient_ln_set=new ArrayList<String>();
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         out.println("<h2>My Patients</h2>");
-        out.println("<h2>"+reqBody+"</h2>");
         try {
             // Registers the driver
             Class.forName("org.postgresql.Driver");
@@ -30,18 +37,61 @@ public class mypatients_page extends HttpServlet {
             e.printStackTrace();
         }
         try{
-            //PreparedStatement ps = conn.prepareStatement("SELECT ")
+            Statement s=conn.createStatement();
+            String sqlcom="select * from patient_to_doctor_table where r_dr_firstname='"+firstname+"' and r_dr_lastname='"+lastname+"';";
+            ResultSet resultSet=s.executeQuery(sqlcom);
+            while (resultSet.next()){
+                patient_fn_set.add(resultSet.getString("patient_firstname"));
+                patient_ln_set.add(resultSet.getString("patient_lastname"));
+            }
             conn.close();
-
+            s.close();
         }catch(Exception e){}
-    }
+        for (int i=0; i<patient_fn_set.size(); i++){
+            out.println("<h2>"+patient_fn_set.get(i)+" "+patient_ln_set.get(i)+"</h2>");
+        }
+}
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         reqBody=request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         response.setContentType("text/html");
-        PrintWriter out=response.getWriter();
-        out.println("Hello");
+        if (reqBody!=null) {
+            Gson gson = new Gson();
+            patient_to_doctor pd = gson.fromJson(reqBody, patient_to_doctor.class); //receive assigned patient name and responsible doctor's name
+            String patient_firstname = pd.getPatient_firstname();
+            String patient_lastname = pd.getPatient_lastname();
+            String r_doctor_firstname = pd.getResponsible_doctor_firstname();
+            String r_doctor_lastname = pd.getResponsible_doctor_lastname();
+            String dbUrl = System.getenv("JDBC_DATABASE_URL"); //add these information to database
+            try {
+                // Registers the driver
+                Class.forName("org.postgresql.Driver");
+            } catch (Exception e) {
+            }
+            try {
+                Connection conn = DriverManager.getConnection(dbUrl);
+                Statement s = conn.createStatement();
+                String sqlcom = "insert into patient_to_doctor_table values ('" + patient_firstname + "','" + patient_lastname + "','" + //add information to database
+                        r_doctor_firstname + "','" + r_doctor_lastname + "');";
+                s.execute(sqlcom);
+                conn.close();
+                s.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        Cookie[] cookies = request.getCookies(); //receive the login doctor name
+        if (cookies != null){
+            for (Cookie cookie: cookies){
+                if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
+                if (cookie.getName().equals("lastname")) lastname = cookie.getValue();
+            }
+        }
+        Cookie remove_firstname = new Cookie("firstname",""); //remove cookie
+        Cookie remove_lastname = new Cookie("lastname","");
+        remove_firstname.setMaxAge(0); response.addCookie(remove_firstname);
+        remove_lastname.setMaxAge(0); response.addCookie(remove_lastname);
         response.sendRedirect("mypatients_page");
     }
 }
