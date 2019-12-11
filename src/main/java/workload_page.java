@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 public class workload_page extends HttpServlet {
     private static String reqBody;
-    private static String firstname;
-    private static String lastname;
+    private String firstname;
+    private String lastname;
     private static int shifts = 0;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

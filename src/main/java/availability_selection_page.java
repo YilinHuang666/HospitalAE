@@ -16,8 +16,8 @@ public class availability_selection_page extends HttpServlet {
     private static String disable_1a, disable_2a, disable_3a, disable_4a, disable_5a, disable_6a, disable_7a,
             disable_1b, disable_2b, disable_3b, disable_4b, disable_5b, disable_6b, disable_7b,
             disable_1c, disable_2c, disable_3c, disable_4c, disable_5c, disable_6c, disable_7c,disable_submit="";
-    private static String lastname;
-    private static String firstname;
+    private String lastname;
+    private String firstname;
     private static String time_slot_message="";
     private static int chosen_checkbox_count_1a,chosen_checkbox_count_2a,chosen_checkbox_count_3a,chosen_checkbox_count_4a,chosen_checkbox_count_5a,chosen_checkbox_count_6a,chosen_checkbox_count_7a,
                         chosen_checkbox_count_1b,chosen_checkbox_count_2b,chosen_checkbox_count_3b,chosen_checkbox_count_4b,chosen_checkbox_count_5b,chosen_checkbox_count_6b,chosen_checkbox_count_7b,

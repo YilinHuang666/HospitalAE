@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class timetable_page extends HttpServlet {
     private static String reqBody;
-    private static String firstname;
-    private static String lastname;
+    private String firstname;
+    private String lastname;
     private final static String dbUrl = System.getenv("JDBC_DATABASE_URL");
 
     @Override

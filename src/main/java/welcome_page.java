@@ -11,8 +11,8 @@ import java.sql.*;
 
 @WebServlet(urlPatterns = {"/welcome_page"}, loadOnStartup = 2)
 public class welcome_page extends HttpServlet {
-    private static String firstname;
-    private static String lastname;
+    private String firstname;
+    private String lastname;
     private static String disable_ava_select="";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -117,9 +117,8 @@ public class welcome_page extends HttpServlet {
         String uname = (String)request.getAttribute("username"); //get the input username
         try {
             Statement s=conn.createStatement();
-            PreparedStatement ps=conn.prepareStatement("select * from doctor_login_info where username=?"); //find the corresponding name to the username then display welcome message
-            ps.setString(1,uname);
-            ResultSet resultset = ps.executeQuery();
+            String sqlcom="select * from doctor_login_info where username='"+uname+"';";
+             ResultSet resultset = s.executeQuery(sqlcom);
             while(resultset.next()) {
                 firstname = resultset.getString("firstname");
                 lastname = resultset.getString("lastname");
@@ -129,14 +128,6 @@ public class welcome_page extends HttpServlet {
             conn.close();
         }
         catch(Exception e){}
-        //Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
-        //if (cookies != null){
-        //    for (Cookie cookie: cookies){
-        //        if (cookie.getName().equals("chosen_check_count")) disable_ava_select = cookie.getValue(); // if all time slots are chosen, disable the button to prevent further access
-        //    }
-       // }
-        //if (disable_ava_select.equals("21")) disable_ava_select="disabled";
-       // else disable_ava_select="";
        response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
     }
 }
