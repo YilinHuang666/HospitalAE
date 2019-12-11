@@ -18,13 +18,12 @@ public class availability_selection_page extends HttpServlet {
             disable_1c, disable_2c, disable_3c, disable_4c, disable_5c, disable_6c, disable_7c,disable_submit="";
     private static String lastname;
     private static String firstname;
-    private static String time_slot[];
     private static String time_slot_message="";
     private static int chosen_checkbox_count_1a,chosen_checkbox_count_2a,chosen_checkbox_count_3a,chosen_checkbox_count_4a,chosen_checkbox_count_5a,chosen_checkbox_count_6a,chosen_checkbox_count_7a,
                         chosen_checkbox_count_1b,chosen_checkbox_count_2b,chosen_checkbox_count_3b,chosen_checkbox_count_4b,chosen_checkbox_count_5b,chosen_checkbox_count_6b,chosen_checkbox_count_7b,
                         chosen_checkbox_count_1c,chosen_checkbox_count_2c,chosen_checkbox_count_3c,chosen_checkbox_count_4c,chosen_checkbox_count_5c,chosen_checkbox_count_6c,chosen_checkbox_count_7c=0;
     private static int disable_checkbox_count=0;
-    private static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
+    private final static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -137,107 +136,107 @@ public class availability_selection_page extends HttpServlet {
                 "<body>\n" +
                 "    <h1>Time Availability Selection</h1>\n" +
                 "    <form action=\"availability_selection_page\" method=\"post\">\n" +
-                "    <label class=\"container\">Monday 12:00am-8:00am\n" +
+                "    <label class=\"container\">Monday 0:00-8:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"1a\"" + " " + disable_1a +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Monday 8:00am-4:00pm\n" +
+                "    <label class=\"container\">Monday 8:00-16:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"1b\"" + " " + disable_1b +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Monday 4:00pm-12:00am\n" +
+                "    <label class=\"container\">Monday 16:00-0:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"1c\"" + " " + disable_1c +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Tuesday 12:00am-8:00am\n" +
+                "    <label class=\"container\">Tuesday 0:00-8:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"2a\"" + " " + disable_2a +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Tuesday 8:00am-4:00pm\n" +
+                "    <label class=\"container\">Tuesday 8:00-16:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"2b\"" + " " + disable_2b +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Tuesday 4:00pm-12:00am\n" +
+                "    <label class=\"container\">Tuesday 16:00-0:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"2c\"" + " " + disable_2c +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Wednesday 12:00am-8:00am\n" +
+                "    <label class=\"container\">Wednesday 0:00-8:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"3a\"" + " " + disable_3a +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Wednesday 8:00am-4:00pm\n" +
+                "    <label class=\"container\">Wednesday 8:00-16:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"3b\"" + " " + disable_3b +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Wednesday 4:00pm-12:00am\n" +
+                "    <label class=\"container\">Wednesday 16:00-0:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"3c\"" + " " + disable_3c +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Thursday 12:00am-8:00am\n" +
+                "    <label class=\"container\">Thursday 0:00-8:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"4a\"" + " " + disable_4a +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Thursday 8:00am-4:00pm\n" +
+                "    <label class=\"container\">Thursday 8:00-16:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"4b\"" + " " + disable_4b +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Thursday 4:00pm-12:00am\n" +
+                "    <label class=\"container\">Thursday 16:00-0:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"4c\"" + " " + disable_4c +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Friday 12:00am-8:00am\n" +
+                "    <label class=\"container\">Friday 0:00-8:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"5a\"" + " " + disable_5a +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Friday 8:00am-4:00pm\n" +
+                "    <label class=\"container\">Friday 8:00-16:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"5b\"" + " " + disable_5b +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Friday 4:00pm-12:00am\n" +
+                "    <label class=\"container\">Friday 16:00-0:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"5c\"" + " " + disable_5c +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Saturday 12:00am-8:00am\n" +
+                "    <label class=\"container\">Saturday 0:00-8:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"6a\"" + " " + disable_6a +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Saturday 8:00am-4:00pm\n" +
+                "    <label class=\"container\">Saturday 8:00-16:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"6b\"" + " " + disable_6b +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Saturday 4:00pm-12:00am\n" +
+                "    <label class=\"container\">Saturday 16:00-0:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"6c\"" + " " + disable_6c +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Sunday 12:00am-8:00am\n" +
+                "    <label class=\"container\">Sunday 0:00-8:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"7a\"" + " " + disable_7a +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Sunday 8:00am-4:00pm\n" +
+                "    <label class=\"container\">Sunday 8:00-16:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"7b\"" + " " + disable_7b +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
                 "    </label>\n" +
-                "    <label class=\"container\">Sunday 4:00pm-12:00am\n" +
+                "    <label class=\"container\">Sunday 16:00-0:00\n" +
                 "        <input type=\"checkbox\" name=\"time_slot\" value=\"7c\"" + " " + disable_7c +
                 ">\n" +
                 "        <span class=\"checkmark\"></span>\n" +
@@ -275,11 +274,11 @@ public class availability_selection_page extends HttpServlet {
                 if (cookie.getName().equals("lastname")) lastname = cookie.getValue();
             }
         }
-        //Cookie firstname_remove = new Cookie("firstname","");
-        //Cookie lastname_remove = new Cookie("lastname","");
-       // firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
-        //response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
-        time_slot=request.getParameterValues("time_slot"); //obtain input timetable
+        Cookie firstname_remove = new Cookie("firstname","");
+        Cookie lastname_remove = new Cookie("lastname","");
+        firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
+        response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
+        String[] time_slot=request.getParameterValues("time_slot"); //obtain input timetable
         disable_submit="";
         if (time_slot!=null){
             for (int i=0; i<time_slot.length; i++){
@@ -308,8 +307,9 @@ public class availability_selection_page extends HttpServlet {
                     case "7c": chosen_checkbox_count_7c++; break;
                     default: break;
                 }
-                disable_submit="disabled"; //disable to button to prevent second submission
+
             }
+            disable_submit="disabled"; //disable to button to prevent second submission
             try {
                 // Registers the driver
                 Class.forName("org.postgresql.Driver");
@@ -317,27 +317,16 @@ public class availability_selection_page extends HttpServlet {
             try {
                 Connection conn= DriverManager.getConnection(dbUrl);  //connect to database
                 Statement s = conn.createStatement();
-                PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where firstname=? and lastname=?"); // update the database with new timetable
-                ps.setString(1,time_slot_message); ps.setString(2,firstname); ps.setString(3,lastname);
-                ResultSet resultset = ps.executeQuery();
-                resultset.close();
+                String sqlcom = "update doctor_login_info set timetable="+time_slot_message+" where firstname=" +firstname+ " and lastname="+lastname;
+                //PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where firstname=? and lastname=?"); // update the database with new timetable
+                //ps.setString(1,time_slot_message); ps.setString(2,firstname); ps.setString(3,lastname);
+                //ResultSet resultset = ps.executeQuery();
+                s.execute(sqlcom);
+                sqlcom="update doctor_login_info set workload=" +String.valueOf(time_slot.length)+" where firstname="+firstname+" and lastname=" +lastname;
+                s.execute(sqlcom);
                 s.close();
                 conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            try{
-                Connection conn= DriverManager.getConnection(dbUrl);  //connect to database
-                Statement s = conn.createStatement();
-                PreparedStatement ps=conn.prepareStatement("update doctor_login_info set workload=? where firstname=? and lastname=?"); // update the workload according to the timetable
-                ps.setString(1, String.valueOf(time_slot.length)); ps.setString(2,firstname); ps.setString(3,lastname);
-                ResultSet resultset = ps.executeQuery();
-                resultset.close();
-                s.close();
-                conn.close();
-
-            }catch (SQLException e){
                 e.printStackTrace();
             }
         }
