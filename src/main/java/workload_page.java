@@ -54,6 +54,7 @@ public class workload_page extends HttpServlet {
             resultset.close();
             conn.close();
         }catch(Exception e){}
+        firstname=""; lastname="";
     }
 
 

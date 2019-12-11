@@ -51,7 +51,7 @@ public class timetable_page extends HttpServlet {
             conn.close();
 
         }catch(Exception e){}
-
+        firstname=""; lastname="";
 
     }
 

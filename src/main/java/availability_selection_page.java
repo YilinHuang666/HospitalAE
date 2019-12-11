@@ -366,5 +366,6 @@ public class availability_selection_page extends HttpServlet {
 
         time_slot_message = ""; //empty the time slot message for next doctor's selection
         response.sendRedirect("availability_selection_page");
+        firstname=""; lastname="";
     }
 }
