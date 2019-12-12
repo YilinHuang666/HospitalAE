@@ -33,7 +33,6 @@ public class checkout_patient extends HttpServlet {
                 "            width: 100%;\n" +
                 "            padding: 15px 25px;\n" +
                 "            margin: 8px 0;\n" +
-                "            display: inline-block;\n" +
                 "            border: 3px solid #ccc;\n" +
                 "            box-sizing: border-box;\n" +
                 "        }\n" +
