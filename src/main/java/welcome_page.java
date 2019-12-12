@@ -98,12 +98,15 @@ public class welcome_page extends HttpServlet {
         Cookie lastname_cookie_timetable = new Cookie("lastname",lastname);
         Cookie firstname_cookie_my_patient = new Cookie("firstname",firstname);
         Cookie lastname_cookie_my_patient = new Cookie("lastname",lastname);
-        response.addCookie(firstname_cookie); response.addCookie(lastname_cookie); response.addCookie(lastname_cookie_workload); response.addCookie(firstname_cookie_workload); response.addCookie(firstname_cookie_timetable); response.addCookie(lastname_cookie_timetable); response.addCookie(firstname_cookie_my_patient); response.addCookie(lastname_cookie_my_patient);
-        firstname_cookie.setMaxAge(10*60); lastname_cookie.setMaxAge(10*60); lastname_cookie_workload.setMaxAge(10*60); firstname_cookie_workload.setMaxAge(10*60); firstname_cookie_timetable.setMaxAge(10*60); lastname_cookie_timetable.setMaxAge(10*60); firstname_cookie_my_patient.setMaxAge(10*60); lastname_cookie_my_patient.setMaxAge(10*60);
+        Cookie firstname_cookie_checkout = new Cookie("firstname",firstname);
+        Cookie lastname_cookie_checkout = new Cookie("lastname",lastname);
+        response.addCookie(firstname_cookie); response.addCookie(lastname_cookie); response.addCookie(lastname_cookie_workload); response.addCookie(firstname_cookie_workload); response.addCookie(firstname_cookie_timetable); response.addCookie(lastname_cookie_timetable); response.addCookie(firstname_cookie_my_patient); response.addCookie(lastname_cookie_my_patient); response.addCookie(firstname_cookie_checkout); response.addCookie(lastname_cookie_checkout);
+        firstname_cookie.setMaxAge(10*60); lastname_cookie.setMaxAge(10*60); lastname_cookie_workload.setMaxAge(10*60); firstname_cookie_workload.setMaxAge(10*60); firstname_cookie_timetable.setMaxAge(10*60); lastname_cookie_timetable.setMaxAge(10*60); firstname_cookie_my_patient.setMaxAge(10*60); lastname_cookie_my_patient.setMaxAge(10*60); firstname_cookie_checkout.setMaxAge(10*60); lastname_cookie_checkout.setMaxAge(10*60);
         firstname_cookie.setPath("/availability_selection_page"); lastname_cookie.setPath("/availability_selection_page");
         lastname_cookie_workload.setPath("/workload_page"); firstname_cookie_workload.setPath("/workload_page");
         firstname_cookie_timetable.setPath("/timetable_page"); lastname_cookie_timetable.setPath("/timetable_page");
         firstname_cookie_my_patient.setPath("/mypatients_page"); lastname_cookie_my_patient.setPath("/mypatients_page");
+        firstname_cookie_checkout.setPath("/checkout_patient"); lastname_cookie_checkout.setPath("/checkout_patient");
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
