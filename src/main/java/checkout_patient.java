@@ -99,7 +99,7 @@ public class checkout_patient extends HttpServlet {
                 "        <input type=\"text\" placeholder=\"Enter patient's first name to checkout\" name=\"firstname\" required>\n" +
                 "\n" +
                 "        <b>Patient's Lastname</b>\n" +
-                "        <input type=\"password\" placeholder=\"Enter patient's last name to checkout\" name=\"lastname\" required>\n" +
+                "        <input type=\"text\" placeholder=\"Enter patient's last name to checkout\" name=\"lastname\" required>\n" +
                 "\n" +
                 "        <button type=\"submit\"><h2>Checkout</h2></button>\n" +
                 "       <!-- <label>\n" +
