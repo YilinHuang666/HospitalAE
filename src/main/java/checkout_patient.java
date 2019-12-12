@@ -54,7 +54,6 @@ public class checkout_patient extends HttpServlet {
         Cookie remove_lastname = new Cookie("lastname","");
         remove_firstname.setMaxAge(0); response.addCookie(remove_firstname);
         remove_lastname.setMaxAge(0); response.addCookie(remove_lastname);
-        response.sendRedirect("mypatients_page");
         Gson gson=new Gson();
         String checkout_p_fn = request.getParameter("firstname"); //get the patient's first name for checkout process
         String checkout_p_ln = request.getParameter("lastname"); // get the patient's last name for checkout process
@@ -91,8 +90,8 @@ public class checkout_patient extends HttpServlet {
                 }catch (SQLException e){
                     e.printStackTrace();
                 }
-                response.sendRedirect("checkout_patient");
             }
         }
+        response.sendRedirect("checkout_patient");
     }
 }
