@@ -1,10 +1,7 @@
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -120,7 +117,8 @@ public class welcome_page extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String uname = (String)request.getSession().getAttribute("username"); //get the input username
+        HttpSession session=request.getSession(false);
+        String uname = (String)session.getAttribute("username"); //get the input username
         try {
             Statement s=conn.createStatement();
             String sqlcom="select * from doctor_login_info where username='"+uname+"';";
