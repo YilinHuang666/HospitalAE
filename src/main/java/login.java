@@ -118,7 +118,7 @@ public class login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("uname");    //get username input
         String password = request.getParameter("psw");      //get password input
-        request.setAttribute("username",username);          //store the username to attribute then send it to welcome_page for display of doctor's name
+        request.getSession().setAttribute("username",username);          //store the username to attribute then send it to welcome_page for display of doctor's name
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         try {
