@@ -90,7 +90,7 @@ public class checkout_patient extends HttpServlet {
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
-                "<h2>Checkout Patient</h2>\n" +
+                "<h2>Discharge Patient</h2>\n" +
                 "\n" +
                 "<form action=\"checkout_patient\" method=\"post\">\n" +
                 "\n" +
@@ -101,7 +101,7 @@ public class checkout_patient extends HttpServlet {
                 "        <b>Patient's Lastname</b>\n" +
                 "        <input type=\"text\" placeholder=\"Enter patient's last name to checkout\" name=\"lastname\" required>\n" +
                 "\n" +
-                "        <button type=\"submit\"><h2>Checkout</h2></button>\n" +
+                "        <button type=\"submit\"><h2>Discharge</h2></button>\n" +
                 "       <!-- <label>\n" +
                 "            <input type=\"checkbox\" checked=\"checked\" name=\"remember\"> Remember me\n" +
                 "        </label>-->\n" +

@@ -79,7 +79,7 @@ public class welcome_page extends HttpServlet {
                 "    &nbsp;\n"+
                 "   <form action=\"checkout_patient\" method=\"post\">" +
                 "       <div style='text-align: center'>" +
-                "           <button class='button' type='submit'>Checkout Patient</button>" +
+                "           <button class='button' type='submit'>Discharge Patient</button>" +
                 "       </div>" +
                 "   </form>"+
                 "   &nbsp;\n" +
