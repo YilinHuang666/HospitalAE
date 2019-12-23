@@ -1,3 +1,5 @@
+package Class;
+
 import java.io.Serializable;
 
 public class doctors extends Person implements Serializable {

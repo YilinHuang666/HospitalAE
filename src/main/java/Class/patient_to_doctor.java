@@ -1,3 +1,5 @@
+package Class;
+
 public class patient_to_doctor {
     String patient_firstname;
     String patient_lastname;

@@ -1,3 +1,5 @@
+import Functions.TBtowrite;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -7,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/timetable_page", loadOnStartup = 1)
 

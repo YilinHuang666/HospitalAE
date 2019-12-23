@@ -1,3 +1,5 @@
+package Functions;
+
 import java.sql.*;
 
 public class Verificate{
