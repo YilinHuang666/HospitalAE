@@ -1,5 +1,7 @@
 import com.google.gson.Gson;
 import Class.*;
+import jdk.nashorn.internal.ir.debug.PrintVisitor;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 @WebServlet(urlPatterns = "/checkout_patient", loadOnStartup = 1)
 public class checkout_patient extends HttpServlet {
     private String d_firstname,d_lastname;
+    private String checkout_p_fn,checkout_p_ln;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -115,27 +118,11 @@ public class checkout_patient extends HttpServlet {
                 "\n" +
                 "</body>\n" +
                 "</html>\n");
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
+        out.println(checkout_p_fn);
+        out.println(checkout_p_ln);
         ArrayList<String> c_r_p_fn = new ArrayList<String>(); //list of current responsible patient firstname
         ArrayList<String> c_r_p_ln = new ArrayList<String>(); //list of current responsible patient lastname
-        Cookie[] cookies = request.getCookies(); //receive the login doctor name
-        if (cookies != null){
-            for (Cookie cookie: cookies){
-                if (cookie.getName().equals("firstname")) d_firstname = cookie.getValue();
-                if (cookie.getName().equals("lastname")) d_lastname = cookie.getValue();
-            }
-        }
-        Cookie remove_firstname = new Cookie("firstname",""); //remove cookie
-        Cookie remove_lastname = new Cookie("lastname","");
-        remove_firstname.setMaxAge(0); response.addCookie(remove_firstname);
-        remove_lastname.setMaxAge(0); response.addCookie(remove_lastname);
         Gson gson=new Gson();
-        String checkout_p_fn = request.getParameter("firstname"); //get the patient's first name for checkout process
-        String checkout_p_ln = request.getParameter("lastname"); // get the patient's last name for checkout process
         String dbUrl =  System.getenv("JDBC_DATABASE_URL");
         try {
             Class.forName("org.postgresql.Driver");
@@ -173,6 +160,26 @@ public class checkout_patient extends HttpServlet {
                 }
             }
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        Cookie[] cookies = request.getCookies(); //receive the login doctor name
+        if (cookies != null){
+            for (Cookie cookie: cookies){
+                if (cookie.getName().equals("firstname")) d_firstname = cookie.getValue();
+                if (cookie.getName().equals("lastname")) d_lastname = cookie.getValue();
+            }
+        }
+        Cookie remove_firstname = new Cookie("firstname",""); //remove cookie
+        Cookie remove_lastname = new Cookie("lastname","");
+        remove_firstname.setMaxAge(0); response.addCookie(remove_firstname);
+        remove_lastname.setMaxAge(0); response.addCookie(remove_lastname);
+
+        checkout_p_fn = request.getParameter("firstname"); //get the patient's first name for checkout process
+        checkout_p_ln = request.getParameter("lastname"); // get the patient's last name for checkout process
+
         response.sendRedirect("checkout_patient");
     }
 }
