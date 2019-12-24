@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(urlPatterns = "/webpage.timetable_page", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/timetable_page", loadOnStartup = 1)
 
 public class timetable_page extends HttpServlet {
     private static String reqBody;

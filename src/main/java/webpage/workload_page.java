@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = "/webpage.workload_page", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/workload_page", loadOnStartup = 1)
 
 public class workload_page extends HttpServlet {
     private static String reqBody;

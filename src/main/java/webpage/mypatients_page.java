@@ -15,7 +15,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = "/webpage.mypatients_page", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/mypatients_page", loadOnStartup = 1)
 
 public class mypatients_page extends HttpServlet {
     private String firstname,lastname;

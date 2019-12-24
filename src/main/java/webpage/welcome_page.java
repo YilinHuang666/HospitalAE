@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(urlPatterns = {"/webpage.welcome_page"}, loadOnStartup = 2)
+@WebServlet(urlPatterns = {"/welcome_page"}, loadOnStartup = 2)
 public class welcome_page extends HttpServlet {
     private String firstname;
     private String lastname;

@@ -13,7 +13,7 @@ import java.sql.*;
 import java.util.Calendar;
 import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = {"/webpage.availability_selection_page"},loadOnStartup = 1)
+@WebServlet(urlPatterns = {"/availability_selection_page"},loadOnStartup = 1)
 public class availability_selection_page extends HttpServlet {
     private static String disable_1a, disable_2a, disable_3a, disable_4a, disable_5a, disable_6a, disable_7a,
             disable_1b, disable_2b, disable_3b, disable_4b, disable_5b, disable_6b, disable_7b,

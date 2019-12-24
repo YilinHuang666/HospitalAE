@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 
-@WebServlet(urlPatterns = "/webpage.checkout_patient", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/checkout_patient", loadOnStartup = 1)
 public class checkout_patient extends HttpServlet {
     private String d_firstname,d_lastname;
     @Override

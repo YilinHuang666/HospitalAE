@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-@WebServlet(urlPatterns = {"/webpage.login"}, loadOnStartup = 1)
+@WebServlet(urlPatterns = {"/login"}, loadOnStartup = 1)
 public class login extends HttpServlet {
     //html code for webpage.login page
     final static String doctor_login = "<!DOCTYPE html>\n" +

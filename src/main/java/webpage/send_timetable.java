@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 
-@WebServlet(urlPatterns = "/webpage.send_timetable",loadOnStartup = 1)
+@WebServlet(urlPatterns = "/send_timetable",loadOnStartup = 1)
 public class send_timetable extends HttpServlet {
     private final static String dbUrl=System.getenv("JDBC_DATABASE_URL");
     private ArrayList<String> all_firstname=new ArrayList<String>();

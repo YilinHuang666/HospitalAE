@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = "/webpage.receive_assigned_patient",loadOnStartup = 1)
+@WebServlet(urlPatterns = "/receive_assigned_patient",loadOnStartup = 1)
 public class receive_assigned_patient extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
