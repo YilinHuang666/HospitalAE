@@ -262,6 +262,7 @@ public class availability_selection_page extends HttpServlet {
                 "</body>\n" +
                 "</html>");
         for (int i=0; i<time_slot.length; i++){
+            out.println(time_slot[i]);
         }
         if (time_slot!=null){
             for (int i=0; i<time_slot.length; i++){
