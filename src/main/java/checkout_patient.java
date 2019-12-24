@@ -118,8 +118,6 @@ public class checkout_patient extends HttpServlet {
                 "\n" +
                 "</body>\n" +
                 "</html>\n");
-        out.println(checkout_p_fn);
-        out.println(checkout_p_ln);
         ArrayList<String> c_r_p_fn = new ArrayList<String>(); //list of current responsible patient firstname
         ArrayList<String> c_r_p_ln = new ArrayList<String>(); //list of current responsible patient lastname
         Gson gson=new Gson();
@@ -142,7 +140,7 @@ public class checkout_patient extends HttpServlet {
         } catch (SQLException e){
             e.printStackTrace();
         }
-        //if (checkout_p_fn!=null && checkout_p_ln!=null) {
+        if (checkout_p_fn!=null && checkout_p_ln!=null) {
             for (int i = 0; i < c_r_p_fn.size(); i++) {
                 if (checkout_p_fn.equals(c_r_p_fn.get(i)) && checkout_p_ln.equals(c_r_p_ln.get(i))) {
                     patient_to_doctor pd = new patient_to_doctor(checkout_p_fn, checkout_p_ln, d_firstname, d_lastname);
@@ -159,7 +157,7 @@ public class checkout_patient extends HttpServlet {
                     }
                 }
             }
-        //}
+        }
     }
 
     @Override
