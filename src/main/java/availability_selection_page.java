@@ -261,9 +261,9 @@ public class availability_selection_page extends HttpServlet {
                 "</form>" +
                 "</body>\n" +
                 "</html>");
-        for (int i=0; i<time_slot.length; i++){
-            out.println(time_slot[i]);
-        }
+        //for (int i=0; i<time_slot.length; i++){
+        //    out.println(time_slot[i]);
+        //}
         if (time_slot!=null){
             for (int i=0; i<time_slot.length; i++){
                 time_slot_message+=time_slot[i]+" "; // count the number of each slot selected
