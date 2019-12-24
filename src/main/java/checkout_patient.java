@@ -140,7 +140,7 @@ public class checkout_patient extends HttpServlet {
         } catch (SQLException e){
             e.printStackTrace();
         }
-        if (checkout_p_fn!=null && checkout_p_ln!=null) {
+        //if (checkout_p_fn!=null && checkout_p_ln!=null) {
             for (int i = 0; i < c_r_p_fn.size(); i++) {
                 if (checkout_p_fn.equals(c_r_p_fn.get(i)) && checkout_p_ln.equals(c_r_p_ln.get(i))) {
                     patient_to_doctor pd = new patient_to_doctor(checkout_p_fn, checkout_p_ln, d_firstname, d_lastname);
@@ -157,7 +157,7 @@ public class checkout_patient extends HttpServlet {
                     }
                 }
             }
-        }
+        //}
     }
 
     @Override
