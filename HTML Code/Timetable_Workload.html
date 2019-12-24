@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        table {
+            width: 1000px;
+            margin: auto;
+            text-align: center;
+            border: 1px solid purple;
+            border-bottom: 3px double purple;
+
+        }
+
+        th,
+        td {
+            border: 1px solid purple;
+        }
+
+        .today {
+            color: red;
+        }
+    </style>
+    <script>
+        function checkslot(ind, knd, array) {
+            var a;
+            for (a = 0;a < array.length;a++){
+                if (array[a] == 10*knd +ind){
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        var i, k;
+            today = new Date(); //get today's date
+            arrayOfSlot = new Array(11,61,31); //example values
+            dayOfWeek = today.getDay(); //get the week day of today
+            if (dayOfWeek == 0)
+                dayOfWeek +=6;
+
+        document.write("<table cellspacing='0' cellpadding='10'>" +
+            "<tr><td width='80'></td>" +
+            "<td width='130'>Monday</td>" +
+            "<td width='130'>Tuesday </td>" +
+            "<td width='130'>Wednesday</td>" +
+            "<td width='130'>Thursday</td>" +
+            "<td width='130'>Friday </td>" +
+            "<td width='130'>Saturday</td>" +
+            "<td width='130'>Sunday </td>" +
+            "</tr>"); //Print first line that shows weekdays
+
+        for(i = 0; i < 3; i++){
+            document.write('<tr>');
+
+            if (i == 0) {
+                document.write("<td>0:00AM to 8:00AM</td>");
+            } else if (i == 1) {
+                document.write("<td>8:00AM to 16:00PM</td>");
+            } else if (i == 2) {
+                document.write("<td>16:00PM to 24:00PM</td>");
+            }
+            for (k = 0; k < 7; k ++) {
+                if(checkslot(i+1,k+1,arrayOfSlot)){
+                    document.write("<td>On Duty</td>");
+                }else {
+                    document.write("<td></td>");
+                }
+            }
+            document.write('</tr>');
+        }
+        document.write('</table>');
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
