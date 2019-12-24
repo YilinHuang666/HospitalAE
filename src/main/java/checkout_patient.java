@@ -1,5 +1,3 @@
-package webpage;
-
 import com.google.gson.Gson;
 import Class.*;
 import javax.servlet.ServletException;
@@ -124,7 +122,7 @@ public class checkout_patient extends HttpServlet {
         response.setContentType("text/html");
         ArrayList<String> c_r_p_fn = new ArrayList<String>(); //list of current responsible patient firstname
         ArrayList<String> c_r_p_ln = new ArrayList<String>(); //list of current responsible patient lastname
-        Cookie[] cookies = request.getCookies(); //receive the webpage.login doctor name
+        Cookie[] cookies = request.getCookies(); //receive the login doctor name
         if (cookies != null){
             for (Cookie cookie: cookies){
                 if (cookie.getName().equals("firstname")) d_firstname = cookie.getValue();
@@ -175,6 +173,6 @@ public class checkout_patient extends HttpServlet {
                 }
             }
         }
-        response.sendRedirect("webpage.checkout_patient");
+        response.sendRedirect("checkout_patient");
     }
 }

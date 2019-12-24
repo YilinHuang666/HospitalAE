@@ -1,5 +1,3 @@
-package webpage;
-
 import Functions.Verificate;
 
 import javax.servlet.RequestDispatcher;
@@ -15,7 +13,7 @@ import java.sql.SQLException;
 
 @WebServlet(urlPatterns = {"/login"}, loadOnStartup = 1)
 public class login extends HttpServlet {
-    //html code for webpage.login page
+    //html code for login page
     final static String doctor_login = "<!DOCTYPE html>\n" +
             "<html>\n" +
             "<head>\n" +
@@ -123,14 +121,14 @@ public class login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("uname");    //get username input
         String password = request.getParameter("psw");      //get password input
-        //request.getSession().setAttribute("username",username); //store the username to attribute then send it to webpage.welcome_page for display of doctor's name
+        //request.getSession().setAttribute("username",username); //store the username to attribute then send it to welcome_page for display of doctor's name
         HttpSession session = request.getSession();
         session.setAttribute("username",username);
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         try {
-            if (Verificate.checkinfo(password,username)) {                   //if password is valid then go to webpage.welcome_page
-                RequestDispatcher rd = request.getRequestDispatcher("webpage.welcome_page");
+            if (Verificate.checkinfo(password,username)) {                   //if password is valid then go to welcome_page
+                RequestDispatcher rd = request.getRequestDispatcher("welcome_page");
                 rd.forward(request,response);
             }
             else {

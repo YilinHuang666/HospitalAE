@@ -1,5 +1,3 @@
-package webpage;
-
 import com.google.gson.Gson;
 import Class.*;
 import javax.servlet.ServletException;

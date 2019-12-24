@@ -2,14 +2,14 @@
     <servlet>
         <servlet-name>HospitalAE</servlet-name>
         <servlet-class>doctor_servlet</servlet-class>
-        <servlet-class>webpage.welcome_page</servlet-class>>
+        <servlet-class>welcome_page</servlet-class>>
     </servlet>
 
 
     <servlet-mapping>
         <servlet-name>HospitalAE</servlet-name>
-        <url-pattern>HospitalAE/webpage.login</url-pattern>
-        <url-pattern>HospitalAE/webpage.welcome_page</url-pattern>
+        <url-pattern>HospitalAE/login</url-pattern>
+        <url-pattern>HospitalAE/welcome_page</url-pattern>
     </servlet-mapping>
 
 </web-app>

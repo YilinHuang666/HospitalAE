@@ -1,5 +1,3 @@
-package webpage;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -349,7 +347,7 @@ public class availability_selection_page extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
-        Cookie[] cookies = request.getCookies(); //get webpage.login doctor name from welcome page
+        Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
         if (cookies != null){
             for (Cookie cookie: cookies){
                 if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
@@ -362,6 +360,6 @@ public class availability_selection_page extends HttpServlet {
         response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
         time_slot=request.getParameterValues("time_slot"); //obtain input timetable
         disable_submit="";
-        response.sendRedirect("webpage.availability_selection_page");
+        response.sendRedirect("availability_selection_page");
     }
 }

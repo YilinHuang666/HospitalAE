@@ -1,5 +1,3 @@
-package webpage;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -101,11 +99,11 @@ public class welcome_page extends HttpServlet {
         Cookie lastname_cookie_checkout = new Cookie("lastname",lastname);
         response.addCookie(firstname_cookie); response.addCookie(lastname_cookie); response.addCookie(lastname_cookie_workload); response.addCookie(firstname_cookie_workload); response.addCookie(firstname_cookie_timetable); response.addCookie(lastname_cookie_timetable); response.addCookie(firstname_cookie_my_patient); response.addCookie(lastname_cookie_my_patient); response.addCookie(firstname_cookie_checkout); response.addCookie(lastname_cookie_checkout);
         firstname_cookie.setMaxAge(10*60); lastname_cookie.setMaxAge(10*60); lastname_cookie_workload.setMaxAge(10*60); firstname_cookie_workload.setMaxAge(10*60); firstname_cookie_timetable.setMaxAge(10*60); lastname_cookie_timetable.setMaxAge(10*60); firstname_cookie_my_patient.setMaxAge(10*60); lastname_cookie_my_patient.setMaxAge(10*60); firstname_cookie_checkout.setMaxAge(10*60); lastname_cookie_checkout.setMaxAge(10*60);
-        firstname_cookie.setPath("/webpage.availability_selection_page"); lastname_cookie.setPath("/webpage.availability_selection_page");
-        lastname_cookie_workload.setPath("/webpage.workload_page"); firstname_cookie_workload.setPath("/webpage.workload_page");
-        firstname_cookie_timetable.setPath("/webpage.timetable_page"); lastname_cookie_timetable.setPath("/webpage.timetable_page");
-        firstname_cookie_my_patient.setPath("/webpage.mypatients_page"); lastname_cookie_my_patient.setPath("/webpage.mypatients_page");
-        firstname_cookie_checkout.setPath("/webpage.checkout_patient"); lastname_cookie_checkout.setPath("/webpage.checkout_patient");
+        firstname_cookie.setPath("/availability_selection_page"); lastname_cookie.setPath("/availability_selection_page");
+        lastname_cookie_workload.setPath("/workload_page"); firstname_cookie_workload.setPath("/workload_page");
+        firstname_cookie_timetable.setPath("/timetable_page"); lastname_cookie_timetable.setPath("/timetable_page");
+        firstname_cookie_my_patient.setPath("/mypatients_page"); lastname_cookie_my_patient.setPath("/mypatients_page");
+        firstname_cookie_checkout.setPath("/checkout_patient"); lastname_cookie_checkout.setPath("/checkout_patient");
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -134,6 +132,6 @@ public class welcome_page extends HttpServlet {
             conn.close();
         }
         catch(Exception e){}
-       response.sendRedirect("webpage.welcome_page"); //redirect to webpage.welcome_page url for further operation
+       response.sendRedirect("welcome_page"); //redirect to welcome_page url for further operation
     }
 }

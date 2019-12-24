@@ -1,5 +1,3 @@
-package webpage;
-
 import Functions.ShiftsRemain;
 
 import javax.servlet.ServletException;
@@ -75,6 +73,6 @@ public class workload_page extends HttpServlet {
         Cookie remove_lastname = new Cookie("lastname","");
         remove_firstname.setMaxAge(0); response.addCookie(remove_firstname);
         remove_lastname.setMaxAge(0); response.addCookie(remove_lastname);
-        response.sendRedirect("webpage.workload_page");
+        response.sendRedirect("workload_page");
     }
 }

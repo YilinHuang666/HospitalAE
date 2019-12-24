@@ -1,5 +1,3 @@
-package webpage;
-
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -55,7 +53,7 @@ public class mypatients_page extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        Cookie[] cookies = request.getCookies(); //receive the webpage.login doctor name
+        Cookie[] cookies = request.getCookies(); //receive the login doctor name
         if (cookies != null){
             for (Cookie cookie: cookies){
                 if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
@@ -66,6 +64,6 @@ public class mypatients_page extends HttpServlet {
         Cookie remove_lastname = new Cookie("lastname","");
         remove_firstname.setMaxAge(0); response.addCookie(remove_firstname);
         remove_lastname.setMaxAge(0); response.addCookie(remove_lastname);
-        response.sendRedirect("webpage.mypatients_page");
+        response.sendRedirect("mypatients_page");
     }
 }
