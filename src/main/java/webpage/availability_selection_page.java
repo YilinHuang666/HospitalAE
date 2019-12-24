@@ -1,3 +1,5 @@
+package webpage;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -11,7 +13,7 @@ import java.sql.*;
 import java.util.Calendar;
 import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = {"/availability_selection_page"},loadOnStartup = 1)
+@WebServlet(urlPatterns = {"/webpage.availability_selection_page"},loadOnStartup = 1)
 public class availability_selection_page extends HttpServlet {
     private static String disable_1a, disable_2a, disable_3a, disable_4a, disable_5a, disable_6a, disable_7a,
             disable_1b, disable_2b, disable_3b, disable_4b, disable_5b, disable_6b, disable_7b,
@@ -24,6 +26,7 @@ public class availability_selection_page extends HttpServlet {
                         chosen_checkbox_count_1c,chosen_checkbox_count_2c,chosen_checkbox_count_3c,chosen_checkbox_count_4c,chosen_checkbox_count_5c,chosen_checkbox_count_6c,chosen_checkbox_count_7c=0;
     private static int disable_checkbox_count=0;
     private final static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
+    private String[] time_slot;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -260,26 +263,6 @@ public class availability_selection_page extends HttpServlet {
                 "</form>" +
                 "</body>\n" +
                 "</html>");
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        response.setContentType("text/html");
-        Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
-        if (cookies != null){
-            for (Cookie cookie: cookies){
-                if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
-                if (cookie.getName().equals("lastname")) lastname = cookie.getValue();
-            }
-        }
-        Cookie firstname_remove = new Cookie("firstname","");
-        Cookie lastname_remove = new Cookie("lastname","");
-        firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
-        response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
-        String[] time_slot=request.getParameterValues("time_slot"); //obtain input timetable
-        disable_submit="";
-
         if (time_slot!=null){
             for (int i=0; i<time_slot.length; i++){
                 time_slot_message+=time_slot[i]+" "; // count the number of each slot selected
@@ -354,12 +337,31 @@ public class availability_selection_page extends HttpServlet {
 
         if (disable_checkbox_count==21){  //reset time selection page on Sunday every week
             disable_1a=disable_2a=disable_3a=disable_4a=disable_5a=disable_6a=disable_7a=
-            disable_1b=disable_2b=disable_3b=disable_4b=disable_5b=disable_6b=disable_7b=
-            disable_1c=disable_2c=disable_3c=disable_4c=disable_5c=disable_6c=disable_7c ="";
+                    disable_1b=disable_2b=disable_3b=disable_4b=disable_5b=disable_6b=disable_7b=
+                            disable_1c=disable_2c=disable_3c=disable_4c=disable_5c=disable_6c=disable_7c ="";
             disable_checkbox_count=0;
         } // if all time slots have be selected, reset the timetable
 
         time_slot_message = ""; //empty the time slot message for next doctor's selection
-        response.sendRedirect("availability_selection_page");
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        response.setContentType("text/html");
+        Cookie[] cookies = request.getCookies(); //get webpage.login doctor name from welcome page
+        if (cookies != null){
+            for (Cookie cookie: cookies){
+                if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
+                if (cookie.getName().equals("lastname")) lastname = cookie.getValue();
+            }
+        }
+        Cookie firstname_remove = new Cookie("firstname","");
+        Cookie lastname_remove = new Cookie("lastname","");
+        firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
+        response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
+        time_slot=request.getParameterValues("time_slot"); //obtain input timetable
+        disable_submit="";
+        response.sendRedirect("webpage.availability_selection_page");
     }
 }

@@ -1,3 +1,5 @@
+package webpage;
+
 import Functions.ShiftsRemain;
 
 import javax.servlet.ServletException;
@@ -11,7 +13,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = "/workload_page", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/webpage.workload_page", loadOnStartup = 1)
 
 public class workload_page extends HttpServlet {
     private static String reqBody;
@@ -73,6 +75,6 @@ public class workload_page extends HttpServlet {
         Cookie remove_lastname = new Cookie("lastname","");
         remove_firstname.setMaxAge(0); response.addCookie(remove_firstname);
         remove_lastname.setMaxAge(0); response.addCookie(remove_lastname);
-        response.sendRedirect("workload_page");
+        response.sendRedirect("webpage.workload_page");
     }
 }

@@ -1,3 +1,5 @@
+package webpage;
+
 import Functions.TBtowrite;
 
 import javax.servlet.ServletException;
@@ -10,7 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(urlPatterns = "/timetable_page", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/webpage.timetable_page", loadOnStartup = 1)
 
 public class timetable_page extends HttpServlet {
     private static String reqBody;
@@ -158,7 +160,7 @@ public class timetable_page extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
-        Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
+        Cookie[] cookies = request.getCookies(); //get webpage.login doctor name from welcome page
         if (cookies != null){
             for (Cookie cookie: cookies){
                 if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
@@ -169,6 +171,6 @@ public class timetable_page extends HttpServlet {
         Cookie lastname_remove = new Cookie("lastname","");
         firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
         response.addCookie(firstname_remove); response.addCookie(lastname_remove);
-        response.sendRedirect("timetable_page");
+        response.sendRedirect("webpage.timetable_page");
     }
 }

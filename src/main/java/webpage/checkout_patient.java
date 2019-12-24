@@ -1,3 +1,5 @@
+package webpage;
+
 import com.google.gson.Gson;
 import Class.*;
 import javax.servlet.ServletException;
@@ -11,7 +13,7 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 
-@WebServlet(urlPatterns = "/checkout_patient", loadOnStartup = 1)
+@WebServlet(urlPatterns = "/webpage.checkout_patient", loadOnStartup = 1)
 public class checkout_patient extends HttpServlet {
     private String d_firstname,d_lastname;
     @Override
@@ -122,7 +124,7 @@ public class checkout_patient extends HttpServlet {
         response.setContentType("text/html");
         ArrayList<String> c_r_p_fn = new ArrayList<String>(); //list of current responsible patient firstname
         ArrayList<String> c_r_p_ln = new ArrayList<String>(); //list of current responsible patient lastname
-        Cookie[] cookies = request.getCookies(); //receive the login doctor name
+        Cookie[] cookies = request.getCookies(); //receive the webpage.login doctor name
         if (cookies != null){
             for (Cookie cookie: cookies){
                 if (cookie.getName().equals("firstname")) d_firstname = cookie.getValue();
@@ -173,6 +175,6 @@ public class checkout_patient extends HttpServlet {
                 }
             }
         }
-        response.sendRedirect("checkout_patient");
+        response.sendRedirect("webpage.checkout_patient");
     }
 }
