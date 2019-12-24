@@ -143,7 +143,7 @@ public class checkout_patient extends HttpServlet {
         try {
             Connection conn= DriverManager.getConnection(dbUrl);
             Statement s=conn.createStatement();
-            String sqlcom="SELECT * from patient_to_doctor_table where r_dr_firstname='"+d_firstname+"' and r_dr_lastname='"+d_lastname+"';";
+            String sqlcom="SELECT * from patient_to_doctor_table where r_dr_firstname='"+d_firstname+"' and r_dr_lastname='"+d_lastname+"';"; // select the all current responsible patients of the doctor
             ResultSet resultSet=s.executeQuery(sqlcom);
             while (resultSet.next()){
                 c_r_p_fn.add(resultSet.getString("patient_firstname"));
@@ -163,7 +163,7 @@ public class checkout_patient extends HttpServlet {
                     try {
                         Connection conn = DriverManager.getConnection(dbUrl);
                         Statement s = conn.createStatement();
-                        String sqlcom = "delete from patient_to_doctor_table where patient_firstname='" + checkout_p_fn + "' and patient_lastname='" + checkout_p_ln + "';";
+                        String sqlcom = "delete from patient_to_doctor_table where patient_firstname='" + checkout_p_fn + "' and patient_lastname='" + checkout_p_ln + "';"; //delete the specific patient from the database to discharge the patient
                         s.execute(sqlcom);
                         conn.close();
                         s.close();
