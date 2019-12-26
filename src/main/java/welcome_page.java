@@ -87,14 +87,14 @@ public class welcome_page extends HttpServlet {
                 "   </form>"+
                 "</body>\n" +
                 "</html>");
-        Cookie firstname_cookie = new Cookie("firstname",firstname); //create cookies to convey firstname and lastname to other pages for identifying
-        Cookie lastname_cookie = new Cookie("lastname",lastname);
+        Cookie firstname_cookie = new Cookie("firstname_select",firstname); //create cookies to convey firstname and lastname to other pages for identifying
+        Cookie lastname_cookie = new Cookie("lastname_select",lastname);
         Cookie firstname_cookie_workload = new Cookie("firstname_workload",firstname);
         Cookie lastname_cookie_workload = new Cookie("lastname_workload",lastname);
         Cookie firstname_cookie_timetable = new Cookie("firstname_timetable",firstname);
         Cookie lastname_cookie_timetable = new Cookie("lastname_timetable",lastname);
-        Cookie firstname_cookie_my_patient = new Cookie("firstname",firstname);
-        Cookie lastname_cookie_my_patient = new Cookie("lastname",lastname);
+        Cookie firstname_cookie_my_patient = new Cookie("firstname_my_patient",firstname);
+        Cookie lastname_cookie_my_patient = new Cookie("lastname_my_patient",lastname);
         Cookie firstname_cookie_checkout = new Cookie("firstname_checkout",firstname);
         Cookie lastname_cookie_checkout = new Cookie("lastname_checkout",lastname);
         response.addCookie(firstname_cookie); response.addCookie(lastname_cookie); response.addCookie(lastname_cookie_workload); response.addCookie(firstname_cookie_workload); response.addCookie(firstname_cookie_timetable); response.addCookie(lastname_cookie_timetable); response.addCookie(firstname_cookie_my_patient); response.addCookie(lastname_cookie_my_patient); response.addCookie(firstname_cookie_checkout); response.addCookie(lastname_cookie_checkout);

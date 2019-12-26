@@ -165,8 +165,8 @@ public class timetable_page extends HttpServlet {
                 if (cookie.getName().equals("lastname_timetable")) lastname = cookie.getValue();
             }
         }
-        Cookie firstname_remove = new Cookie("firstname","");
-        Cookie lastname_remove = new Cookie("lastname","");
+        Cookie firstname_remove = new Cookie("firstname_timetable","");
+        Cookie lastname_remove = new Cookie("lastname_timetable","");
         firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
         response.addCookie(firstname_remove); response.addCookie(lastname_remove);
         response.sendRedirect("timetable_page");

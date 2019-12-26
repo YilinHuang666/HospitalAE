@@ -57,8 +57,8 @@ public class checkout_patient extends HttpServlet {
                 if (cookie.getName().equals("lastname_checkout")) d_lastname = cookie.getValue();
             }
         }
-        Cookie remove_firstname = new Cookie("firstname",""); //remove cookie
-        Cookie remove_lastname = new Cookie("lastname","");
+        Cookie remove_firstname = new Cookie("firstname_checkout",""); //remove cookie
+        Cookie remove_lastname = new Cookie("lastname_checkout","");
         remove_firstname.setMaxAge(0); response.addCookie(remove_firstname);
         remove_lastname.setMaxAge(0); response.addCookie(remove_lastname);
 

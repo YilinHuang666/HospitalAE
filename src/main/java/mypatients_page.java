@@ -63,12 +63,12 @@ public class mypatients_page extends HttpServlet {
         Cookie[] cookies = request.getCookies(); //receive the login doctor name
         if (cookies != null){
             for (Cookie cookie: cookies){
-                if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
-                if (cookie.getName().equals("lastname")) lastname = cookie.getValue();
+                if (cookie.getName().equals("firstname_my_patient")) firstname = cookie.getValue();
+                if (cookie.getName().equals("lastname_my_patient")) lastname = cookie.getValue();
             }
         }
-        Cookie remove_firstname = new Cookie("firstname",""); //remove cookie
-        Cookie remove_lastname = new Cookie("lastname","");
+        Cookie remove_firstname = new Cookie("firstname_my_patient",""); //remove cookie
+        Cookie remove_lastname = new Cookie("lastname_my_patient","");
         remove_firstname.setMaxAge(0); response.addCookie(remove_firstname);
         remove_lastname.setMaxAge(0); response.addCookie(remove_lastname);
         response.sendRedirect("mypatients_page");

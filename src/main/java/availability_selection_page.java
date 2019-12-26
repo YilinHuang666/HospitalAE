@@ -276,12 +276,12 @@ public class availability_selection_page extends HttpServlet {
         Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
         if (cookies != null){
             for (Cookie cookie: cookies){
-                if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
-                if (cookie.getName().equals("lastname")) lastname = cookie.getValue();
+                if (cookie.getName().equals("firstname_select")) firstname = cookie.getValue();
+                if (cookie.getName().equals("lastname_select")) lastname = cookie.getValue();
             }
         }
-        Cookie firstname_remove = new Cookie("firstname","");
-        Cookie lastname_remove = new Cookie("lastname","");
+        Cookie firstname_remove = new Cookie("firstname_select","");
+        Cookie lastname_remove = new Cookie("lastname_select","");
         firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
         response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
         time_slot=request.getParameterValues("time_slot"); //obtain input timetable
