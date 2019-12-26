@@ -63,8 +63,13 @@ public class checkout_patient extends HttpServlet {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (Exception e) {}
+        Connection conn=null;
+        try{
+            conn=DriverManager.getConnection(dbUrl);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         try {
-            Connection conn= DriverManager.getConnection(dbUrl);
             //Statement s=conn.createStatement();
             //String sqlcom="SELECT * from patient_to_doctor_table where r_dr_firstname='"+d_firstname+"' and r_dr_lastname='"+d_lastname+"';"; // select the all current responsible patients of the doctor
             //ResultSet resultSet=s.executeQuery(sqlcom);
@@ -87,8 +92,12 @@ public class checkout_patient extends HttpServlet {
                     checkout_p_ln=c_r_p_ln.get(i);
                     patient_to_doctor pd = new patient_to_doctor(checkout_p_fn, checkout_p_ln, d_firstname, d_lastname);
                     response.getWriter().write(gson.toJson(pd));
+                    try{
+                        conn=DriverManager.getConnection(dbUrl);
+                    }catch (SQLException e){
+                        e.printStackTrace();
+                    }
                     try {
-                        Connection conn = DriverManager.getConnection(dbUrl);
                         Statement s = conn.createStatement();
                         String sqlcom = "delete from patient_to_doctor_table where patient_firstname='" + checkout_p_fn + "' and patient_lastname='" + checkout_p_ln + "';"; //delete the specific patient from the database to discharge the patient
                         s.execute(sqlcom);
