@@ -117,8 +117,7 @@ public class welcome_page extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        HttpSession session=request.getSession(false);
-        String uname = (String)session.getAttribute("username"); //get the input username
+        String uname = (String)request.getAttribute("username"); //get the input username
         try {
             Statement s=conn.createStatement();
             String sqlcom="select * from doctor_login_info where username='"+uname+"';";
