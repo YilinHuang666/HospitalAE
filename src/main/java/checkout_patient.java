@@ -37,7 +37,7 @@ public class checkout_patient extends HttpServlet {
                 "</form>\n" +
                 "</body>\n" +
                 "</html>");
-
+        c_r_p_ln.clear(); c_r_p_fn.clear(); //clear out the array for printing next time
 
     }
 
