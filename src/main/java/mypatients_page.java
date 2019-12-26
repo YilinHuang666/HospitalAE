@@ -24,6 +24,7 @@ public class mypatients_page extends HttpServlet {
         ArrayList<String> patient_ln_set=new ArrayList<String>();
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
+        out.println(firstname+" "+lastname);
         out.println("<h2>My Patients</h2>");
         try {
             // Registers the driver

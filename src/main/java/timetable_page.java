@@ -23,7 +23,7 @@ public class timetable_page extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         //out.println("<h2>Timetable</h2>");
-
+        out.println(firstname+" "+lastname);
         try {
             // Registers the driver
             Class.forName("org.postgresql.Driver");
