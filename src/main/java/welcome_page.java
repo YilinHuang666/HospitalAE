@@ -74,7 +74,7 @@ public class welcome_page extends HttpServlet {
                 "        </div>\n" +
                 "    </form>\n" +
                 "    &nbsp;\n"+
-                "   <form action=\"checkout_patient\" method=\"post\">" +
+                "   <form action=\"discharge_patient\" method=\"post\">" +
                 "       <div style='text-align: center'>" +
                 "           <button class='button' type='submit'>Discharge Patient</button>" +
                 "       </div>" +
@@ -103,7 +103,7 @@ public class welcome_page extends HttpServlet {
         lastname_cookie_workload.setPath("/workload_page"); firstname_cookie_workload.setPath("/workload_page");
         firstname_cookie_timetable.setPath("/timetable_page"); lastname_cookie_timetable.setPath("/timetable_page");
         firstname_cookie_my_patient.setPath("/mypatients_page"); lastname_cookie_my_patient.setPath("/mypatients_page");
-        firstname_cookie_checkout.setPath("/checkout_patient"); lastname_cookie_checkout.setPath("/checkout_patient");
+        firstname_cookie_checkout.setPath("/discharge_patient"); lastname_cookie_checkout.setPath("/discharge_patient");
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

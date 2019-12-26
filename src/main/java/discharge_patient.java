@@ -14,8 +14,8 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 
-@WebServlet(urlPatterns = "/checkout_patient", loadOnStartup = 1)
-public class checkout_patient extends HttpServlet {
+@WebServlet(urlPatterns = "/discharge_patient", loadOnStartup = 1)
+public class discharge_patient extends HttpServlet {
     private static String d_firstname,d_lastname;
     private static String checkout_p_fn,checkout_p_ln;
     private static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
@@ -29,7 +29,7 @@ public class checkout_patient extends HttpServlet {
                 "<html lang=\"en\">\n" +
                 "<body>\n" +
                 "<h2>Check out Patient</h2>\n" +
-                "<form action=\"checkout_patient\" method='post'>\n" +
+                "<form action=\"discharge_patient\" method='post'>\n" +
                 "    <p><h3>Please select the patient to discharge:</h3></p>\n");
         for (int i=0; i<c_r_p_fn.size(); i++){ //obtain all current responsible patients
             out.println("<input type=\"radio\" name=\"patient_name\" value=\""+c_r_p_fn.get(i)+"\">"+c_r_p_fn.get(i)+" "+c_r_p_ln.get(i)+"<br>\n");
@@ -102,6 +102,6 @@ public class checkout_patient extends HttpServlet {
         }catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("checkout_patient");
+        response.sendRedirect("discharge_patient");
     }
 }
