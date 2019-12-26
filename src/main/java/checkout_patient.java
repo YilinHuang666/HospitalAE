@@ -25,6 +25,7 @@ public class checkout_patient extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        out.println(d_firstname+" "+d_lastname);
         out.println("<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
                 "<body>\n" +
