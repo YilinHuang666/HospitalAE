@@ -37,6 +37,9 @@ public class checkout_patient extends HttpServlet {
         out.println("<button type=\"submit\"> discharge </button>");
         out.println("\n" +
                 "</form>\n" +
+                "<form action='welcome_page' method='post'>" +
+                "   <button type='submit'>Return to welcome page</button>" +
+                "</form>" +
                 "</body>\n" +
                 "</html>");
         c_r_p_ln.clear(); c_r_p_fn.clear(); //clear out the array for printing next time
