@@ -33,6 +33,7 @@ public class checkout_patient extends HttpServlet {
         for (int i=0; i<c_r_p_fn.size(); i++){ //obtain all current responsible patients
             out.println("<input type=\"radio\" name=\"patient_name\" value=\""+c_r_p_fn.get(i)+"\">"+c_r_p_fn.get(i)+" "+c_r_p_ln.get(i)+"<br>\n");
         }
+        out.println("<button type=\"submit\"> discharge </button>");
         out.println("\n" +
                 "</form>\n" +
                 "</body>\n" +
