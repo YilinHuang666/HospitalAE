@@ -29,7 +29,6 @@ public class availability_selection_page extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println(firstname+" "+lastname);
         out.println("<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<style>\n" +
