@@ -53,8 +53,8 @@ public class checkout_patient extends HttpServlet {
         Cookie[] cookies = request.getCookies(); //receive the login doctor name
         if (cookies != null){
             for (Cookie cookie: cookies){
-                if (cookie.getName().equals("firstname")) d_firstname = cookie.getValue();
-                if (cookie.getName().equals("lastname")) d_lastname = cookie.getValue();
+                if (cookie.getName().equals("firstname_checkout")) d_firstname = cookie.getValue();
+                if (cookie.getName().equals("lastname_checkout")) d_lastname = cookie.getValue();
             }
         }
         Cookie remove_firstname = new Cookie("firstname",""); //remove cookie

@@ -161,8 +161,8 @@ public class timetable_page extends HttpServlet {
         Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
         if (cookies != null){
             for (Cookie cookie: cookies){
-                if (cookie.getName().equals("firstname")) firstname = cookie.getValue();
-                if (cookie.getName().equals("lastname")) lastname = cookie.getValue();
+                if (cookie.getName().equals("firstname_timetable")) firstname = cookie.getValue();
+                if (cookie.getName().equals("lastname_timetable")) lastname = cookie.getValue();
             }
         }
         Cookie firstname_remove = new Cookie("firstname","");
