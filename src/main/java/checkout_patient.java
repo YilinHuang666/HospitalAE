@@ -28,7 +28,7 @@ public class checkout_patient extends HttpServlet {
                 "<html lang=\"en\">\n" +
                 "<body>\n" +
                 "<h2>Check out Patient</h2>\n" +
-                "<form action=\"checkout_patient\" >\n" +
+                "<form action=\"checkout_patient\" method='post'>\n" +
                 "    <p><h3>Please select the patient to discharge:</h3></p>\n");
         for (int i=0; i<c_r_p_fn.size(); i++){ //obtain all current responsible patients
             out.println("<input type=\"radio\" name=\"patient_name\" value=\""+c_r_p_fn.get(i)+"\">"+c_r_p_fn.get(i)+" "+c_r_p_ln.get(i)+"<br>\n");
