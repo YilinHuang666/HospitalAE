@@ -16,11 +16,11 @@ import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/checkout_patient", loadOnStartup = 1)
 public class checkout_patient extends HttpServlet {
-    private String d_firstname,d_lastname;
-    private String checkout_p_fn,checkout_p_ln;
-    private String dbUrl =  System.getenv("JDBC_DATABASE_URL");
-    private ArrayList<String> c_r_p_fn = new ArrayList<String>(); //list of current responsible patient firstname
-    private ArrayList<String> c_r_p_ln = new ArrayList<String>(); //list of current responsible patient lastname
+    private static String d_firstname,d_lastname;
+    private static String checkout_p_fn,checkout_p_ln;
+    private static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
+    private static ArrayList<String> c_r_p_fn = new ArrayList<String>(); //list of current responsible patient firstname
+    private static ArrayList<String> c_r_p_ln = new ArrayList<String>(); //list of current responsible patient lastname
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
@@ -83,35 +83,24 @@ public class checkout_patient extends HttpServlet {
                 c_r_p_fn.add(resultSet.getString("patient_firstname"));
                 c_r_p_ln.add(resultSet.getString("patient_lastname"));
             }
-            ps.close();
-            resultSet.close();
-            conn.close();
-            //s.close();
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        if (checkout_p_fn!=null) {
+            if (checkout_p_fn!=null) {
             for (int i = 0; i < c_r_p_fn.size(); i++) {
                 if (checkout_p_fn.equals(c_r_p_fn.get(i))) {
                     checkout_p_ln=c_r_p_ln.get(i);
                     patient_to_doctor pd = new patient_to_doctor(checkout_p_fn, checkout_p_ln, d_firstname, d_lastname);
                     response.getWriter().write(gson.toJson(pd));
-                    try{
-                        conn=DriverManager.getConnection(dbUrl);
-                    }catch (SQLException e){
-                        e.printStackTrace();
-                    }
-                    try {
                         Statement s = conn.createStatement();
                         String sqlcom = "delete from patient_to_doctor_table where patient_firstname='" + checkout_p_fn + "' and patient_lastname='" + checkout_p_ln + "';"; //delete the specific patient from the database to discharge the patient
                         s.execute(sqlcom);
-                        conn.close();
-                        s.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
+                    s.close();
                     }
                 }
             }
+            conn.close();
+            ps.close();
+            resultSet.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
         }
         response.sendRedirect("checkout_patient");
     }

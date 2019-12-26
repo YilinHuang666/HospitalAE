@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 @WebServlet(urlPatterns = "/mypatients_page", loadOnStartup = 1)
 
 public class mypatients_page extends HttpServlet {
-    private String firstname,lastname;
-    private String dbUrl =  System.getenv("JDBC_DATABASE_URL");
+    private static String firstname,lastname;
+    private final static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         ArrayList<String> patient_fn_set=new ArrayList<String>();
@@ -50,10 +50,11 @@ public class mypatients_page extends HttpServlet {
             resultSet.close();
             ps.close();
             //s.close();
+            for (int i=0; i<patient_fn_set.size(); i++){
+                out.println("<h2>"+patient_fn_set.get(i)+" "+patient_ln_set.get(i)+"</h2>");
+            }
         }catch(Exception e){}
-        for (int i=0; i<patient_fn_set.size(); i++){
-            out.println("<h2>"+patient_fn_set.get(i)+" "+patient_ln_set.get(i)+"</h2>");
-        }
+
 }
 
     @Override
