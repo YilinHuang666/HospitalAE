@@ -119,9 +119,30 @@ public class checkout_patient extends HttpServlet {
                 "\n" +
                 "</body>\n" +
                 "</html>\n");
+
+
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        Cookie[] cookies = request.getCookies(); //receive the login doctor name
+        if (cookies != null){
+            for (Cookie cookie: cookies){
+                if (cookie.getName().equals("firstname")) d_firstname = cookie.getValue();
+                if (cookie.getName().equals("lastname")) d_lastname = cookie.getValue();
+            }
+        }
+        Cookie remove_firstname = new Cookie("firstname",""); //remove cookie
+        Cookie remove_lastname = new Cookie("lastname","");
+        remove_firstname.setMaxAge(0); response.addCookie(remove_firstname);
+        remove_lastname.setMaxAge(0); response.addCookie(remove_lastname);
         ArrayList<String> c_r_p_fn = new ArrayList<String>(); //list of current responsible patient firstname
         ArrayList<String> c_r_p_ln = new ArrayList<String>(); //list of current responsible patient lastname
         Gson gson=new Gson();
+        checkout_p_fn = request.getParameter("firstname"); //get the patient's first name for checkout process
+        checkout_p_ln = request.getParameter("lastname"); // get the patient's last name for checkout process
         try {
             Class.forName("org.postgresql.Driver");
         } catch (Exception e) {}
@@ -139,9 +160,6 @@ public class checkout_patient extends HttpServlet {
             resultSet.close();
         } catch (SQLException e){
             e.printStackTrace();
-        }
-        for (int i=0; i<c_r_p_fn.size(); i++){
-            out.println(c_r_p_fn.get(i)+" "+c_r_p_ln.get(i));
         }
         if (checkout_p_fn!=null && checkout_p_ln!=null) {
             for (int i = 0; i < c_r_p_fn.size(); i++) {
@@ -161,27 +179,6 @@ public class checkout_patient extends HttpServlet {
                 }
             }
         }
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        Cookie[] cookies = request.getCookies(); //receive the login doctor name
-        if (cookies != null){
-            for (Cookie cookie: cookies){
-                if (cookie.getName().equals("firstname")) d_firstname = cookie.getValue();
-                if (cookie.getName().equals("lastname")) d_lastname = cookie.getValue();
-            }
-        }
-        Cookie remove_firstname = new Cookie("firstname",""); //remove cookie
-        Cookie remove_lastname = new Cookie("lastname","");
-        remove_firstname.setMaxAge(0); response.addCookie(remove_firstname);
-        remove_lastname.setMaxAge(0); response.addCookie(remove_lastname);
-
-        checkout_p_fn = request.getParameter("firstname"); //get the patient's first name for checkout process
-        checkout_p_ln = request.getParameter("lastname"); // get the patient's last name for checkout process
-
         response.sendRedirect("checkout_patient");
     }
 }
