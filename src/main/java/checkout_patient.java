@@ -80,10 +80,10 @@ public class checkout_patient extends HttpServlet {
                 c_r_p_fn.add(resultSet.getString("patient_firstname"));
                 c_r_p_ln.add(resultSet.getString("patient_lastname"));
             }
-            conn.close();
             ps.close();
-            //s.close();
             resultSet.close();
+            conn.close();
+            //s.close();
         } catch (SQLException e){
             e.printStackTrace();
         }
