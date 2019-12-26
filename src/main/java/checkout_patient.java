@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.transform.Result;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -64,15 +65,18 @@ public class checkout_patient extends HttpServlet {
         } catch (Exception e) {}
         try {
             Connection conn= DriverManager.getConnection(dbUrl);
-            Statement s=conn.createStatement();
-            String sqlcom="SELECT * from patient_to_doctor_table where r_dr_firstname='"+d_firstname+"' and r_dr_lastname='"+d_lastname+"';"; // select the all current responsible patients of the doctor
-            ResultSet resultSet=s.executeQuery(sqlcom);
+            //Statement s=conn.createStatement();
+            //String sqlcom="SELECT * from patient_to_doctor_table where r_dr_firstname='"+d_firstname+"' and r_dr_lastname='"+d_lastname+"';"; // select the all current responsible patients of the doctor
+            //ResultSet resultSet=s.executeQuery(sqlcom);
+            PreparedStatement ps = conn.prepareStatement("select * from patient_to_doctor_table where r_dr_firstname=? and r_dr_lastname=?");
+            ps.setString(1,d_firstname); ps.setString(2,d_lastname);
+            ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()){
                 c_r_p_fn.add(resultSet.getString("patient_firstname"));
                 c_r_p_ln.add(resultSet.getString("patient_lastname"));
             }
             conn.close();
-            s.close();
+            //s.close();
             resultSet.close();
         } catch (SQLException e){
             e.printStackTrace();
