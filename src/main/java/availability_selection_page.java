@@ -305,15 +305,20 @@ public class availability_selection_page extends HttpServlet {
                 e.printStackTrace();
             }
             try {
-                Statement s = conn.createStatement();
-                String sqlcom = "update doctor_login_info set timetable='"+time_slot_message+"' where firstname='" +firstname+ "' and lastname='"+lastname+"';";
-                //PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where firstname=? and lastname=?"); // update the database with new timetable
-                //ps.setString(1,time_slot_message); ps.setString(2,firstname); ps.setString(3,lastname);
-                //ResultSet resultset = ps.executeQuery();
-                s.execute(sqlcom);
-                sqlcom="update doctor_login_info set workload='" +time_slot.length+"' where firstname='"+firstname+"' and lastname='" +lastname+"';";
-                s.execute(sqlcom);
-                s.close();
+                //Statement s = conn.createStatement();
+                //String sqlcom = "update doctor_login_info set timetable='"+time_slot_message+"' where firstname='" +firstname+ "' and lastname='"+lastname+"';";
+                PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where firstname=? and lastname=?"); // update the database with new timetable
+                ps.setString(1,time_slot_message); ps.setString(2,firstname); ps.setString(3,lastname);
+                ResultSet resultset = ps.executeQuery();
+                //s.execute(sqlcom);
+                //sqlcom="update doctor_login_info set workload='" +time_slot.length+"' where firstname='"+firstname+"' and lastname='" +lastname+"';";
+                //s.execute(sqlcom);
+                ps=conn.prepareStatement("update doctor_login_info set workload=? where firstname=? and lastname=?");
+                ps.setString(1,String.valueOf(time_slot.length)); ps.setString(2,firstname); ps.setString(3,lastname);
+                resultset=ps.executeQuery();
+                //s.close();
+                ps.close();
+                resultset.close();
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
