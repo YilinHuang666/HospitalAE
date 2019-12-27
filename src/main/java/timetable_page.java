@@ -108,11 +108,11 @@ public class timetable_page extends HttpServlet {
                     "            document.write('<tr>');\n" +
                     "\n" +
                     "            if (i == 0) {\n" +
-                    "                document.write(\"<td>0:00AM to 8:00AM</td>\");\n" +
+                    "                document.write(\"<td>0:00 to 8:00</td>\");\n" +
                     "            } else if (i == 1) {\n" +
-                    "                document.write(\"<td>8:00AM to 16:00PM</td>\");\n" +
+                    "                document.write(\"<td>8:00 to 16:00</td>\");\n" +
                     "            } else if (i == 2) {\n" +
-                    "                document.write(\"<td>16:00PM to 24:00PM</td>\");\n" +
+                    "                document.write(\"<td>16:00 to 24:00</td>\");\n" +
                     "            }\n" +
                     "            for (k = 0; k < 7; k ++) {\n" +
                     "                if(checkslot(i+1,k+1,arrayOfSlot)){\n" +
