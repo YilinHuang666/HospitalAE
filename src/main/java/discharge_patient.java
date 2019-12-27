@@ -42,8 +42,11 @@ public class discharge_patient extends HttpServlet {
                 "</form>" +
                 "</body>\n" +
                 "</html>");
+        if (checkout_p_fn!=null){
+            out.println(checkout_p_fn+" "+checkout_p_ln+" has been discharged");
+        }
         c_r_p_ln.clear(); c_r_p_fn.clear(); //clear out the array for printing next time
-
+        checkout_p_fn=null;
     }
 
     @Override
