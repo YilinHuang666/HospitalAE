@@ -92,10 +92,11 @@ public class discharge_patient extends HttpServlet {
                     checkout_p_ln=c_r_p_ln.get(i);
                     patient_to_doctor pd = new patient_to_doctor(checkout_p_fn, checkout_p_ln, d_firstname, d_lastname);
                     response.getWriter().write(gson.toJson(pd));
-                        Statement s = conn.createStatement();
-                        String sqlcom = "delete from patient_to_doctor_table where patient_firstname='" + checkout_p_fn + "' and patient_lastname='" + checkout_p_ln + "';"; //delete the specific patient from the database to discharge the patient
-                        s.execute(sqlcom);
+                    Statement s = conn.createStatement();
+                    String sqlcom = "delete from patient_to_doctor_table where patient_firstname='" + checkout_p_fn + "' and patient_lastname='" + checkout_p_ln + "';"; //delete the specific patient from the database to discharge the patient
+                    s.execute(sqlcom);
                     s.close();
+                    c_r_p_fn.remove(checkout_p_fn); c_r_p_ln.remove(checkout_p_ln);
                     }
                 }
             }
@@ -105,6 +106,7 @@ public class discharge_patient extends HttpServlet {
         }catch (SQLException e) {
             e.printStackTrace();
         }
+
         response.sendRedirect("discharge_patient");
     }
 }
