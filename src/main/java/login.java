@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
+//This is a login page. Doctors need to login first before accessing the welcome page and their information
 @WebServlet(urlPatterns = {"/login"}, loadOnStartup = 1)
 public class login extends HttpServlet {
     //html code for login page
@@ -70,7 +71,6 @@ public class login extends HttpServlet {
             "            padding-top: 16px;\n" +
             "        }\n" +
             "\n" +
-            "        /* Change styles for span and cancel button on extra small screens */\n" +
             "        @media screen and (max-width: 300px) {\n" +
             "            span.psw {\n" +
             "                display: block;\n" +
@@ -96,15 +96,8 @@ public class login extends HttpServlet {
             "        <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required>\n" +
             "\n" +
             "        <button type=\"submit\"><h2>Login</h2></button>\n" +
-            "       <!-- <label>\n" +
-            "            <input type=\"checkbox\" checked=\"checked\" name=\"remember\"> Remember me\n" +
-            "        </label>-->\n" +
             "    </div>\n" +
             "\n" +
-            "   <!-- <div class=\"container\" style=\"background-color:#f1f1f1\">\n" +
-            "        <button type=\"button\" class=\"cancelbtn\">Cancel</button>\n" +
-            "        <span class=\"psw\">Forgot <a href=\"#\">password?</a></span>\n" +
-            "    </div>-->\n" +
             "</form>\n" +
             "\n" +
             "</body>\n" +

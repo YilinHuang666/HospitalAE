@@ -13,14 +13,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+//Doctors are able to view their responsible patients at this page
 @WebServlet(urlPatterns = "/mypatients_page", loadOnStartup = 1)
 
 public class mypatients_page extends HttpServlet {
-    private static String firstname,lastname;
+    private static String firstname,lastname; //login doctor's first name and last name
     private final static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        ArrayList<String> patient_fn_set=new ArrayList<String>();
+        ArrayList<String> patient_fn_set=new ArrayList<String>(); //arraylists to store the doctor's responsible patients' name
         ArrayList<String> patient_ln_set=new ArrayList<String>();
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
@@ -36,14 +37,11 @@ public class mypatients_page extends HttpServlet {
             e.printStackTrace();
         }
         try{
-            //Statement s=conn.createStatement();
-            //String sqlcom="select * from patient_to_doctor_table where r_dr_firstname='"+firstname+"' and r_dr_lastname='"+lastname+"';";
-            //ResultSet resultSet=s.executeQuery(sqlcom);
             PreparedStatement ps=conn.prepareStatement("select * from patient_to_doctor_table where r_dr_firstname=? and r_dr_lastname=?");
             ps.setString(1,firstname); ps.setString(2,lastname);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()){
-                patient_fn_set.add(resultSet.getString("patient_firstname"));
+                patient_fn_set.add(resultSet.getString("patient_firstname")); //select the doctor's responsible patients and store their name into the arraylist
                 patient_ln_set.add(resultSet.getString("patient_lastname"));
             }
             conn.close();
@@ -51,7 +49,7 @@ public class mypatients_page extends HttpServlet {
             ps.close();
             //s.close();
             for (int i=0; i<patient_fn_set.size(); i++){
-                out.println("<h2>"+patient_fn_set.get(i)+" "+patient_ln_set.get(i)+"</h2>");
+                out.println("<h2>"+patient_fn_set.get(i)+" "+patient_ln_set.get(i)+"</h2>"); //print out patients' name
             }
         }catch(Exception e){}
 

@@ -10,10 +10,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
+//Doctors are able to view their timetable at this page. The timetable is formatted into a calendar for clearer
+//visualization.
 @WebServlet(urlPatterns = "/timetable_page", loadOnStartup = 1)
 
 public class timetable_page extends HttpServlet {
-    private static String reqBody;
     private String firstname;
     private String lastname;
     private final static String dbUrl = System.getenv("JDBC_DATABASE_URL");
@@ -163,7 +164,7 @@ public class timetable_page extends HttpServlet {
                 if (cookie.getName().equals("lastname_timetable")) lastname = cookie.getValue();
             }
         }
-        Cookie firstname_remove = new Cookie("firstname_timetable","");
+        Cookie firstname_remove = new Cookie("firstname_timetable",""); //remove cookie
         Cookie lastname_remove = new Cookie("lastname_timetable","");
         firstname_remove.setMaxAge(0); lastname_remove.setMaxAge(0);
         response.addCookie(firstname_remove); response.addCookie(lastname_remove);

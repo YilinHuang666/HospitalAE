@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
-
+//this url is not for the doctor to view, it is used to send all doctors' timetable to the local reception
 @WebServlet(urlPatterns = "/send_timetable",loadOnStartup = 1)
 public class send_timetable extends HttpServlet {
     private final static String dbUrl=System.getenv("JDBC_DATABASE_URL");
-    private ArrayList<String> all_firstname=new ArrayList<String>();
-    private ArrayList<String> all_lastname=new ArrayList<String>();
-    private ArrayList<String> all_timetable=new ArrayList<String>();
+    private ArrayList<String> all_firstname=new ArrayList<String>(); //these two arraylists are used to store all doctor's
+    private ArrayList<String> all_lastname=new ArrayList<String>();  //first name and last name
+    private ArrayList<String> all_timetable=new ArrayList<String>(); //arraylist to store all timetable info for all doctors
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
 
@@ -70,10 +70,10 @@ public class send_timetable extends HttpServlet {
 
 
         for (int i=0; i<all_timetable.size(); i++){
-            out.println(all_firstname.get(i)+" "+all_lastname.get(i));
+            out.println(all_firstname.get(i)+" "+all_lastname.get(i)); //print the timetable info so that local reception can receive these info
             out.println(all_timetable.get(i));
         }
-        all_firstname.removeAll(all_firstname);
+        all_firstname.removeAll(all_firstname); //empty the arraylist to prevent repeated info
         all_lastname.removeAll(all_lastname);
         all_timetable.removeAll(all_timetable);
     }

@@ -18,7 +18,7 @@ public class Verificate{
             PreparedStatement ps=conn.prepareStatement("select * from doctor_login_info where password=? and username=?"); // to check if the database has the corresponding information
             ps.setString(1,passw); ps.setString(2,usern);
             ResultSet resultset = ps.executeQuery();
-            state=resultset.next(); //state=true if there is correponding info, else state=false
+            state=resultset.next(); //state=true if there is corresponding info, else state=false
             resultset.close();
             s.close();
             conn.close();

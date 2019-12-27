@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.stream.Collectors;
 
+//this url is not for the doctors to view, it is for receiving the assigned patient from the reception then add the info to the database
 @WebServlet(urlPatterns = "/receive_assigned_patient",loadOnStartup = 1)
 public class receive_assigned_patient extends HttpServlet {
     @Override

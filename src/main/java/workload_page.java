@@ -11,6 +11,8 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.stream.Collectors;
 
+//Doctors are able to view their work load at this page. It shows how many work load the doctors have at this week and
+//how many left. If the doctor is on duty, a message "You are currently on duty" will be shown on this page
 @WebServlet(urlPatterns = "/workload_page", loadOnStartup = 1)
 
 public class workload_page extends HttpServlet {

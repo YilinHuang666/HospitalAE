@@ -11,17 +11,22 @@ import java.sql.*;
 import java.util.Calendar;
 import java.util.stream.Collectors;
 
+//doctors are able to select their time availability at this page at the end of each week
+//There is a return to welcome page button to go back to welcome page
+//There is also a logout button so that the doctors are able to logout directly after the time availability selection
 @WebServlet(urlPatterns = {"/availability_selection_page"},loadOnStartup = 1)
 public class availability_selection_page extends HttpServlet {
     private static String disable_1a, disable_2a, disable_3a, disable_4a, disable_5a, disable_6a, disable_7a,
             disable_1b, disable_2b, disable_3b, disable_4b, disable_5b, disable_6b, disable_7b,
             disable_1c, disable_2c, disable_3c, disable_4c, disable_5c, disable_6c, disable_7c,disable_submit="";
-    private static String lastname;
-    private static String firstname;
-    private static String time_slot_message="";
+    private static String lastname;  //login doctor's last name
+    private static String firstname; //login doctor's first name
+    private static String time_slot_message=""; //store the encoded time slot message
     private static int chosen_checkbox_count_1a,chosen_checkbox_count_2a,chosen_checkbox_count_3a,chosen_checkbox_count_4a,chosen_checkbox_count_5a,chosen_checkbox_count_6a,chosen_checkbox_count_7a,
                         chosen_checkbox_count_1b,chosen_checkbox_count_2b,chosen_checkbox_count_3b,chosen_checkbox_count_4b,chosen_checkbox_count_5b,chosen_checkbox_count_6b,chosen_checkbox_count_7b,
                         chosen_checkbox_count_1c,chosen_checkbox_count_2c,chosen_checkbox_count_3c,chosen_checkbox_count_4c,chosen_checkbox_count_5c,chosen_checkbox_count_6c,chosen_checkbox_count_7c=0;
+                        //each slot need a maximum of 3 doctors since there are 10 beds in one ward and each doctor can be responsible for up to
+                        //4 patients. If all 10 beds are occupied, a maximum of 3 doctors are needed.
     private static int disable_checkbox_count=0;
     private final static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
     private static String[] time_slot;
@@ -271,7 +276,6 @@ public class availability_selection_page extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setContentType("text/html");
-        PrintWriter out=response.getWriter();
         Cookie[] cookies = request.getCookies(); //get login doctor name from welcome page
         if (cookies != null){
             for (Cookie cookie: cookies){
@@ -285,7 +289,7 @@ public class availability_selection_page extends HttpServlet {
         response.addCookie(firstname_remove); response.addCookie(lastname_remove); //remove cookie
         time_slot=request.getParameterValues("time_slot"); //obtain input timetable
         disable_submit="";
-        if (time_slot!=null){
+        if (time_slot!=null){ //if the doctor makes a selection choice, begin the process
             for (int i=0; i<time_slot.length; i++){
                 time_slot_message+=time_slot[i]+" "; // count the number of each slot selected
                 switch (time_slot[i]){ //disable chosen checkbox
@@ -327,11 +331,9 @@ public class availability_selection_page extends HttpServlet {
             }
             try {
                 Statement s = conn.createStatement();
-                String sqlcom = "update doctor_login_info set timetable='"+time_slot_message+"' where firstname='" +firstname+ "' and lastname='"+lastname+"';";
-                //PreparedStatement ps=conn.prepareStatement("update doctor_login_info set timetable=? where firstname=? and lastname=?"); // update the database with new timetable
-                //ps.setString(1,time_slot_message); ps.setString(2,firstname); ps.setString(3,lastname);
+                String sqlcom = "update doctor_login_info set timetable='"+time_slot_message+"' where firstname='" +firstname+ "' and lastname='"+lastname+"';"; //update doctor's timetable information in the database
                 s.execute(sqlcom);
-                sqlcom="update doctor_login_info set workload='" +time_slot.length+"' where firstname='"+firstname+"' and lastname='" +lastname+"';";
+                sqlcom="update doctor_login_info set workload='" +time_slot.length+"' where firstname='"+firstname+"' and lastname='" +lastname+"';"; //the length of the time_slot is the workload for the doctor
                 s.execute(sqlcom);
                 s.close();
                 conn.close();
@@ -339,8 +341,8 @@ public class availability_selection_page extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        if (chosen_checkbox_count_1a==3) {disable_1a="disabled"; disable_checkbox_count++;} //each slot need a maximum of 3 Class.doctors to take care of 10 Class.patients
-        if (chosen_checkbox_count_2a==3) {disable_2a="disabled"; disable_checkbox_count++;} //therefore disable the slot if three Class.doctors have selected that slot to
+        if (chosen_checkbox_count_1a==3) {disable_1a="disabled"; disable_checkbox_count++;} //each slot need a maximum of 3 doctors to take care of 10 patients
+        if (chosen_checkbox_count_2a==3) {disable_2a="disabled"; disable_checkbox_count++;} //therefore disable the slot if three doctors have selected that slot to
         if (chosen_checkbox_count_3a==3) {disable_3a="disabled"; disable_checkbox_count++;} //prevent waste of resources.
         if (chosen_checkbox_count_4a==3) {disable_4a="disabled"; disable_checkbox_count++;}
         if (chosen_checkbox_count_5a==3) {disable_5a="disabled"; disable_checkbox_count++;}
@@ -361,7 +363,7 @@ public class availability_selection_page extends HttpServlet {
         if (chosen_checkbox_count_6c==3) {disable_6c="disabled"; disable_checkbox_count++;}
         if (chosen_checkbox_count_7c==3) {disable_7c="disabled"; disable_checkbox_count++;}
 
-        if (disable_checkbox_count==21){  //reset time selection page on Sunday every week
+        if (disable_checkbox_count==21){  //reset time selection page if all slots are occupied
             disable_1a=disable_2a=disable_3a=disable_4a=disable_5a=disable_6a=disable_7a=
                     disable_1b=disable_2b=disable_3b=disable_4b=disable_5b=disable_6b=disable_7b=
                             disable_1c=disable_2c=disable_3c=disable_4c=disable_5c=disable_6c=disable_7c ="";

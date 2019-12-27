@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
+//This is the welcome page, ie, the main menu. Login doctor's first name and last name will be packed into cookie and
+//sent to the rest page for identification at this page.
 @WebServlet(urlPatterns = {"/welcome_page"}, loadOnStartup = 2)
 public class welcome_page extends HttpServlet {
     private String firstname;
@@ -47,7 +49,7 @@ public class welcome_page extends HttpServlet {
                 "    </style>\n" +
                 "</head>\n" +
                 "<body >\n" +
-                "    <h1>Welcome " + firstname + " "+ lastname+
+                "    <h1>Welcome " + firstname + " "+ lastname+ //print the welcome message at the top of the website
                 "</h1>\n" +
                 "    &nbsp;\n" +
                 "    <form action=\"timetable_page\" method=\"post\">\n" +
@@ -87,7 +89,7 @@ public class welcome_page extends HttpServlet {
                 "   </form>"+
                 "</body>\n" +
                 "</html>");
-        Cookie firstname_cookie = new Cookie("firstname_select",firstname); //create cookies to convey firstname and lastname to other pages for identifying
+        Cookie firstname_cookie = new Cookie("firstname_select",firstname); //create cookies to convey firstname and lastname to other pages for identification
         Cookie lastname_cookie = new Cookie("lastname_select",lastname);
         Cookie firstname_cookie_workload = new Cookie("firstname_workload",firstname);
         Cookie lastname_cookie_workload = new Cookie("lastname_workload",lastname);
@@ -117,13 +119,13 @@ public class welcome_page extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String uname = (String)request.getAttribute("username"); //get the input username
+        String uname = (String)request.getAttribute("username"); //get the username from login page
         try {
             Statement s=conn.createStatement();
             String sqlcom="select * from doctor_login_info where username='"+uname+"';";
              ResultSet resultset = s.executeQuery(sqlcom);
             while(resultset.next()) {
-                firstname = resultset.getString("firstname");
+                firstname = resultset.getString("firstname"); //get the login doctor's full name
                 lastname = resultset.getString("lastname");
             }
             resultset.close();
