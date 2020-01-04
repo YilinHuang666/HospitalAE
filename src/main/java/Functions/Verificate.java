@@ -2,6 +2,8 @@ package Functions;
 
 import java.sql.*;
 
+//this function is used for the verification at the login page. the input arguments are the password and the username.
+//If there is a match in the database, the function will return true, else return false.
 public class Verificate{
     private static String dbUrl =  System.getenv("JDBC_DATABASE_URL");
 

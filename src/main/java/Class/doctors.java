@@ -2,6 +2,7 @@ package Class;
 
 import java.io.Serializable;
 
+//doctor class inherent from the Person class
 public class doctors extends Person implements Serializable {
     String workload;
     boolean availability;

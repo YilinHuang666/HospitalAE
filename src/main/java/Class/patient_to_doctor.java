@@ -1,5 +1,7 @@
 package Class;
 
+//this class is used for the communication between the local app and the web page. it stores the assigned patient's name
+//and the corresponding doctor's name.
 public class patient_to_doctor {
     String patient_firstname;
     String patient_lastname;

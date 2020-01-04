@@ -2,6 +2,7 @@ package Class;
 
 import java.io.Serializable;
 
+//patient class inherent from the Person class
 public class patients extends Person implements Serializable {
     String age, notes;
     boolean admit_status;

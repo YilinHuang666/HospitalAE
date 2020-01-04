@@ -2,6 +2,7 @@ package Class;
 
 import java.io.Serializable;
 
+//Person class has the common parameter in both patient and doctor class
 public class Person implements Serializable {
     int id;
     String firstname, lastname, identitynumber;
