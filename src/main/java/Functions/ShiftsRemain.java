@@ -4,7 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class ShiftsRemain {
+public class ShiftsRemain { //Calculate the number of shifts remain for this week
+                            //also check the onDuty state for workload page
     private int remainShifts;
     private boolean onDuty;
 
@@ -14,7 +15,7 @@ public class ShiftsRemain {
         Date today = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(today);
-        int weekDay = calendar.get(Calendar.DAY_OF_WEEK) -1;
+        int weekDay = calendar.get(Calendar.DAY_OF_WEEK) -1;        //1 is Sunday is system language, change to 7 and shift
         if(weekDay == 0)
             weekDay = 7;
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
