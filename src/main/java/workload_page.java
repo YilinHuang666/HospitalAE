@@ -39,7 +39,7 @@ public class workload_page extends HttpServlet {
         try{
             Statement s = conn.createStatement();
             String sqlcom="SELECT * from doctor_login_info where firstname='"+firstname+"' and lastname='"+lastname+"';";
-             ResultSet resultset = s.executeQuery(sqlcom);
+             ResultSet resultset = s.executeQuery(sqlcom);              //query database for shifts and timetable
             while (resultset.next()){
                 shifts = Integer.parseInt(resultset.getString("workload"));
                 out.println("<h2> You have "+shifts+" shifts this week.</h2>");
@@ -48,8 +48,8 @@ public class workload_page extends HttpServlet {
             resultset = s.executeQuery(sqlcom);
             while (resultset.next()){
                 String rawTimetable = resultset.getString("timetable");
-                String[] arrOfTb = rawTimetable.split(" ");
-                ShiftsRemain sr = new ShiftsRemain(arrOfTb);
+                String[] arrOfTb = rawTimetable.split(" ");         //split string to array
+                ShiftsRemain sr = new ShiftsRemain(arrOfTb);               //use ShiftsRemain function to determine remaining shifts and on duty state
                 if(sr.isOnDuty()==true)
                     out.println("<h2> You are currently on Duty!</h2>");
                 out.println("<h2> You have " + sr.getRemainShifts() + " shifts left.</h2>");
@@ -71,7 +71,7 @@ public class workload_page extends HttpServlet {
                 if (cookie.getName().equals("lastname_workload")) lastname = cookie.getValue();
             }
         }
-        Cookie remove_firstname = new Cookie("firstname","");
+        Cookie remove_firstname = new Cookie("firstname","");       //remove cookie
         Cookie remove_lastname = new Cookie("lastname","");
         remove_firstname.setMaxAge(0); response.addCookie(remove_firstname);
         remove_lastname.setMaxAge(0); response.addCookie(remove_lastname);
