@@ -31,7 +31,7 @@ public class discharge_patient extends HttpServlet {
         out.println("<!DOCTYPE html>\n" + //html code for the page
                 "<html lang=\"en\">\n" +
                 "<body>\n" +
-                "<h2>Check out Patient</h2>\n" +
+                "<h2>Discharge Patient</h2>\n" +
                 "<form action=\"discharge_patient\" method='post'>\n" +
                 "    <p><h3>Please select the patient to discharge:</h3></p>\n");
         for (int i=0; i<c_r_p_fn.size(); i++){ //obtain all current responsible patients
