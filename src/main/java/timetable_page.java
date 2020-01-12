@@ -1,4 +1,4 @@
-import Functions.TBtowrite;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +37,7 @@ public class timetable_page extends HttpServlet {
         try{
             Statement s = conn.createStatement();
             String sqlcom="SELECT * from doctor_login_info where firstname='"+firstname+"' and lastname='"+lastname+"';";
-             ResultSet resultset = s.executeQuery(sqlcom);
+             ResultSet resultset = s.executeQuery(sqlcom);      //query database for doctors timetable
             while (resultset.next()){
                 rawTimetable = resultset.getString("timetable");
             }
@@ -51,7 +51,7 @@ public class timetable_page extends HttpServlet {
                     "    <title></title>\n" +
                     "    <style>\n" +
                     "        table {\n" +
-                    "            width: 1000px;\n" +
+                    "            width: 1000px;\n" +                        //set table format
                     "            margin: auto;\n" +
                     "            text-align: center;\n" +
                     "            border: 1px solid purple;\n" +
@@ -71,8 +71,8 @@ public class timetable_page extends HttpServlet {
                     "    <script>\n" +
                     "        function checkslot(ind, knd, array) {\n" +
                     "            var a;\n" +
-                    "            for (a = 0;a < array.length;a++){\n" +
-                    "                if (array[a] == 10*knd +ind){\n" +
+                    "            for (a = 0;a < array.length;a++){\n" +     //function for check which
+                    "                if (array[a] == 10*knd +ind){\n" +     //time the doctor is on duty
                     "                    return true;\n" +
                     "                }\n" +
                     "            }\n" +
@@ -87,7 +87,7 @@ public class timetable_page extends HttpServlet {
                 if (k != 0){
                     out.println(",");
                 }
-                out.println(arrOfTb[k]);    //put values of timetable in
+                out.println(arrOfTb[k]);            //put values of timetable in arrayOfSlot
             }
             out.println(");\n" +
                     "            dayOfWeek = today.getDay(); //get the week day of today\n" +
@@ -95,7 +95,7 @@ public class timetable_page extends HttpServlet {
                     "                dayOfWeek +=6;\n" +
                     "\n" +
                     "        document.write(\"<table cellspacing='0' cellpadding='10'>\" +\n" +
-                    "            \"<tr><td width='80'></td>\" +\n" +
+                    "            \"<tr><td width='80'></td>\" +\n" +                    //table head lines
                     "            \"<td width='130'>Monday</td>\" +\n" +
                     "            \"<td width='130'>Tuesday </td>\" +\n" +
                     "            \"<td width='130'>Wednesday</td>\" +\n" +
@@ -108,7 +108,7 @@ public class timetable_page extends HttpServlet {
                     "        for(i = 0; i < 3; i++){\n" +
                     "            document.write('<tr>');\n" +
                     "\n" +
-                    "            if (i == 0) {\n" +
+                    "            if (i == 0) {\n" +                                      //table side lines
                     "                document.write(\"<td>0:00 to 8:00</td>\");\n" +
                     "            } else if (i == 1) {\n" +
                     "                document.write(\"<td>8:00 to 16:00</td>\");\n" +
@@ -116,8 +116,8 @@ public class timetable_page extends HttpServlet {
                     "                document.write(\"<td>16:00 to 24:00</td>\");\n" +
                     "            }\n" +
                     "            for (k = 0; k < 7; k ++) {\n" +
-                    "                if(checkslot(i+1,k+1,arrayOfSlot)){\n" +
-                    "                    document.write(\"<td>On Duty</td>\");\n" +
+                    "                if(checkslot(i+1,k+1,arrayOfSlot)){\n" +           //check array to put on duty
+                    "                    document.write(\"<td>On Duty</td>\");\n" +     //in correct slot
                     "                }else {\n" +
                     "                    document.write(\"<td></td>\");\n" +
                     "                }\n" +
@@ -147,7 +147,7 @@ public class timetable_page extends HttpServlet {
                 arrOfTb[k] = String.valueOf(ka) + "1";
             } else if(arrOfTb[k].charAt(1)=='b'){
                 arrOfTb[k] = String.valueOf(ka) + "2";
-            } else if(arrOfTb[k].charAt(1)=='c'){           //Convert a b c to 1 2 3
+            } else if(arrOfTb[k].charAt(1)=='c'){           //Convert a b c to 1 2 3, which is used in html as time slots
                 arrOfTb[k] = String.valueOf(ka) + "3";
             }
         }
